@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}Export - Transaction Categorizer{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Export to Budget Format</h2>
+            <div>
+                <a href="/review" class="btn btn-outline-secondary me-2">Back to Review</a>
+                <a href="/api/export/tsv" class="btn btn-primary">Download TSV</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Summary -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Total Transactions</h6>
+                <h3 class="card-title mb-0">{{ summary.total_transactions or 0 }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Categorized</h6>
+                <h3 class="card-title mb-0 text-success">{{ summary.categorized_count or 0 }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Uncategorized</h6>
+                <h3 class="card-title mb-0 {% if (summary.uncategorized_count or 0) > 0 %}text-warning{% else %}text-success{% endif %}">
+                    {{ summary.uncategorized_count or 0 }}
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Net</h6>
+                <h3 class="card-title mb-0 {% if (summary.net or 0) >= 0 %}text-success{% else %}text-danger{% endif %}">
+                    €{{ "%.2f"|format((summary.net or 0)|float) }}
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TSV Preview -->
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">TSV Preview</h5>
+        <button class="btn btn-sm btn-outline-primary" id="copyBtn">Copy to Clipboard</button>
+    </div>
+    <div class="card-body p-0">
+        {% if tsv %}
+        <pre class="m-3" style="max-height: 500px; overflow: auto;"><code id="tsvContent">{{ tsv }}</code></pre>
+        {% else %}
+        <div class="p-5 text-center text-muted">
+            <p>No transactions to export.</p>
+            <a href="/upload" class="btn btn-primary">Upload Transactions</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Instructions -->
+<div class="card mt-4">
+    <div class="card-header">
+        <h5 class="mb-0">How to Use</h5>
+    </div>
+    <div class="card-body">
+        <ol class="mb-0">
+            <li>Click "Download TSV" to save the file, or</li>
+            <li>Click "Copy to Clipboard" and paste directly into Google Sheets</li>
+            <li>In Google Sheets, the columns will automatically align</li>
+            <li>Fill in the "Budget" column manually to compare against actual spending</li>
+        </ol>
+    </div>
+</div>
+
+<!-- Warning if uncategorized transactions exist -->
+{% if (summary.uncategorized_count or 0) > 0 %}
+<div class="alert alert-warning mt-4">
+    <strong>Warning:</strong> You have {{ summary.uncategorized_count }} uncategorized transaction(s).
+    <a href="/review" class="alert-link">Review and categorize them</a> before exporting for better results.
+</div>
+{% endif %}
+
+<!-- Copy Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="copyToast" class="toast" role="alert">
+        <div class="toast-body">
+            Copied to clipboard!
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const copyBtn = document.getElementById('copyBtn');
+    const tsvContent = document.getElementById('tsvContent');
+    
+    if (copyBtn && tsvContent) {
+        copyBtn.addEventListener('click', function() {
+            const text = tsvContent.textContent;
+            navigator.clipboard.writeText(text).then(function() {
+                const toast = new bootstrap.Toast(document.getElementById('copyToast'));
+                toast.show();
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+                alert('Failed to copy. Please select and copy manually.');
+            });
+        });
+    }
+});
+</script>
+{% endblock %}

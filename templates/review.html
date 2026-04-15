@@ -1,0 +1,308 @@
+{% extends "base.html" %}
+
+{% block title %}Review - Transaction Categorizer{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Review Transactions</h2>
+            <div>
+                <button class="btn btn-outline-primary me-2" id="autoCategorizeBtn">
+                    Auto-Categorize
+                </button>
+                <a href="/export" class="btn btn-primary">Export to TSV</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Summary Cards -->
+<div class="row mb-4" id="summaryCards">
+    <div class="col-md-3">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Total Transactions</h6>
+                <h3 class="card-title mb-0" id="totalCount">0</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Categorized</h6>
+                <h3 class="card-title mb-0 text-success" id="categorizedCount">0</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Uncategorized</h6>
+                <h3 class="card-title mb-0 text-warning" id="uncategorizedCount">0</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Total Expenses</h6>
+                <h3 class="card-title mb-0 text-danger" id="totalExpenses">€0.00</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Filters -->
+<div class="row mb-3">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="showUncategorizedOnly">
+                            <label class="form-check-label" for="showUncategorizedOnly">
+                                Show Uncategorized Only
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search descriptions...">
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="bulkCategorySelect">
+                            <option value="">Bulk assign category...</option>
+                            {% for category in categories %}
+                            <option value="{{ category }}">{{ category }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Transactions Table -->
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>
+                            <input type="checkbox" class="form-check-input" id="selectAll">
+                        </th>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Bank Category</th>
+                        <th>Budget Category</th>
+                    </tr>
+                </thead>
+                <tbody id="transactionsTable">
+                    {% if transactions %}
+                        {% for tx in transactions %}
+                        <tr class="transaction-row" data-id="{{ tx.id }}">
+                            <td>
+                                <input type="checkbox" class="form-check-input row-checkbox" value="{{ tx.id }}">
+                            </td>
+                            <td>{{ tx.date[:10] if tx.date else '' }}</td>
+                            <td title="{{ tx.description }}">{{ tx.description[:60] }}{% if tx.description|length > 60 %}...{% endif %}</td>
+                            <td class="{% if tx.is_expense %}amount-expense{% else %}amount-income{% endif %}">
+                                €{{ "%.2f"|format(tx.amount|float) }}
+                            </td>
+                            <td>{{ tx.bank_category }}</td>
+                            <td>
+                                <select class="form-select form-select-sm category-select" data-id="{{ tx.id }}">
+                                    <option value="">Uncategorized</option>
+                                    {% for category in categories %}
+                                    <option value="{{ category }}" {% if tx.budget_category == category %}selected{% endif %}>
+                                        {{ category }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="6" class="text-center py-5 text-muted">
+                                No transactions loaded. <a href="/upload">Upload a file</a> first.
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Status Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="statusToast" class="toast" role="alert">
+        <div class="toast-header">
+            <strong class="me-auto">Status</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body" id="toastMessage"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let transactions = {{ transactions|tojson }};
+    const categories = {{ categories|tojson }};
+    
+    // Update summary cards
+    function updateSummary() {
+        const total = transactions.length;
+        const categorized = transactions.filter(tx => tx.budget_category).length;
+        const uncategorized = total - categorized;
+        const expenses = transactions
+            .filter(tx => parseFloat(tx.amount) < 0)
+            .reduce((sum, tx) => sum + Math.abs(parseFloat(tx.amount)), 0);
+        
+        document.getElementById('totalCount').textContent = total;
+        document.getElementById('categorizedCount').textContent = categorized;
+        document.getElementById('uncategorizedCount').textContent = uncategorized;
+        document.getElementById('totalExpenses').textContent = '€' + expenses.toFixed(2);
+    }
+    
+    updateSummary();
+    
+    // Category select change
+    document.querySelectorAll('.category-select').forEach(select => {
+        select.addEventListener('change', async function() {
+            const txId = this.dataset.id;
+            const category = this.value;
+            
+            try {
+                const response = await fetch('/api/transactions/categorize', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ transaction_ids: [txId], category: category })
+                });
+                
+                if (response.ok) {
+                    // Update local data
+                    const tx = transactions.find(t => t.id === txId);
+                    if (tx) {
+                        tx.budget_category = category;
+                        tx.confidence = 1.0;
+                    }
+                    updateSummary();
+                    showToast('Category updated');
+                }
+            } catch (error) {
+                showToast('Error: ' + error.message);
+            }
+        });
+    });
+    
+    // Select all checkbox
+    document.getElementById('selectAll').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('.row-checkbox');
+        checkboxes.forEach(cb => cb.checked = this.checked);
+    });
+    
+    // Bulk category assign
+    document.getElementById('bulkCategorySelect').addEventListener('change', async function() {
+        const category = this.value;
+        if (!category) return;
+        
+        const selectedIds = Array.from(document.querySelectorAll('.row-checkbox:checked'))
+            .map(cb => cb.value);
+        
+        if (selectedIds.length === 0) {
+            showToast('No transactions selected');
+            return;
+        }
+        
+        try {
+            const response = await fetch('/api/transactions/categorize', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ transaction_ids: selectedIds, category: category })
+            });
+            
+            if (response.ok) {
+                // Update local data and UI
+                selectedIds.forEach(id => {
+                    const tx = transactions.find(t => t.id === id);
+                    if (tx) {
+                        tx.budget_category = category;
+                        tx.confidence = 1.0;
+                    }
+                    const select = document.querySelector(`.category-select[data-id="${id}"]`);
+                    if (select) select.value = category;
+                });
+                updateSummary();
+                showToast(`Updated ${selectedIds.length} transactions`);
+            }
+        } catch (error) {
+            showToast('Error: ' + error.message);
+        }
+        
+        this.value = '';
+    });
+    
+    // Auto-categorize button
+    document.getElementById('autoCategorizeBtn').addEventListener('click', async function() {
+        this.disabled = true;
+        this.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Processing...';
+        
+        try {
+            const response = await fetch('/api/transactions/auto-categorize', {
+                method: 'POST'
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                showToast(`Auto-categorized ${data.categorized_count} transactions`);
+                // Reload page to refresh data
+                window.location.reload();
+            }
+        } catch (error) {
+            showToast('Error: ' + error.message);
+        } finally {
+            this.disabled = false;
+            this.innerHTML = 'Auto-Categorize';
+        }
+    });
+    
+    // Filter: Uncategorized only
+    document.getElementById('showUncategorizedOnly').addEventListener('change', function() {
+        const rows = document.querySelectorAll('.transaction-row');
+        rows.forEach(row => {
+            const id = row.dataset.id;
+            const tx = transactions.find(t => t.id === id);
+            if (this.checked && tx && tx.budget_category) {
+                row.style.display = 'none';
+            } else {
+                row.style.display = '';
+            }
+        });
+    });
+    
+    // Search filter
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const search = this.value.toLowerCase();
+        const rows = document.querySelectorAll('.transaction-row');
+        rows.forEach(row => {
+            const desc = row.cells[2].textContent.toLowerCase();
+            row.style.display = desc.includes(search) ? '' : 'none';
+        });
+    });
+    
+    function showToast(message) {
+        document.getElementById('toastMessage').textContent = message;
+        const toast = new bootstrap.Toast(document.getElementById('statusToast'));
+        toast.show();
+    }
+});
+</script>
+{% endblock %}
