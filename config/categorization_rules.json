@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-04-22T19:39:55.133441",
+  "merchant_rules": {
+    "ALDI SE": {
+      "category": "Other/E-commerce",
+      "confidence": 0.6,
+      "count": 2
+    }
+  },
+  "keyword_rules": {},
+  "bank_mappings": {
+    "Food / Beverages": "Food/Groceries",
+    "Clothing / Shoes": "Other/Clothing",
+    "Toiletries / Cleaning Supplies": "Home Expenses/Cleaning Supplies",
+    "Online Shopping": "Other/E-commerce",
+    "Public Transport": "Transportation/Bus",
+    "Energy & water": "Utilities/Electricity",
+    "Phone / Internet / TV / Radio": "Utilities/Cell phones",
+    "Pharmacy / Drugs": "Health/Family's expenses",
+    "Sport / Fitness": "Other/Entertainment",
+    "Books / Music / Movies / Apps": "Education/Fernando's expenses",
+    "Life Insurance": "Investments/BMI life insurance policy",
+    "Other Editions Insurance": "Other/Insurances",
+    "Rent / Associated Costs": "Home Expenses/Rent (Germany)",
+    "Salary / Wages": "Income/Job salary",
+    "Other Income": "Income/Other benefits",
+    "Child Allowance": "Income/Other benefits",
+    "School Fees": "Education/Fiorella's expenses",
+    "Professional Training": "Education/German classes",
+    "Cash": "Other/Other expenses with cash/debit card",
+    "Others": "Other/Other expenses with cash/debit card",
+    "Uncategorized": null
+  },
+  "manual_rules": []
+}

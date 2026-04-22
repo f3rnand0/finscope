@@ -5,13 +5,13 @@ from typing import Dict, List
 # Budget categories structure (from March Budget PDF)
 BUDGET_CATEGORIES: Dict[str, List[str]] = {
     "Income": [
-        "Job Salary",
-        "Other Benefits"
+        "Job salary",
+        "Other benefits"
     ],
     "Home Expenses": [
         "Furniture/Repairs",
         "Cleaning Supplies",
-        "Rent"
+        "Rent (Germany)"
     ],
     "Food": [
         "Groceries",
@@ -19,41 +19,41 @@ BUDGET_CATEGORIES: Dict[str, List[str]] = {
     ],
     "Other": [
         "Clothing",
-        "Other Expenses (Cash/Debit)",
+        "Other expenses with cash/debit card",
         "E-commerce",
         "Entertainment",
-        "Bike/Scooter",
+        "Bike, scooter",
         "Charity",
         "Insurances",
-        "Kids Countertop"
+        "Kids countertop"
     ],
     "Utilities": [
         "Electricity",
-        "Cell Phones",
+        "Cell phones",
         "ARD ZDF Radio",
-        "TV Streaming / Cloud Storage",
-        "Home Internet"
+        "TV streaming / Cloud storage",
+        "Home internet"
     ],
     "Education": [
-        "Fiorella's Expenses",
-        "Fernando's Expenses",
-        "German Classes",
-        "TSVs / Extracurricular Activities"
+        "Fiorella's expenses",
+        "Fernando's expenses",
+        "German classes",
+        "TSVs, extracurricular activities"
     ],
     "Transportation": [
         "Bus",
-        "General Maintenance"
+        "General maintenance"
     ],
     "Health": [
-        "Family's Expenses"
+        "Family's expenses"
     ],
     "Debt": [
         "Credit Card TF Bank"
     ],
     "Investments": [
-        "Rürup Contribution",
+        "Rurüp contribution (pension)",
         "Scalable Capital Wealth",
-        "BMI Life Insurance"
+        "BMI life insurance policy"
     ]
 }
 
@@ -65,22 +65,26 @@ DEFAULT_BANK_MAPPINGS: Dict[str, str] = {
     "Online Shopping": "Other/E-commerce",
     "Public Transport": "Transportation/Bus",
     "Energy & water": "Utilities/Electricity",
-    "Phone / Internet / TV / Radio": "Utilities/Cell Phones",
-    "Pharmacy / Drugs": "Health/Family's Expenses",
+    "Phone / Internet / TV / Radio": "Utilities/Cell phones",
+    "Pharmacy / Drugs": "Health/Family's expenses",
     "Sport / Fitness": "Other/Entertainment",
-    "Books / Music / Movies / Apps": "Education/Fernando's Expenses",
-    "Life Insurance": "Investments/BMI Life Insurance",
+    "Books / Music / Movies / Apps": "Education/Fernando's expenses",
+    "Life Insurance": "Investments/BMI life insurance policy",
     "Other Editions Insurance": "Other/Insurances",
-    "Rent / Associated Costs": "Home Expenses/Rent",
-    "Salary / Wages": "Income/Job Salary",
-    "Other Income": "Income/Other Benefits",
-    "Child Allowance": "Income/Other Benefits",
-    "School Fees": "Education/Fiorella's Expenses",
-    "Professional Training": "Education/German Classes",
-    "Cash": "Other/Other Expenses (Cash/Debit)",
-    "Others": "Other/Other Expenses (Cash/Debit)",
+    "Rent / Associated Costs": "Home Expenses/Rent (Germany)",
+    "Salary / Wages": "Income/Job salary",
+    "Other Income": "Income/Other benefits",
+    "Child Allowance": "Income/Other benefits",
+    "School Fees": "Education/Fiorella's expenses",
+    "Professional Training": "Education/German classes",
+    "Cash": "Other/Other expenses with cash/debit card",
+    "Others": "Other/Other expenses with cash/debit card",
     "Uncategorized": None
 }
+
+# Paths for static categorization rules
+PREFIX_RULES_PATH = 'config/prefix_rules.json'
+CONTAINS_RULES_PATH = 'config/contains_rules.json'
 
 # Flask configuration
 class Config:

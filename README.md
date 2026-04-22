@@ -15,12 +15,12 @@ The system learns from your manual categorizations. After categorizing a merchan
 
 ```bash
 # Setup
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
 # Run
-python app.py
+python3 app.py
 
 # Open browser
 open http://127.0.0.1:5000

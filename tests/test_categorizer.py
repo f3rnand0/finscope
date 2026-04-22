@@ -117,8 +117,8 @@ class TestCategorizationEngine:
         )
         result = engine.categorize(tx)
         assert result.category == 'Food/Groceries'
-        assert result.method == 'merchant'
-        assert result.confidence > 0.5  # Partial match has lower confidence
+        assert result.method == 'prefix_rule'
+        assert result.confidence > 0.5  # Prefix rule has high confidence
     
     def test_categorize_by_bank_mapping(self, engine):
         """Test categorization by bank category mapping."""

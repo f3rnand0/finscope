@@ -4,11 +4,11 @@ import json
 import re
 import os
 from datetime import datetime
-from typing import Dict, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 from pathlib import Path
 
 from .models import Transaction, CategorizationResult
-from config import DEFAULT_BANK_MAPPINGS
+from config import DEFAULT_BANK_MAPPINGS, PREFIX_RULES_PATH, CONTAINS_RULES_PATH
 
 
 class CategorizationRules:
@@ -20,10 +20,13 @@ class CategorizationRules:
         self.keyword_rules: Dict[str, dict] = {}
         self.bank_mappings: Dict[str, str] = dict(DEFAULT_BANK_MAPPINGS)
         self.manual_rules: list = []
+        self.prefix_rules: Dict[str, List[str]] = {}
+        self.contains_rules: Dict[str, List[str]] = {}
         self._load_rules()
     
     def _load_rules(self):
-        """Load rules from JSON file."""
+        """Load rules from JSON files."""
+        # Load learned rules
         if self.config_path.exists():
             try:
                 with open(self.config_path, 'r', encoding='utf-8') as f:
@@ -34,9 +37,27 @@ class CategorizationRules:
                     self.manual_rules = data.get('manual_rules', [])
             except (json.JSONDecodeError, IOError) as e:
                 print(f"Warning: Could not load rules: {e}")
+        
+        # Load static prefix rules
+        prefix_path = Path(PREFIX_RULES_PATH)
+        if prefix_path.exists():
+            try:
+                with open(prefix_path, 'r', encoding='utf-8') as f:
+                    self.prefix_rules = json.load(f)
+            except (json.JSONDecodeError, IOError) as e:
+                print(f"Warning: Could not load prefix rules: {e}")
+        
+        # Load static contains rules
+        contains_path = Path(CONTAINS_RULES_PATH)
+        if contains_path.exists():
+            try:
+                with open(contains_path, 'r', encoding='utf-8') as f:
+                    self.contains_rules = json.load(f)
+            except (json.JSONDecodeError, IOError) as e:
+                print(f"Warning: Could not load contains rules: {e}")
     
     def save_rules(self):
-        """Save rules to JSON file."""
+        """Save learned rules to JSON file."""
         self.config_path.parent.mkdir(parents=True, exist_ok=True)
         data = {
             'version': '1.0.0',
@@ -120,6 +141,34 @@ class CategorizationRules:
     def get_category_for_bank_category(self, bank_category: str) -> Optional[str]:
         """Get budget category from bank category mapping."""
         return self.bank_mappings.get(bank_category)
+    
+    def get_category_for_prefix(self, description: str) -> Optional[Tuple[str, float]]:
+        """Get category based on prefix match in description."""
+        if not description:
+            return None
+        
+        desc_upper = description.upper().strip()
+        
+        for category, prefixes in self.prefix_rules.items():
+            for prefix in prefixes:
+                if desc_upper.startswith(prefix.upper()):
+                    return (category, 0.95)
+        
+        return None
+    
+    def get_category_for_contains(self, description: str) -> Optional[Tuple[str, float]]:
+        """Get category based on text contains match in description."""
+        if not description:
+            return None
+        
+        desc_upper = description.upper()
+        
+        for category, texts in self.contains_rules.items():
+            for text in texts:
+                if text.upper() in desc_upper:
+                    return (category, 0.90)
+        
+        return None
 
 
 class CategorizationEngine:
@@ -167,7 +216,19 @@ class CategorizationEngine:
     
     def categorize(self, transaction: Transaction) -> CategorizationResult:
         """Categorize a single transaction."""
-        # Priority 1: Merchant match
+        # Priority 1: Static prefix rules (override learned rules)
+        match = self.rules.get_category_for_prefix(transaction.description)
+        if match:
+            category, confidence = match
+            return CategorizationResult(category, confidence, 'prefix_rule')
+        
+        # Priority 2: Static contains rules
+        match = self.rules.get_category_for_contains(transaction.description)
+        if match:
+            category, confidence = match
+            return CategorizationResult(category, confidence, 'contains_rule')
+        
+        # Priority 3: Merchant match
         merchant = self.extract_merchant(transaction.description)
         if merchant:
             match = self.rules.get_category_for_merchant(merchant)
@@ -175,13 +236,13 @@ class CategorizationEngine:
                 category, confidence = match
                 return CategorizationResult(category, confidence, 'merchant')
         
-        # Priority 2: Keyword match in description
+        # Priority 4: Keyword match in description
         match = self.rules.get_category_for_keyword(transaction.description)
         if match:
             category, confidence = match
             return CategorizationResult(category, confidence, 'keyword')
         
-        # Priority 3: Bank category mapping
+        # Priority 5: Bank category mapping
         if transaction.bank_category:
             mapped = self.rules.get_category_for_bank_category(transaction.bank_category)
             if mapped:

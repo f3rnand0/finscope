@@ -26,6 +26,24 @@ parser = MHTMLParser()
 engine = CategorizationEngine(app.config['CONFIG_PATH'])
 exporter = BudgetExporter()
 
+# Server-side transaction store (avoids 4KB cookie limit)
+transaction_store = {}
+
+
+def get_stored_transactions():
+    """Retrieve transactions from server-side store."""
+    upload_id = session.get('upload_id')
+    if not upload_id:
+        return None
+    return transaction_store.get(upload_id)
+
+
+def set_stored_transactions(data):
+    """Store transactions in server-side store."""
+    upload_id = session.get('upload_id')
+    if upload_id:
+        transaction_store[upload_id] = data
+
 
 def get_flat_categories():
     """Get flat list of all budget categories."""
@@ -71,9 +89,10 @@ def api_upload():
         # Auto-categorize
         engine.auto_categorize_all(transactions)
         
-        # Store in session
-        session['transactions'] = [tx.to_dict() for tx in transactions]
-        session['upload_id'] = str(uuid.uuid4())
+        # Store server-side (avoids 4KB cookie limit)
+        upload_id = str(uuid.uuid4())
+        session['upload_id'] = upload_id
+        transaction_store[upload_id] = [tx.to_dict() for tx in transactions]
         
         # Calculate stats
         categorized = sum(1 for tx in transactions if tx.budget_category)
@@ -94,20 +113,29 @@ def api_upload():
 @app.route('/review')
 def review_page():
     """Review and categorize transactions."""
-    if 'transactions' not in session:
-        return render_template('review.html', transactions=[], categories=get_flat_categories())
+    transactions = get_stored_transactions()
+    if transactions is None:
+        return render_template('review.html', income=[], expenses=[], categories=get_flat_categories())
     
-    transactions = session['transactions']
-    return render_template('review.html', transactions=transactions, categories=get_flat_categories())
+    income = [tx for tx in transactions if float(tx.get('amount', 0)) > 0]
+    expenses = [tx for tx in transactions if float(tx.get('amount', 0)) <= 0]
+    
+    return render_template('review.html', income=income, expenses=expenses, categories=get_flat_categories())
 
 
 @app.route('/api/transactions')
 def api_get_transactions():
     """API endpoint to get transactions."""
-    if 'transactions' not in session:
+    transactions = get_stored_transactions()
+    if transactions is None:
         return jsonify({'transactions': []})
     
-    transactions = session['transactions']
+    # Filter by type (income/expense)
+    tx_type = request.args.get('type', 'all')
+    if tx_type == 'income':
+        transactions = [tx for tx in transactions if float(tx.get('amount', 0)) > 0]
+    elif tx_type == 'expense':
+        transactions = [tx for tx in transactions if float(tx.get('amount', 0)) <= 0]
     
     # Filter by category if specified
     filter_cat = request.args.get('category', 'all')
@@ -137,10 +165,10 @@ def api_categorize():
     if not transaction_ids or not category:
         return jsonify({'error': 'Missing transaction_ids or category'}), 400
     
-    if 'transactions' not in session:
+    transactions = get_stored_transactions()
+    if transactions is None:
         return jsonify({'error': 'No transactions in session'}), 400
     
-    transactions = session['transactions']
     updated_count = 0
     
     for tx in transactions:
@@ -165,7 +193,7 @@ def api_categorize():
             )
             engine.learn_from_manual(tx_obj, category)
     
-    session['transactions'] = transactions
+    set_stored_transactions(transactions)
     
     return jsonify({
         'success': True,
@@ -176,10 +204,9 @@ def api_categorize():
 @app.route('/api/transactions/auto-categorize', methods=['POST'])
 def api_auto_categorize():
     """API endpoint to run auto-categorization on all transactions."""
-    if 'transactions' not in session:
+    transactions = get_stored_transactions()
+    if transactions is None:
         return jsonify({'error': 'No transactions in session'}), 400
-    
-    transactions = session['transactions']
     
     # Convert dicts back to Transaction objects
     from src.models import Transaction as TxModel
@@ -201,7 +228,7 @@ def api_auto_categorize():
     engine.auto_categorize_all(tx_objects)
     
     # Convert back to dicts and store
-    session['transactions'] = [tx.to_dict() for tx in tx_objects]
+    set_stored_transactions([tx.to_dict() for tx in tx_objects])
     
     categorized = sum(1 for tx in tx_objects if tx.budget_category)
     
@@ -215,15 +242,16 @@ def api_auto_categorize():
 @app.route('/export')
 def export_page():
     """Export page."""
-    if 'transactions' not in session:
+    transactions_data = get_stored_transactions()
+    if transactions_data is None:
         return render_template('export.html', summary={}, tsv='')
     
-    transactions_data = session['transactions']
-    
-    # Convert dicts to Transaction objects
+    # Convert dicts to Transaction objects and filter out income
     from src.models import Transaction as TxModel
     transactions = []
     for tx_dict in transactions_data:
+        if float(tx_dict['amount']) > 0:
+            continue  # Skip income
         tx = TxModel(
             id=tx_dict['id'],
             date=datetime.fromisoformat(tx_dict['date']) if tx_dict['date'] else datetime.now(),
@@ -245,15 +273,16 @@ def export_page():
 @app.route('/api/export/tsv')
 def api_export_tsv():
     """API endpoint to download TSV file."""
-    if 'transactions' not in session:
+    transactions_data = get_stored_transactions()
+    if transactions_data is None:
         return jsonify({'error': 'No transactions in session'}), 400
     
-    transactions_data = session['transactions']
-    
-    # Convert dicts to Transaction objects
+    # Convert dicts to Transaction objects, filter out income
     from src.models import Transaction as TxModel
     transactions = []
     for tx_dict in transactions_data:
+        if float(tx_dict['amount']) > 0:
+            continue  # Skip income
         tx = TxModel(
             id=tx_dict['id'],
             date=datetime.fromisoformat(tx_dict['date']) if tx_dict['date'] else datetime.now(),
@@ -285,15 +314,16 @@ def api_export_tsv():
 @app.route('/api/export/summary')
 def api_export_summary():
     """API endpoint to get export summary."""
-    if 'transactions' not in session:
+    transactions_data = get_stored_transactions()
+    if transactions_data is None:
         return jsonify({'summary': {}})
     
-    transactions_data = session['transactions']
-    
-    # Convert dicts to Transaction objects
+    # Convert dicts to Transaction objects, filter out income
     from src.models import Transaction as TxModel
     transactions = []
     for tx_dict in transactions_data:
+        if float(tx_dict['amount']) > 0:
+            continue  # Skip income
         tx = TxModel(
             id=tx_dict['id'],
             date=datetime.fromisoformat(tx_dict['date']) if tx_dict['date'] else datetime.now(),

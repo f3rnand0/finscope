@@ -22,24 +22,8 @@
     <div class="col-md-3">
         <div class="card bg-light">
             <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Total Transactions</h6>
-                <h3 class="card-title mb-0" id="totalCount">0</h3>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card bg-light">
-            <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Categorized</h6>
-                <h3 class="card-title mb-0 text-success" id="categorizedCount">0</h3>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card bg-light">
-            <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Uncategorized</h6>
-                <h3 class="card-title mb-0 text-warning" id="uncategorizedCount">0</h3>
+                <h6 class="card-subtitle mb-2 text-muted">Total Income</h6>
+                <h3 class="card-title mb-0 text-success" id="totalIncome">€0.00</h3>
             </div>
         </div>
     </div>
@@ -51,9 +35,58 @@
             </div>
         </div>
     </div>
+    <div class="col-md-3">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Uncategorized Expenses</h6>
+                <h3 class="card-title mb-0 text-warning" id="uncategorizedCount">0</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Total Expense Count</h6>
+                <h3 class="card-title mb-0" id="totalExpenseCount">0</h3>
+            </div>
+        </div>
+    </div>
 </div>
 
-<!-- Filters -->
+<!-- Income Table -->
+{% if income %}
+<div class="card mb-4">
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0">Income</h5>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Date</th>
+                        <th>Merchant Title</th>
+                        <th>Detailed Description</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tx in income %}
+                    <tr>
+                        <td>{{ tx.date[:10] if tx.date else '' }}</td>
+                        <td>{{ tx.counter_party }}</td>
+                        <td title="{{ tx.description }}">{{ tx.description[:60] }}{% if tx.description|length > 60 %}...{% endif %}</td>
+                        <td class="amount-income">€{{ "%.2f"|format(tx.amount|float) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Expenses Filters -->
 <div class="row mb-3">
     <div class="col-md-12">
         <div class="card">
@@ -84,8 +117,11 @@
     </div>
 </div>
 
-<!-- Transactions Table -->
+<!-- Expenses Table -->
 <div class="card">
+    <div class="card-header bg-danger text-white">
+        <h5 class="mb-0">Expenses</h5>
+    </div>
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-hover mb-0">
@@ -95,25 +131,25 @@
                             <input type="checkbox" class="form-check-input" id="selectAll">
                         </th>
                         <th>Date</th>
-                        <th>Description</th>
+                        <th>Merchant Title</th>
+                        <th>Detailed Description</th>
                         <th>Amount</th>
-                        <th>Bank Category</th>
                         <th>Budget Category</th>
                     </tr>
                 </thead>
                 <tbody id="transactionsTable">
-                    {% if transactions %}
-                        {% for tx in transactions %}
-                        <tr class="transaction-row" data-id="{{ tx.id }}">
+                    {% if expenses %}
+                        {% for tx in expenses %}
+                        <tr class="transaction-row expense-row" data-id="{{ tx.id }}">
                             <td>
                                 <input type="checkbox" class="form-check-input row-checkbox" value="{{ tx.id }}">
                             </td>
                             <td>{{ tx.date[:10] if tx.date else '' }}</td>
+                            <td>{{ tx.counter_party }}</td>
                             <td title="{{ tx.description }}">{{ tx.description[:60] }}{% if tx.description|length > 60 %}...{% endif %}</td>
-                            <td class="{% if tx.is_expense %}amount-expense{% else %}amount-income{% endif %}">
-                                €{{ "%.2f"|format(tx.amount|float) }}
+                            <td class="amount-expense">
+                                €{{ "%.2f"|format((tx.amount|float)|abs) }}
                             </td>
-                            <td>{{ tx.bank_category }}</td>
                             <td>
                                 <select class="form-select form-select-sm category-select" data-id="{{ tx.id }}">
                                     <option value="">Uncategorized</option>
@@ -129,7 +165,7 @@
                     {% else %}
                         <tr>
                             <td colspan="6" class="text-center py-5 text-muted">
-                                No transactions loaded. <a href="/upload">Upload a file</a> first.
+                                No expense transactions loaded. <a href="/upload">Upload a file</a> first.
                             </td>
                         </tr>
                     {% endif %}
@@ -154,22 +190,23 @@
 {% block scripts %}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    let transactions = {{ transactions|tojson }};
+    let income = {{ income|tojson }};
+    let expenses = {{ expenses|tojson }};
     const categories = {{ categories|tojson }};
     
     // Update summary cards
     function updateSummary() {
-        const total = transactions.length;
-        const categorized = transactions.filter(tx => tx.budget_category).length;
-        const uncategorized = total - categorized;
-        const expenses = transactions
-            .filter(tx => parseFloat(tx.amount) < 0)
+        const incomeTotal = income
+            .reduce((sum, tx) => sum + parseFloat(tx.amount), 0);
+        const expenseTotal = expenses
             .reduce((sum, tx) => sum + Math.abs(parseFloat(tx.amount)), 0);
+        const uncategorized = expenses.filter(tx => !tx.budget_category).length;
+        const expenseCount = expenses.length;
         
-        document.getElementById('totalCount').textContent = total;
-        document.getElementById('categorizedCount').textContent = categorized;
+        document.getElementById('totalIncome').textContent = '€' + incomeTotal.toFixed(2);
+        document.getElementById('totalExpenses').textContent = '€' + expenseTotal.toFixed(2);
         document.getElementById('uncategorizedCount').textContent = uncategorized;
-        document.getElementById('totalExpenses').textContent = '€' + expenses.toFixed(2);
+        document.getElementById('totalExpenseCount').textContent = expenseCount;
     }
     
     updateSummary();
@@ -189,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (response.ok) {
                     // Update local data
-                    const tx = transactions.find(t => t.id === txId);
+                    const tx = expenses.find(t => t.id === txId);
                     if (tx) {
                         tx.budget_category = category;
                         tx.confidence = 1.0;
@@ -203,18 +240,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Select all checkbox
+    // Select all checkbox (expenses only)
     document.getElementById('selectAll').addEventListener('change', function() {
-        const checkboxes = document.querySelectorAll('.row-checkbox');
+        const checkboxes = document.querySelectorAll('.expense-row .row-checkbox');
         checkboxes.forEach(cb => cb.checked = this.checked);
     });
     
-    // Bulk category assign
+    // Bulk category assign (expenses only)
     document.getElementById('bulkCategorySelect').addEventListener('change', async function() {
         const category = this.value;
         if (!category) return;
         
-        const selectedIds = Array.from(document.querySelectorAll('.row-checkbox:checked'))
+        const selectedIds = Array.from(document.querySelectorAll('.expense-row .row-checkbox:checked'))
             .map(cb => cb.value);
         
         if (selectedIds.length === 0) {
@@ -232,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (response.ok) {
                 // Update local data and UI
                 selectedIds.forEach(id => {
-                    const tx = transactions.find(t => t.id === id);
+                    const tx = expenses.find(t => t.id === id);
                     if (tx) {
                         tx.budget_category = category;
                         tx.confidence = 1.0;
@@ -274,12 +311,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Filter: Uncategorized only
+    // Filter: Uncategorized only (expenses only)
     document.getElementById('showUncategorizedOnly').addEventListener('change', function() {
-        const rows = document.querySelectorAll('.transaction-row');
+        const rows = document.querySelectorAll('.expense-row');
         rows.forEach(row => {
             const id = row.dataset.id;
-            const tx = transactions.find(t => t.id === id);
+            const tx = expenses.find(t => t.id === id);
             if (this.checked && tx && tx.budget_category) {
                 row.style.display = 'none';
             } else {
@@ -288,12 +325,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Search filter
+    // Search filter (expenses only)
     document.getElementById('searchInput').addEventListener('input', function() {
         const search = this.value.toLowerCase();
-        const rows = document.querySelectorAll('.transaction-row');
+        const rows = document.querySelectorAll('.expense-row');
         rows.forEach(row => {
-            const desc = row.cells[2].textContent.toLowerCase();
+            const desc = row.cells[3].textContent.toLowerCase();
             row.style.display = desc.includes(search) ? '' : 'none';
         });
     });

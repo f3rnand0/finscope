@@ -25,7 +25,7 @@ class TestBudgetExporter:
                 description='Monthly Salary',
                 amount=Decimal('5089.71'),
                 bank_category='Salary / Wages',
-                budget_category='Income/Job Salary',
+                budget_category='Income/Job salary',
                 confidence=0.95
             ),
             Transaction(
@@ -64,9 +64,9 @@ class TestBudgetExporter:
         """Test aggregation by category."""
         aggregated = exporter.aggregate_by_category(sample_transactions)
         
-        assert 'Income/Job Salary' in aggregated
-        assert aggregated['Income/Job Salary']['count'] == 1
-        assert aggregated['Income/Job Salary']['total'] == Decimal('5089.71')
+        assert 'Income/Job salary' in aggregated
+        assert aggregated['Income/Job salary']['count'] == 1
+        assert aggregated['Income/Job salary']['total'] == Decimal('5089.71')
         
         assert 'Food/Groceries' in aggregated
         assert aggregated['Food/Groceries']['count'] == 2
@@ -78,7 +78,7 @@ class TestBudgetExporter:
         
         assert 'Category\tSubcategory\tDescription' in tsv
         assert 'Income' in tsv
-        assert 'Job Salary' in tsv
+        assert 'Job salary' in tsv
         assert 'Food' in tsv
         assert 'Groceries' in tsv
         assert '€77.70' in tsv or '€45.20' in tsv  # Amount should be present
