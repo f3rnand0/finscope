@@ -1,11 +1,36 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-04-22T19:39:55.133441",
+  "last_updated": "2026-04-28T17:33:06.856694",
   "merchant_rules": {
     "ALDI SE": {
       "category": "Other/E-commerce",
+      "confidence": 0.95,
+      "count": 11
+    },
+    "40549 DUESSELDORF,": {
+      "category": "Utilities/Cell phones",
       "confidence": 0.6,
       "count": 2
+    },
+    "4.4638319.78 03/2026 200,00": {
+      "category": "Investments/Rurüp contribution (pension)",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "O MERCADINHO DA": {
+      "category": "Food/Groceries",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "HYPOVEREINSBANK": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "MÜNCHENER KIOSKE OGH": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.8,
+      "count": 1
     }
   },
   "keyword_rules": {},

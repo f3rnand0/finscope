@@ -22,13 +22,17 @@ class MHTMLParser:
             raise ValueError(f"Failed to decode MHTML content: {e}")
     
     def parse_date(self, date_str: str) -> Optional[datetime]:
-        """Parse German date format (DD.MM.YYYY)."""
+        """Parse date string in multiple formats."""
         if not date_str:
             return None
-        try:
-            return datetime.strptime(date_str.strip(), '%d.%m.%Y')
-        except ValueError:
-            return None
+        date_str = date_str.strip()
+        formats = ['%d.%m.%Y', '%m/%d/%Y', '%d-%m-%Y']
+        for fmt in formats:
+            try:
+                return datetime.strptime(date_str, fmt)
+            except ValueError:
+                continue
+        return None
     
     def parse_amount(self, amount_str: str) -> Decimal:
         """Parse amount string (standard format with dot decimal separator)."""
@@ -94,35 +98,76 @@ class MHTMLParser:
         
         return merchant[:60].strip()
     
+    def _extract_date_from_label(self, row) -> Optional[datetime]:
+        """Try to extract date from a parent cirrus-date-group-label."""
+        try:
+            # Look for a preceding cirrus-date-group-label in the DOM
+            label = row.find_parent('ul')
+            if label:
+                prev_div = label.find_previous_sibling('div')
+                if prev_div:
+                    date_label = prev_div.find('cirrus-date-group-label')
+                    if date_label:
+                        date_text = date_label.get_text(strip=True)
+                        return self.parse_date(date_text)
+        except Exception:
+            pass
+        return None
+
+    def _extract_date_from_row(self, row) -> Optional[datetime]:
+        """Try to extract date from within the row itself."""
+        # Look for dot-separated dates in row text
+        date_elem = row.find(string=re.compile(r'\d{2}\.\d{2}\.\d{4}'))
+        if date_elem:
+            date_match = re.search(r'(\d{2}\.\d{2}\.\d{4})', str(date_elem))
+            if date_match:
+                return self.parse_date(date_match.group(1))
+        # Look for dash-separated dates in descriptions
+        desc_elem = row.find(class_=re.compile('color-text-secondary'))
+        if desc_elem:
+            desc_text = desc_elem.get_text()
+            dash_match = re.search(r'(\d{2}-\d{2}-\d{4})', desc_text)
+            if dash_match:
+                return self.parse_date(dash_match.group(1))
+        return None
+
     def extract_transactions(self, content: bytes) -> List[Transaction]:
         """Extract transactions from MHTML content."""
         html = self.decode_content(content)
         soup = BeautifulSoup(html, 'lxml')
-        
+
         transactions = []
+        seen = set()
         transaction_rows = soup.find_all('db-list-row')
-        
+
         for idx, row in enumerate(transaction_rows):
             try:
                 tx = self._parse_transaction_row(row, idx)
                 if tx:
-                    transactions.append(tx)
+                    # Deduplicate by key fields
+                    key = (tx.date.strftime('%Y-%m-%d') if tx.date else '',
+                           tx.counter_party, str(tx.amount), tx.description)
+                    if key not in seen:
+                        seen.add(key)
+                        transactions.append(tx)
             except Exception as e:
                 # Log error but continue processing other transactions
                 print(f"Error parsing transaction {idx}: {e}")
                 continue
-        
+
         return transactions
-    
+
     def _parse_transaction_row(self, row, idx: int) -> Optional[Transaction]:
         """Parse a single transaction row."""
-        # Extract date
-        date_elem = row.find(text=re.compile(r'\d{2}\.\d{2}\.\d{4}'))
-        date = None
-        if date_elem:
-            date_match = re.search(r'(\d{2}\.\d{2}\.\d{4})', str(date_elem))
-            if date_match:
-                date = self.parse_date(date_match.group(1))
+        # Skip settlement account rows (not real transactions)
+        row_text = row.get_text().lower()
+        if 'see settlement account' in row_text:
+            return None
+
+        # Extract date - try date group label first, then row content
+        date = self._extract_date_from_label(row)
+        if not date:
+            date = self._extract_date_from_row(row)
         
         # Extract counter party / transaction type
         counter_party_elem = row.find(attrs={'data-test': 'counterPartyNameOrTransactionTypeLabel'})

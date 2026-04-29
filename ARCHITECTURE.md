@@ -451,7 +451,7 @@ python app.py
 ```
 
 ### Access
-- URL: http://127.0.0.1:5000
+- URL: http://127.0.0.1:5500
 - Debug mode: Enabled for development
 
 ## Future Architecture Considerations

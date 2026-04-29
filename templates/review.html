@@ -3,11 +3,71 @@
 {% block title %}Review - Transaction Categorizer{% endblock %}
 
 {% block content %}
+<style>
+    .scrollable-table-wrapper {
+        max-height: 70vh;
+        overflow-y: auto;
+        overflow-x: auto;
+    }
+    .scrollable-table-wrapper thead {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+    .scrollable-table-wrapper thead th {
+        background-color: #f8f9fa;
+    }
+    .scrollable-table-wrapper table {
+        white-space: nowrap;
+    }
+    .scrollable-table-wrapper td,
+    .scrollable-table-wrapper th {
+        vertical-align: middle;
+    }
+    .budget-category-col {
+        min-width: 10.5em;
+    }
+    .th-content {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 8px;
+    }
+    .resize-handle {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 5px;
+        cursor: col-resize;
+        background: #dee2e6;
+        z-index: 10;
+    }
+    table {
+        border: 1px solid #dee2e6;
+    }
+    table td, table th {
+        border: 1px solid #dee2e6;
+    }
+    .scrollable-table-wrapper td,
+    .scrollable-table-wrapper th {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .resizing {
+        user-select: none;
+    }
+</style>
 <div class="row mb-4">
     <div class="col-md-12">
         <div class="d-flex justify-content-between align-items-center">
             <h2>Review Transactions</h2>
             <div>
+                <button class="btn btn-outline-secondary me-2" id="resetWidthsBtn">
+                    Reset Column Widths
+                </button>
                 <button class="btn btn-outline-primary me-2" id="autoCategorizeBtn">
                     Auto-Categorize
                 </button>
@@ -60,14 +120,14 @@
         <h5 class="mb-0">Income</h5>
     </div>
     <div class="card-body p-0">
-        <div class="table-responsive">
+        <div class="scrollable-table-wrapper">
             <table class="table table-hover mb-0">
                 <thead class="table-light">
                     <tr>
-                        <th>Date</th>
-                        <th>Merchant Title</th>
-                        <th>Detailed Description</th>
-                        <th>Amount</th>
+                        <th><div class="th-content" data-default-width="">Date<div class="resize-handle"></div></div></th>
+                        <th><div class="th-content" data-default-width="">Merchant Title<div class="resize-handle"></div></div></th>
+                        <th><div class="th-content" data-default-width="">Detailed Description<div class="resize-handle"></div></div></th>
+                        <th><div class="th-content" data-default-width="">Amount<div class="resize-handle"></div></div></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -123,18 +183,16 @@
         <h5 class="mb-0">Expenses</h5>
     </div>
     <div class="card-body p-0">
-        <div class="table-responsive">
+        <div class="scrollable-table-wrapper">
             <table class="table table-hover mb-0">
                 <thead class="table-light">
                     <tr>
-                        <th>
-                            <input type="checkbox" class="form-check-input" id="selectAll">
-                        </th>
-                        <th>Date</th>
-                        <th>Merchant Title</th>
-                        <th>Detailed Description</th>
-                        <th>Amount</th>
-                        <th>Budget Category</th>
+                        <th><div class="th-content" data-default-width=""><input type="checkbox" class="form-check-input" id="selectAll"><div class="resize-handle"></div></div></th>
+                        <th class="budget-category-col"><div class="th-content" data-default-width="10.5em">Budget Category<div class="resize-handle"></div></div></th>
+                        <th><div class="th-content" data-default-width="">Merchant Title<div class="resize-handle"></div></div></th>
+                        <th><div class="th-content" data-default-width="">Detailed Description<div class="resize-handle"></div></div></th>
+                        <th><div class="th-content" data-default-width="">Amount<div class="resize-handle"></div></div></th>
+                        <th><div class="th-content" data-default-width="">Date<div class="resize-handle"></div></div></th>
                     </tr>
                 </thead>
                 <tbody id="transactionsTable">
@@ -144,13 +202,7 @@
                             <td>
                                 <input type="checkbox" class="form-check-input row-checkbox" value="{{ tx.id }}">
                             </td>
-                            <td>{{ tx.date[:10] if tx.date else '' }}</td>
-                            <td>{{ tx.counter_party }}</td>
-                            <td title="{{ tx.description }}">{{ tx.description[:60] }}{% if tx.description|length > 60 %}...{% endif %}</td>
-                            <td class="amount-expense">
-                                €{{ "%.2f"|format((tx.amount|float)|abs) }}
-                            </td>
-                            <td>
+                            <td class="budget-category-col">
                                 <select class="form-select form-select-sm category-select" data-id="{{ tx.id }}">
                                     <option value="">Uncategorized</option>
                                     {% for category in categories %}
@@ -160,6 +212,12 @@
                                     {% endfor %}
                                 </select>
                             </td>
+                            <td>{{ tx.counter_party }}</td>
+                            <td title="{{ tx.description }}">{{ tx.description[:60] }}{% if tx.description|length > 60 %}...{% endif %}</td>
+                            <td class="amount-expense">
+                                €{{ "%.2f"|format((tx.amount|float)|abs) }}
+                            </td>
+                            <td>{{ tx.date[:10] if tx.date else '' }}</td>
                         </tr>
                         {% endfor %}
                     {% else %}
@@ -340,6 +398,82 @@ document.addEventListener('DOMContentLoaded', function() {
         const toast = new bootstrap.Toast(document.getElementById('statusToast'));
         toast.show();
     }
+
+    // Resizable columns
+    function setColumnWidth(table, colIndex, width) {
+        const rows = table.querySelectorAll('tr');
+        rows.forEach(function(row) {
+            const cell = row.cells[colIndex];
+            if (cell) {
+                if (width) {
+                    const cssWidth = typeof width === 'number' ? width + 'px' : width;
+                    cell.style.width = cssWidth;
+                    cell.style.minWidth = cssWidth;
+                } else {
+                    cell.style.width = '';
+                    cell.style.minWidth = '';
+                }
+            }
+        });
+    }
+
+    function freezeTableWidths(table) {
+        const headers = table.querySelectorAll('thead th');
+        headers.forEach(function(th, index) {
+            if (!th.style.width) {
+                setColumnWidth(table, index, th.offsetWidth);
+            }
+        });
+    }
+
+    function initResizableTable(table) {
+        const headers = table.querySelectorAll('thead th');
+        headers.forEach(function(th, index) {
+            const handle = th.querySelector('.resize-handle');
+            if (!handle) return;
+
+            let startX, startWidth;
+
+            handle.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                freezeTableWidths(table);
+                startX = e.pageX;
+                startWidth = th.offsetWidth;
+                document.body.classList.add('resizing');
+
+                function onMouseMove(e) {
+                    const newWidth = startWidth + (e.pageX - startX);
+                    if (newWidth > 30) {
+                        setColumnWidth(table, index, newWidth);
+                    }
+                }
+
+                function onMouseUp() {
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+                    document.body.classList.remove('resizing');
+                }
+
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+            });
+        });
+    }
+
+    document.querySelectorAll('.scrollable-table-wrapper table').forEach(initResizableTable);
+
+    // Reset column widths
+    document.getElementById('resetWidthsBtn').addEventListener('click', function() {
+        document.querySelectorAll('.scrollable-table-wrapper table').forEach(function(table) {
+            const headers = table.querySelectorAll('thead th');
+            headers.forEach(function(th, index) {
+                const content = th.querySelector('.th-content');
+                const defaultWidth = content ? content.dataset.defaultWidth : '';
+                setColumnWidth(table, index, defaultWidth || '');
+            });
+        });
+        showToast('Column widths reset');
+    });
 });
 </script>
 {% endblock %}
