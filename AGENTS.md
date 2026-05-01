@@ -68,6 +68,11 @@ with open('config/categorization_rules.json') as f:
 3. **Merchant names**: Vary between "ALDI" and "ALDI SE U. CO. KG" - use regex, not exact match.
 4. **HTML entities**: Bank categories have `&amp;` - decode them.
 
+## Invariants
+
+1. **Bank category names are in German.** `DEFAULT_BANK_MAPPINGS` and all parser/categorizer logic must use German keys exclusively.
+2. **App UI remains in English.** Review page, export, templates, and budget categories stay in English.
+
 ## Code Style
 
 - Python: PEP 8, type hints

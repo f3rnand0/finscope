@@ -214,40 +214,51 @@ class CategorizationEngine:
         # Default: take first 3 words
         return ' '.join(words[:3]).strip()[:50]
     
+    def _get_match_text(self, transaction: Transaction) -> str:
+        """Get combined text for matching from counter_party and description."""
+        parts = []
+        if transaction.counter_party:
+            parts.append(transaction.counter_party)
+        if transaction.description:
+            parts.append(transaction.description)
+        return ' ## '.join(parts) if parts else ''
+
     def categorize(self, transaction: Transaction) -> CategorizationResult:
         """Categorize a single transaction."""
+        match_text = self._get_match_text(transaction)
+
         # Priority 1: Static prefix rules (override learned rules)
-        match = self.rules.get_category_for_prefix(transaction.description)
+        match = self.rules.get_category_for_prefix(match_text)
         if match:
             category, confidence = match
             return CategorizationResult(category, confidence, 'prefix_rule')
-        
+
         # Priority 2: Static contains rules
-        match = self.rules.get_category_for_contains(transaction.description)
+        match = self.rules.get_category_for_contains(match_text)
         if match:
             category, confidence = match
             return CategorizationResult(category, confidence, 'contains_rule')
-        
+
         # Priority 3: Merchant match
-        merchant = self.extract_merchant(transaction.description)
+        merchant = self.extract_merchant(match_text)
         if merchant:
             match = self.rules.get_category_for_merchant(merchant)
             if match:
                 category, confidence = match
                 return CategorizationResult(category, confidence, 'merchant')
-        
+
         # Priority 4: Keyword match in description
-        match = self.rules.get_category_for_keyword(transaction.description)
+        match = self.rules.get_category_for_keyword(match_text)
         if match:
             category, confidence = match
             return CategorizationResult(category, confidence, 'keyword')
-        
+
         # Priority 5: Bank category mapping
         if transaction.bank_category:
             mapped = self.rules.get_category_for_bank_category(transaction.bank_category)
             if mapped:
                 return CategorizationResult(mapped, 0.5, 'bank_mapping')
-        
+
         # No match found
         return CategorizationResult(None, 0.0, 'none')
     

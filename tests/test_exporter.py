@@ -75,23 +75,36 @@ class TestBudgetExporter:
     def test_export_to_tsv(self, exporter, sample_transactions):
         """Test TSV export."""
         tsv = exporter.export_to_tsv(sample_transactions)
-        
-        assert 'Category\tSubcategory\tDescription' in tsv
+
+        assert 'Category\tSubcategory\tActual Spent\tDescription\tTransaction Count' in tsv
         assert 'Income' in tsv
         assert 'Job salary' in tsv
         assert 'Food' in tsv
         assert 'Groceries' in tsv
         assert '€77.70' in tsv or '€45.20' in tsv  # Amount should be present
+        assert 'Budget' not in tsv.split('\n')[0]
+        assert 'Variance' not in tsv.split('\n')[0]
+        assert 'ALDI##' in tsv  # Merchant##Description format
     
     def test_get_summary(self, exporter, sample_transactions):
         """Test summary statistics."""
         summary = exporter.get_summary(sample_transactions)
-        
+
         assert summary['total_transactions'] == 4
         assert summary['categorized_count'] == 3
         assert summary['uncategorized_count'] == 1
         assert summary['total_income'] == Decimal('5089.71')
         assert summary['total_expenses'] == Decimal('97.70')
+
+    def test_excluded_transactions_filtered(self, exporter, sample_transactions):
+        """Test that excluded transactions are filtered from export."""
+        sample_transactions[1].excluded = True
+        summary = exporter.get_summary(sample_transactions)
+        assert summary['total_transactions'] == 3
+
+        aggregated = exporter.aggregate_by_category(sample_transactions)
+        assert aggregated['Food/Groceries']['count'] == 1
+        assert aggregated['Food/Groceries']['total'] == Decimal('-32.50')
     
     def test_export_transactions_list(self, exporter, sample_transactions):
         """Test detailed transaction list export."""

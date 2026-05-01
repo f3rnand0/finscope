@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-04-28T17:33:06.856694",
+  "last_updated": "2026-05-01T11:48:15.315612",
   "merchant_rules": {
     "ALDI SE": {
       "category": "Other/E-commerce",
       "confidence": 0.95,
-      "count": 11
+      "count": 14
     },
     "40549 DUESSELDORF,": {
       "category": "Utilities/Cell phones",
@@ -31,10 +31,76 @@
       "category": "Other/Other expenses with cash/debit card",
       "confidence": 0.8,
       "count": 1
+    },
+    "GOOGLE PLAY APPS": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "FESTNETZ VERTRAGSKONTO": {
+      "category": "Utilities/Home internet",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "EPZ-15-1841 GUERRA MIRANDA, F. (2A) SCHULLANDHEIM": {
+      "category": "Education/Fernando's expenses",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "TF BANK AB": {
+      "category": "Debt/Credit Card TF Bank",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "CIRQUE DU SOLEIL": {
+      "category": "Food/Dining Out",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "SCALABLE CAPITAL MONATLICHE": {
+      "category": "Investments/Scalable Capital Wealth",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "760567 ESSEN": {
+      "category": "Education/Fiorella's expenses",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "URBAN SPORTS GMBH": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "RISIKO E2.2 595": {
+      "category": "Investments/Rurüp contribution (pension)",
+      "confidence": 0.8,
+      "count": 1
     }
   },
   "keyword_rules": {},
   "bank_mappings": {
+    "Lebensmittel / Getränke": "Food/Groceries",
+    "Kleidung / Schuhe": "Other/Clothing",
+    "Drogerieartikel": "Home Expenses/Decoration stuff/Cleaning Supplies",
+    "Internetkäufe": "Other/Expenses with credit card (TF Bank)",
+    "Öffentliche Verkehrsmittel": "Transportation/Bus",
+    "Energie & Wasser": "Utilities/Electricity",
+    "Telefon / Internet / Fernsehen / Radio": "Utilities/Cell phones",
+    "Sport / Fitness": "Other/Entertainment",
+    "Bücher / Musik / Filme / Apps": "Education/Fernando's expenses",
+    "Lebensversicherung": "Investments/BMI life insurance policy",
+    "Sonstige Ausgaben Versicherung": "Other/Insurances",
+    "Miete / Nebenkosten": "Home Expenses/Rent (Germany)",
+    "Lohn / Gehalt": "Income/Job salary",
+    "Sonstige Einnahmen": "Income/Other benefits",
+    "Kindergeld": "Income/Other benefits",
+    "Schulgeld": "Education/Fiorella's expenses",
+    "Bargeld": "Other/Other expenses with cash/debit card",
+    "Sonstiges": "Other/Other expenses with cash/debit card",
+    "Motorrad": "Transportation/General maintenance",
+    "Restaurants / Cafes / Bars": "Food/Dining Out",
+    "Unkategorisiert": null,
     "Food / Beverages": "Food/Groceries",
     "Clothing / Shoes": "Other/Clothing",
     "Toiletries / Cleaning Supplies": "Home Expenses/Cleaning Supplies",
@@ -43,7 +109,6 @@
     "Energy & water": "Utilities/Electricity",
     "Phone / Internet / TV / Radio": "Utilities/Cell phones",
     "Pharmacy / Drugs": "Health/Family's expenses",
-    "Sport / Fitness": "Other/Entertainment",
     "Books / Music / Movies / Apps": "Education/Fernando's expenses",
     "Life Insurance": "Investments/BMI life insurance policy",
     "Other Editions Insurance": "Other/Insurances",

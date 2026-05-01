@@ -17,6 +17,7 @@ class Transaction:
     bank_category: str
     budget_category: Optional[str] = None
     confidence: float = 0.0
+    excluded: bool = False
     
     @property
     def is_expense(self) -> bool:
@@ -49,6 +50,7 @@ class Transaction:
             'bank_category': self.bank_category,
             'budget_category': self.budget_category,
             'confidence': self.confidence,
+            'excluded': self.excluded,
             'is_expense': self.is_expense
         }
 

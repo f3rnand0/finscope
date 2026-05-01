@@ -111,6 +111,14 @@
             </div>
         </div>
     </div>
+    <div class="col-md-3">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Excluded Expenses</h6>
+                <h3 class="card-title mb-0 text-secondary" id="excludedCount">0</h3>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Income Table -->
@@ -160,7 +168,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <input type="text" class="form-control" id="searchInput" placeholder="Search descriptions...">
                     </div>
                     <div class="col-md-3">
@@ -170,6 +178,9 @@
                             <option value="{{ category }}">{{ category }}</option>
                             {% endfor %}
                         </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-outline-secondary w-100" id="bulkExcludeBtn">Exclude</button>
                     </div>
                 </div>
             </div>
@@ -193,6 +204,7 @@
                         <th><div class="th-content" data-default-width="">Detailed Description<div class="resize-handle"></div></div></th>
                         <th><div class="th-content" data-default-width="">Amount<div class="resize-handle"></div></div></th>
                         <th><div class="th-content" data-default-width="">Date<div class="resize-handle"></div></div></th>
+                        <th><div class="th-content" data-default-width="">Actions<div class="resize-handle"></div></div></th>
                     </tr>
                 </thead>
                 <tbody id="transactionsTable">
@@ -218,11 +230,14 @@
                                 €{{ "%.2f"|format((tx.amount|float)|abs) }}
                             </td>
                             <td>{{ tx.date[:10] if tx.date else '' }}</td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-secondary exclude-btn" data-id="{{ tx.id }}">Exclude</button>
+                            </td>
                         </tr>
                         {% endfor %}
                     {% else %}
                         <tr>
-                            <td colspan="6" class="text-center py-5 text-muted">
+                            <td colspan="7" class="text-center py-5 text-muted">
                                 No expense transactions loaded. <a href="/upload">Upload a file</a> first.
                             </td>
                         </tr>
@@ -232,6 +247,45 @@
         </div>
     </div>
 </div>
+
+<!-- Excluded Expenses Table -->
+{% if excluded %}
+<div class="card mt-4">
+    <div class="card-header bg-secondary text-white">
+        <h5 class="mb-0">Excluded Expenses</h5>
+    </div>
+    <div class="card-body p-0">
+        <div class="scrollable-table-wrapper">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th><div class="th-content" data-default-width="">Merchant Title<div class="resize-handle"></div></div></th>
+                        <th><div class="th-content" data-default-width="">Detailed Description<div class="resize-handle"></div></div></th>
+                        <th><div class="th-content" data-default-width="">Amount<div class="resize-handle"></div></div></th>
+                        <th><div class="th-content" data-default-width="">Date<div class="resize-handle"></div></div></th>
+                        <th><div class="th-content" data-default-width="">Actions<div class="resize-handle"></div></div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tx in excluded %}
+                    <tr data-id="{{ tx.id }}">
+                        <td>{{ tx.counter_party }}</td>
+                        <td title="{{ tx.description }}">{{ tx.description[:60] }}{% if tx.description|length > 60 %}...{% endif %}</td>
+                        <td class="amount-expense">
+                            €{{ "%.2f"|format((tx.amount|float)|abs) }}
+                        </td>
+                        <td>{{ tx.date[:10] if tx.date else '' }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-success include-btn" data-id="{{ tx.id }}">Include</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endif %}
 
 <!-- Status Toast -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
@@ -250,8 +304,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     let income = {{ income|tojson }};
     let expenses = {{ expenses|tojson }};
+    let excluded = {{ excluded|tojson }};
     const categories = {{ categories|tojson }};
-    
+
     // Update summary cards
     function updateSummary() {
         const incomeTotal = income
@@ -260,11 +315,13 @@ document.addEventListener('DOMContentLoaded', function() {
             .reduce((sum, tx) => sum + Math.abs(parseFloat(tx.amount)), 0);
         const uncategorized = expenses.filter(tx => !tx.budget_category).length;
         const expenseCount = expenses.length;
-        
+        const excludedCount = excluded.length;
+
         document.getElementById('totalIncome').textContent = '€' + incomeTotal.toFixed(2);
         document.getElementById('totalExpenses').textContent = '€' + expenseTotal.toFixed(2);
         document.getElementById('uncategorizedCount').textContent = uncategorized;
         document.getElementById('totalExpenseCount').textContent = expenseCount;
+        document.getElementById('excludedCount').textContent = excludedCount;
     }
     
     updateSummary();
@@ -393,6 +450,69 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Exclude individual transaction
+    document.querySelectorAll('.exclude-btn').forEach(btn => {
+        btn.addEventListener('click', async function() {
+            const txId = this.dataset.id;
+            try {
+                const response = await fetch('/api/transactions/exclude', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ transaction_ids: [txId], excluded: true })
+                });
+                if (response.ok) {
+                    window.location.reload();
+                }
+            } catch (error) {
+                showToast('Error: ' + error.message);
+            }
+        });
+    });
+
+    // Include individual transaction
+    document.querySelectorAll('.include-btn').forEach(btn => {
+        btn.addEventListener('click', async function() {
+            const txId = this.dataset.id;
+            try {
+                const response = await fetch('/api/transactions/exclude', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ transaction_ids: [txId], excluded: false })
+                });
+                if (response.ok) {
+                    window.location.reload();
+                }
+            } catch (error) {
+                showToast('Error: ' + error.message);
+            }
+        });
+    });
+
+    // Bulk exclude
+    document.getElementById('bulkExcludeBtn').addEventListener('click', async function() {
+        const selectedIds = Array.from(document.querySelectorAll('.expense-row .row-checkbox:checked'))
+            .map(cb => cb.value);
+
+        if (selectedIds.length === 0) {
+            showToast('No transactions selected');
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/transactions/exclude', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ transaction_ids: selectedIds, excluded: true })
+            });
+
+            if (response.ok) {
+                window.location.reload();
+            }
+        } catch (error) {
+            showToast('Error: ' + error.message);
+        }
+    });
+
     function showToast(message) {
         document.getElementById('toastMessage').textContent = message;
         const toast = new bootstrap.Toast(document.getElementById('statusToast'));

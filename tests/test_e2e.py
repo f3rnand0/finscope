@@ -20,7 +20,7 @@ def client():
 @pytest.fixture
 def sample_mhtml():
     """Load sample MHTML file."""
-    fixture_path = os.path.join(os.path.dirname(__file__), 'fixtures', 'transactions.mhtml')
+    fixture_path = os.path.join(os.path.dirname(__file__), 'fixtures', 'transactions March.mhtml')
     with open(fixture_path, 'rb') as f:
         return f.read()
 
@@ -32,7 +32,7 @@ class TestUploadFlow:
         """Upload sample MHTML and verify transactions are parsed."""
         response = client.post(
             '/api/upload',
-            data={'file': (BytesIO(sample_mhtml), 'transactions.mhtml')},
+            data={'file': (BytesIO(sample_mhtml), 'transactions March.mhtml')},
             content_type='multipart/form-data'
         )
         
@@ -61,7 +61,7 @@ class TestReviewPage:
         """Upload and verify review page shows both income and expenses tables."""
         client.post(
             '/api/upload',
-            data={'file': (BytesIO(sample_mhtml), 'transactions.mhtml')},
+            data={'file': (BytesIO(sample_mhtml), 'transactions March.mhtml')},
             content_type='multipart/form-data'
         )
         
@@ -76,7 +76,7 @@ class TestReviewPage:
         """Verify expense amounts are rendered as positive numbers."""
         client.post(
             '/api/upload',
-            data={'file': (BytesIO(sample_mhtml), 'transactions.mhtml')},
+            data={'file': (BytesIO(sample_mhtml), 'transactions March.mhtml')},
             content_type='multipart/form-data'
         )
         
@@ -91,7 +91,7 @@ class TestReviewPage:
         """Verify bank category column is not shown."""
         client.post(
             '/api/upload',
-            data={'file': (BytesIO(sample_mhtml), 'transactions.mhtml')},
+            data={'file': (BytesIO(sample_mhtml), 'transactions March.mhtml')},
             content_type='multipart/form-data'
         )
         
@@ -108,7 +108,7 @@ class TestAutoCategorize:
         """Verify static prefix/contains rules are applied."""
         client.post(
             '/api/upload',
-            data={'file': (BytesIO(sample_mhtml), 'transactions.mhtml')},
+            data={'file': (BytesIO(sample_mhtml), 'transactions March.mhtml')},
             content_type='multipart/form-data'
         )
         
@@ -154,7 +154,7 @@ class TestExport:
         """Verify income transactions are excluded from TSV export."""
         client.post(
             '/api/upload',
-            data={'file': (BytesIO(sample_mhtml), 'transactions.mhtml')},
+            data={'file': (BytesIO(sample_mhtml), 'transactions March.mhtml')},
             content_type='multipart/form-data'
         )
         
@@ -172,7 +172,7 @@ class TestExport:
         """Verify export summary excludes income."""
         client.post(
             '/api/upload',
-            data={'file': (BytesIO(sample_mhtml), 'transactions.mhtml')},
+            data={'file': (BytesIO(sample_mhtml), 'transactions March.mhtml')},
             content_type='multipart/form-data'
         )
         
@@ -186,27 +186,58 @@ class TestExport:
         assert total_income == 0
 
 
+class TestExclude:
+    """Test exclude functionality."""
+
+    def test_exclude_transaction(self, client, sample_mhtml):
+        """Test excluding and including transactions."""
+        client.post(
+            '/api/upload',
+            data={'file': (BytesIO(sample_mhtml), 'transactions March.mhtml')},
+            content_type='multipart/form-data'
+        )
+
+        # Get an expense transaction id
+        response = client.get('/api/transactions?type=expense')
+        data = response.get_json()
+        tx_id = data['transactions'][0]['id']
+
+        # Exclude it
+        response = client.post('/api/transactions/exclude', json={
+            'transaction_ids': [tx_id],
+            'excluded': True
+        })
+        assert response.status_code == 200
+        result = response.get_json()
+        assert result['success'] is True
+
+        # Verify it's excluded from export summary
+        response = client.get('/api/export/summary')
+        summary = response.get_json()['summary']
+        assert summary['total_transactions'] < len(data['transactions'])
+
+
 class TestApiTransactions:
     """Test API transaction endpoints."""
-    
+
     def test_api_filter_by_type(self, client, sample_mhtml):
         """Test filtering transactions by type."""
         client.post(
             '/api/upload',
-            data={'file': (BytesIO(sample_mhtml), 'transactions.mhtml')},
+            data={'file': (BytesIO(sample_mhtml), 'transactions March.mhtml')},
             content_type='multipart/form-data'
         )
-        
+
         response = client.get('/api/transactions?type=expense')
         assert response.status_code == 200
         data = response.get_json()
-        
+
         for tx in data['transactions']:
             assert float(tx['amount']) <= 0
-        
+
         response = client.get('/api/transactions?type=income')
         assert response.status_code == 200
         data = response.get_json()
-        
+
         for tx in data['transactions']:
             assert float(tx['amount']) > 0

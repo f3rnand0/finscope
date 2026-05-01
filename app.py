@@ -115,12 +115,13 @@ def review_page():
     """Review and categorize transactions."""
     transactions = get_stored_transactions()
     if transactions is None:
-        return render_template('review.html', income=[], expenses=[], categories=get_flat_categories())
-    
+        return render_template('review.html', income=[], expenses=[], excluded=[], categories=get_flat_categories())
+
     income = [tx for tx in transactions if float(tx.get('amount', 0)) > 0]
-    expenses = [tx for tx in transactions if float(tx.get('amount', 0)) <= 0]
-    
-    return render_template('review.html', income=income, expenses=expenses, categories=get_flat_categories())
+    expenses = [tx for tx in transactions if float(tx.get('amount', 0)) <= 0 and not tx.get('excluded')]
+    excluded = [tx for tx in transactions if float(tx.get('amount', 0)) <= 0 and tx.get('excluded')]
+
+    return render_template('review.html', income=income, expenses=expenses, excluded=excluded, categories=get_flat_categories())
 
 
 @app.route('/api/transactions')
@@ -189,7 +190,8 @@ def api_categorize():
                 amount=Decimal(tx['amount']),
                 bank_category=tx['bank_category'],
                 budget_category=category,
-                confidence=1.0
+                confidence=1.0,
+                excluded=tx.get('excluded', False)
             )
             engine.learn_from_manual(tx_obj, category)
     
@@ -198,6 +200,38 @@ def api_categorize():
     return jsonify({
         'success': True,
         'updated_count': updated_count
+    })
+
+
+@app.route('/api/transactions/exclude', methods=['POST'])
+def api_exclude():
+    """API endpoint to exclude/unexclude transactions."""
+    data = request.get_json()
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+
+    transaction_ids = data.get('transaction_ids', [])
+    excluded = data.get('excluded', True)
+
+    if not transaction_ids:
+        return jsonify({'error': 'Missing transaction_ids'}), 400
+
+    transactions = get_stored_transactions()
+    if transactions is None:
+        return jsonify({'error': 'No transactions in session'}), 400
+
+    updated_count = 0
+    for tx in transactions:
+        if tx['id'] in transaction_ids:
+            tx['excluded'] = excluded
+            updated_count += 1
+
+    set_stored_transactions(transactions)
+
+    return jsonify({
+        'success': True,
+        'updated_count': updated_count,
+        'excluded': excluded
     })
 
 
@@ -220,10 +254,11 @@ def api_auto_categorize():
             amount=Decimal(tx_dict['amount']),
             bank_category=tx_dict['bank_category'],
             budget_category=tx_dict.get('budget_category'),
-            confidence=tx_dict.get('confidence', 0.0)
+            confidence=tx_dict.get('confidence', 0.0),
+            excluded=tx_dict.get('excluded', False)
         )
         tx_objects.append(tx)
-    
+
     # Run auto-categorization
     engine.auto_categorize_all(tx_objects)
     
@@ -260,10 +295,11 @@ def export_page():
             amount=Decimal(tx_dict['amount']),
             bank_category=tx_dict['bank_category'],
             budget_category=tx_dict.get('budget_category'),
-            confidence=tx_dict.get('confidence', 0.0)
+            confidence=tx_dict.get('confidence', 0.0),
+            excluded=tx_dict.get('excluded', False)
         )
         transactions.append(tx)
-    
+
     summary = exporter.get_summary(transactions)
     tsv = exporter.export_to_tsv(transactions)
     
@@ -291,10 +327,11 @@ def api_export_tsv():
             amount=Decimal(tx_dict['amount']),
             bank_category=tx_dict['bank_category'],
             budget_category=tx_dict.get('budget_category'),
-            confidence=tx_dict.get('confidence', 0.0)
+            confidence=tx_dict.get('confidence', 0.0),
+            excluded=tx_dict.get('excluded', False)
         )
         transactions.append(tx)
-    
+
     tsv = exporter.export_to_tsv(transactions)
     
     # Create response with file download
@@ -332,10 +369,11 @@ def api_export_summary():
             amount=Decimal(tx_dict['amount']),
             bank_category=tx_dict['bank_category'],
             budget_category=tx_dict.get('budget_category'),
-            confidence=tx_dict.get('confidence', 0.0)
+            confidence=tx_dict.get('confidence', 0.0),
+            excluded=tx_dict.get('excluded', False)
         )
         transactions.append(tx)
-    
+
     summary = exporter.get_summary(transactions)
     
     # Convert Decimal to string for JSON serialization

@@ -2,7 +2,7 @@
 
 from typing import Dict, List
 
-# Budget categories structure (from March Budget PDF)
+# Budget categories structure (from Budgeting 2026 PDF template)
 BUDGET_CATEGORIES: Dict[str, List[str]] = {
     "Income": [
         "Job salary",
@@ -10,7 +10,7 @@ BUDGET_CATEGORIES: Dict[str, List[str]] = {
     ],
     "Home Expenses": [
         "Furniture/Repairs",
-        "Cleaning Supplies",
+        "Decoration stuff/Cleaning Supplies",
         "Rent (Germany)"
     ],
     "Food": [
@@ -20,7 +20,7 @@ BUDGET_CATEGORIES: Dict[str, List[str]] = {
     "Other": [
         "Clothing",
         "Other expenses with cash/debit card",
-        "E-commerce",
+        "Expenses with credit card (TF Bank)",
         "Entertainment",
         "Bike, scooter",
         "Charity",
@@ -47,39 +47,37 @@ BUDGET_CATEGORIES: Dict[str, List[str]] = {
     "Health": [
         "Family's expenses"
     ],
-    "Debt": [
-        "Credit Card TF Bank"
-    ],
     "Investments": [
         "Rurüp contribution (pension)",
+        "Geiger Edelmetale",
         "Scalable Capital Wealth",
         "BMI life insurance policy"
     ]
 }
 
-# Default mappings from Deutsche Bank categories to budget categories
+# Default mappings from Deutsche Bank categories (German) to budget categories
 DEFAULT_BANK_MAPPINGS: Dict[str, str] = {
-    "Food / Beverages": "Food/Groceries",
-    "Clothing / Shoes": "Other/Clothing",
-    "Toiletries / Cleaning Supplies": "Home Expenses/Cleaning Supplies",
-    "Online Shopping": "Other/E-commerce",
-    "Public Transport": "Transportation/Bus",
-    "Energy & water": "Utilities/Electricity",
-    "Phone / Internet / TV / Radio": "Utilities/Cell phones",
-    "Pharmacy / Drugs": "Health/Family's expenses",
+    "Lebensmittel / Getränke": "Food/Groceries",
+    "Kleidung / Schuhe": "Other/Clothing",
+    "Drogerieartikel": "Home Expenses/Decoration stuff/Cleaning Supplies",
+    "Internetkäufe": "Other/Expenses with credit card (TF Bank)",
+    "Öffentliche Verkehrsmittel": "Transportation/Bus",
+    "Energie & Wasser": "Utilities/Electricity",
+    "Telefon / Internet / Fernsehen / Radio": "Utilities/Cell phones",
     "Sport / Fitness": "Other/Entertainment",
-    "Books / Music / Movies / Apps": "Education/Fernando's expenses",
-    "Life Insurance": "Investments/BMI life insurance policy",
-    "Other Editions Insurance": "Other/Insurances",
-    "Rent / Associated Costs": "Home Expenses/Rent (Germany)",
-    "Salary / Wages": "Income/Job salary",
-    "Other Income": "Income/Other benefits",
-    "Child Allowance": "Income/Other benefits",
-    "School Fees": "Education/Fiorella's expenses",
-    "Professional Training": "Education/German classes",
-    "Cash": "Other/Other expenses with cash/debit card",
-    "Others": "Other/Other expenses with cash/debit card",
-    "Uncategorized": None
+    "Bücher / Musik / Filme / Apps": "Education/Fernando's expenses",
+    "Lebensversicherung": "Investments/BMI life insurance policy",
+    "Sonstige Ausgaben Versicherung": "Other/Insurances",
+    "Miete / Nebenkosten": "Home Expenses/Rent (Germany)",
+    "Lohn / Gehalt": "Income/Job salary",
+    "Sonstige Einnahmen": "Income/Other benefits",
+    "Kindergeld": "Income/Other benefits",
+    "Schulgeld": "Education/Fiorella's expenses",
+    "Bargeld": "Other/Other expenses with cash/debit card",
+    "Sonstiges": "Other/Other expenses with cash/debit card",
+    "Motorrad": "Transportation/General maintenance",
+    "Restaurants / Cafes / Bars": "Food/Dining Out",
+    "Unkategorisiert": None
 }
 
 # Paths for static categorization rules
