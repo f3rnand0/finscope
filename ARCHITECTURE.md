@@ -91,8 +91,9 @@ class MHTMLParser:
         # Returns list of Transaction objects
         
     def parse_amount(self, amount_str: str) -> Decimal:
-        # Parse standard number format with comma thousands separator
-        # Example: '-8,000.00' -> Decimal('-8000.00')
+        # Parse German money format with dot thousands and comma decimals
+        # Example: '-8.000,00' -> Decimal('-8000.00')
+        # Invalid amount text fails the upload with transaction row context
         
     def parse_date(self, date_str: str) -> datetime:
         # Parse German date format (DD.MM.YYYY)
@@ -142,11 +143,12 @@ class CategorizationRules:
 ```
 
 **Categorization Priority**:
-1. Exact merchant match (highest confidence)
-2. Partial merchant match
-3. Keyword in description
-4. Bank category mapping
-5. Uncategorized (requires manual review)
+1. Learned merchant match
+2. Learned keyword match
+3. Static prefix rule
+4. Static contains rule
+5. Bank category mapping
+6. Uncategorized (requires manual review)
 
 ### 3. Models Module (src/models.py)
 
@@ -274,22 +276,21 @@ GET /api/export/summary
 ### 2. Review Page (/review)
 **Template**: review.html
 - Data table with:
-  - Sortable columns
-  - Inline category dropdown
-  - Bulk selection checkboxes
+  - Income: Date, Merchant Title, Detailed Description, Amount
+  - Expenses: Checkbox, Budget Category, Merchant Title, Detailed Description, Amount, Date, Actions
+  - Excluded expenses: Merchant Title, Detailed Description, Amount, Date, Actions
 - Filter sidebar:
   - Uncategorized only toggle
-  - Date range picker
   - Search box
 - Action buttons:
   - "Auto-Categorize" (runs categorization engine)
-  - "Save & Export"
+  - "Export to TSV"
 
 ### 3. Export Page (/export)
 **Template**: export.html
 - Preview table of final output
 - Summary statistics cards
-- Download buttons (TSV, CSV)
+- Download button (TSV)
 - Copy to clipboard button
 
 ## Configuration File Schema
@@ -302,12 +303,12 @@ GET /api/export/summary
     "ALDI": {
       "category": "Food/Groceries",
       "confidence": 0.95,
-      "occurrence_count": 15
+      "count": 15
     },
     "AMAZON": {
       "category": "Other/E-commerce",
       "confidence": 0.85,
-      "occurrence_count": 8
+      "count": 8
     }
   },
   "keyword_rules": {
@@ -316,7 +317,7 @@ GET /api/export/summary
       "confidence": 0.95
     },
     "SCALABLE": {
-      "category": "Investments/Scalable Capital",
+      "category": "Investments/Scalable Capital Wealth",
       "confidence": 0.98
     }
   },
@@ -329,7 +330,8 @@ GET /api/export/summary
     "Phone / Internet / TV / Radio": "Utilities/Cell Phones",
     "Life Insurance": "Investments/BMI Life Insurance",
     "Other Income": "Income/Other Benefits",
-    "Salary / Wages": "Income/Job Salary"
+    "Salary / Wages": "Income/Job Salary",
+    "Lebensmittel / Getränke": "Food/Groceries"
   },
   "manual_rules": [
     {
@@ -352,11 +354,11 @@ GET /api/export/summary
    ↓
 4. MHTMLParser.extract_transactions() → parse HTML, extract rows
    ↓
-5. Transaction objects created (78 transactions in test file)
+5. Transaction objects created (71 unique transactions in the fixture after skipping settlement rows and deduplicating)
    ↓
 6. CategorizationEngine.auto_categorize_all() → apply rules
    ↓
-7. Results stored in Flask session as JSON
+7. Results stored server-side, keyed by a small Flask session id
    ↓
 8. Return summary, redirect to /review
 ```
@@ -367,7 +369,7 @@ GET /api/export/summary
    ↓
 2. POST /api/transactions/categorize
    ↓
-3. Update transaction(s) budget_category in session
+3. Update transaction(s) budget_category in the server-side transaction store
    ↓
 4. CategorizationEngine.learn_from_manual()
    ↓
@@ -386,7 +388,7 @@ GET /api/export/summary
    ↓
 2. GET /api/export/tsv
    ↓
-3. Load transactions from session, convert to Transaction objects
+3. Load transactions from the server-side transaction store, convert to Transaction objects
    ↓
 4. BudgetExporter.aggregate_by_category()
    ↓
@@ -405,7 +407,7 @@ GET /api/export/summary
 ### Categorization Errors
 - **No patterns match**: Leave as "Uncategorized"
 - **Low confidence**: Flag for review (yellow highlight)
-- **Conflicting patterns**: Use highest confidence, log warning
+- **Conflicting patterns**: Learned manual rules take precedence over static rules
 
 ### Config Errors
 - **Corrupted config**: Backup and create new
@@ -417,7 +419,7 @@ GET /api/export/summary
 1. **File Upload**: Validate file type, size limit (10MB)
 2. **Path Traversal**: Use secure temp directories only
 3. **XSS Prevention**: Jinja2 auto-escaping in templates
-4. **CSRF Protection**: Flask-WTF for forms
+4. **Local Data Processing**: Transaction data stays local; Bootstrap assets may load from CDN
 5. **Local Only**: Bind to 127.0.0.1 by default
 
 ## Testing Strategy

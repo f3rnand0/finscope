@@ -9,12 +9,28 @@ from src.models import Transaction
 
 
 @pytest.fixture
-def client():
+def client(tmp_path):
     """Create a test client for the Flask app."""
-    from app import app
-    app.config['TESTING'] = True
-    with app.test_client() as client:
+    import app as app_module
+    from src.categorizer import CategorizationEngine
+
+    original_engine = app_module.engine
+    original_store = app_module.transaction_store
+    original_config_path = app_module.app.config['CONFIG_PATH']
+    original_testing = app_module.app.config.get('TESTING')
+
+    app_module.app.config['TESTING'] = True
+    app_module.app.config['CONFIG_PATH'] = str(tmp_path / 'categorization_rules.json')
+    app_module.engine = CategorizationEngine(app_module.app.config['CONFIG_PATH'])
+    app_module.transaction_store = {}
+
+    with app_module.app.test_client() as client:
         yield client
+
+    app_module.engine = original_engine
+    app_module.transaction_store = original_store
+    app_module.app.config['CONFIG_PATH'] = original_config_path
+    app_module.app.config['TESTING'] = original_testing
 
 
 @pytest.fixture
@@ -52,6 +68,32 @@ class TestUploadFlow:
         assert response.status_code == 400
         data = response.get_json()
         assert 'error' in data
+
+    def test_upload_rejects_invalid_amount_with_context(self, client):
+        """Reject invalid non-German amount text with parser context."""
+        invalid_mhtml = b"""
+        <html><body>
+        <db-list-row>
+          <span data-test="counterPartyNameOrTransactionTypeLabel"><span>Test Merchant</span></span>
+          <span class="color-text-secondary">Bad amount transaction</span>
+          <span data-test="transactionCategoryName"><span class="db-status__text">Uncategorized</span></span>
+          <span data-test="amount"><span class="directional"><span>500.00 EUR</span></span></span>
+        </db-list-row>
+        </body></html>
+        """
+
+        response = client.post(
+            '/api/upload',
+            data={'file': (BytesIO(invalid_mhtml), 'invalid.mhtml')},
+            content_type='multipart/form-data'
+        )
+
+        assert response.status_code == 400
+        data = response.get_json()
+        assert 'transaction row 0' in data['error']
+        assert "raw amount='500.00 EUR'" in data['error']
+        assert 'source line=' in data['error']
+        assert 'merchant=Test Merchant' in data['error']
 
 
 class TestReviewPage:
@@ -119,9 +161,9 @@ class TestAutoCategorize:
         assert data['success'] is True
         assert data['categorized_count'] > 0
     
-    def test_prefix_rules_override_merchant(self, client):
-        """Verify static prefix rules override learned merchant rules."""
-        from app import engine, transaction_store, get_stored_transactions
+    def test_learned_merchant_overrides_prefix_rules(self, client):
+        """Verify learned merchant rules override static prefix rules."""
+        from app import engine
         from src.models import Transaction as TxModel
         
         # Create a transaction that matches prefix rule
@@ -135,16 +177,16 @@ class TestAutoCategorize:
         )
         
         # First, manually learn it as a different category
-        engine.learn_from_manual(tx, 'Other/E-commerce')
+        engine.learn_from_manual(tx, 'Other/Expenses with credit card (TF Bank)')
         
         # Reset transaction
         tx.budget_category = None
         tx.confidence = 0.0
         
-        # Auto-categorize should apply prefix rule (Food/Groceries) not learned rule
+        # Auto-categorize should apply learned merchant rule, not the static prefix rule
         result = engine.categorize(tx)
-        assert result.category == 'Food/Groceries'
-        assert result.method == 'prefix_rule'
+        assert result.category == 'Other/Expenses with credit card (TF Bank)'
+        assert result.method == 'merchant'
 
 
 class TestExport:
@@ -166,7 +208,7 @@ class TestExport:
         # TSV should not contain income-related descriptions
         # (assuming sample has identifiable income like salary)
         # Since we can't know exact content, verify it doesn't crash
-        assert 'Category' in tsv  # Header row exists
+        assert tsv.splitlines()[0] == 'Category / Expense\tBudget\tActual Spent\tBudget vs. Actual'
     
     def test_export_summary_excludes_income(self, client, sample_mhtml):
         """Verify export summary excludes income."""

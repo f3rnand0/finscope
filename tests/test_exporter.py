@@ -1,5 +1,7 @@
 """Tests for exporter module."""
 
+import csv
+import io
 import pytest
 from datetime import datetime
 from decimal import Decimal
@@ -25,7 +27,7 @@ class TestBudgetExporter:
                 description='Monthly Salary',
                 amount=Decimal('5089.71'),
                 bank_category='Salary / Wages',
-                budget_category='Income/Job salary',
+                budget_category='Income/Job Salary',
                 confidence=0.95
             ),
             Transaction(
@@ -64,9 +66,9 @@ class TestBudgetExporter:
         """Test aggregation by category."""
         aggregated = exporter.aggregate_by_category(sample_transactions)
         
-        assert 'Income/Job salary' in aggregated
-        assert aggregated['Income/Job salary']['count'] == 1
-        assert aggregated['Income/Job salary']['total'] == Decimal('5089.71')
+        assert 'Income/Job Salary' in aggregated
+        assert aggregated['Income/Job Salary']['count'] == 1
+        assert aggregated['Income/Job Salary']['total'] == Decimal('5089.71')
         
         assert 'Food/Groceries' in aggregated
         assert aggregated['Food/Groceries']['count'] == 2
@@ -75,16 +77,72 @@ class TestBudgetExporter:
     def test_export_to_tsv(self, exporter, sample_transactions):
         """Test TSV export."""
         tsv = exporter.export_to_tsv(sample_transactions)
+        rows = list(csv.reader(io.StringIO(tsv), delimiter='\t'))
+        header = rows[0]
 
-        assert 'Category\tSubcategory\tActual Spent\tDescription\tTransaction Count' in tsv
-        assert 'Income' in tsv
-        assert 'Job salary' in tsv
-        assert 'Food' in tsv
-        assert 'Groceries' in tsv
-        assert '€77.70' in tsv or '€45.20' in tsv  # Amount should be present
-        assert 'Budget' not in tsv.split('\n')[0]
-        assert 'Variance' not in tsv.split('\n')[0]
-        assert 'ALDI##' in tsv  # Merchant##Description format
+        assert header == ['Category / Expense', 'Budget', 'Actual Spent', 'Budget vs. Actual']
+        assert 'Description' not in header
+        assert 'Transaction Count' not in header
+        assert 'Subcategory' not in header
+        assert rows[1][0] == 'Home Expenses'
+        assert any(row[0] == '- Geiger Edelmetalle' for row in rows)
+        assert 'Job Salary' not in tsv
+
+        groceries = next(row for row in rows if row[0] == '- Groceries')
+        assert groceries == ['- Groceries', '€550.00', '€77.70', '€472.30']
+
+        dining_out = next(row for row in rows if row[0] == '- Dining Out')
+        assert dining_out == ['- Dining Out', '€150.00', '', '€150.00']
+
+    def test_export_maps_legacy_categories_to_template_rows(self, exporter):
+        """Old stored categories should still land in the current template row."""
+        transactions = [
+            Transaction(
+                id='tx_1',
+                date=datetime(2026, 3, 1),
+                counter_party='Amazon',
+                description='Amazon purchase',
+                amount=Decimal('-50.00'),
+                bank_category='Online Shopping',
+                budget_category='Other/E-commerce',
+                confidence=0.9
+            ),
+            Transaction(
+                id='tx_2',
+                date=datetime(2026, 3, 2),
+                counter_party='TF Bank',
+                description='Credit card payment',
+                amount=Decimal('-25.00'),
+                bank_category='Uncategorized',
+                budget_category='Debt/Credit Card TF Bank',
+                confidence=0.9
+            )
+        ]
+
+        rows = list(csv.reader(io.StringIO(exporter.export_to_tsv(transactions)), delimiter='\t'))
+        credit_card = next(row for row in rows if row[0] == '- Expenses with credit card (TF Bank)')
+
+        assert credit_card == ['- Expenses with credit card (TF Bank)', '€400.00', '€75.00', '€325.00']
+
+    def test_zero_variance_is_blank(self, exporter):
+        """Variance should be blank when actual equals budget."""
+        transactions = [
+            Transaction(
+                id='tx_1',
+                date=datetime(2026, 3, 1),
+                counter_party='Geiger Edelmetalle',
+                description='Geiger Edelmetalle AG',
+                amount=Decimal('-100.00'),
+                bank_category='Uncategorized',
+                budget_category='Investments/Geiger Edelmetalle',
+                confidence=0.9
+            )
+        ]
+
+        rows = list(csv.reader(io.StringIO(exporter.export_to_tsv(transactions)), delimiter='\t'))
+        geiger = next(row for row in rows if row[0] == '- Geiger Edelmetalle')
+
+        assert geiger == ['- Geiger Edelmetalle', '€100.00', '€100.00', '']
     
     def test_get_summary(self, exporter, sample_transactions):
         """Test summary statistics."""

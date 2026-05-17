@@ -2,16 +2,16 @@
 
 import os
 import uuid
-from datetime import datetime
 from decimal import Decimal
 
 from flask import Flask, render_template, request, jsonify, session, send_file
 from werkzeug.utils import secure_filename
 
-from config import Config, BUDGET_CATEGORIES
+from config import Config, BUDGET_CATEGORIES, normalize_budget_category
 from src.parser import MHTMLParser
 from src.categorizer import CategorizationEngine
 from src.exporter import BudgetExporter
+from src.models import Transaction
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -35,14 +35,39 @@ def get_stored_transactions():
     upload_id = session.get('upload_id')
     if not upload_id:
         return None
-    return transaction_store.get(upload_id)
+    transactions = transaction_store.get(upload_id)
+    if transactions is not None:
+        normalize_stored_categories(transactions)
+    return transactions
 
 
 def set_stored_transactions(data):
     """Store transactions in server-side store."""
     upload_id = session.get('upload_id')
     if upload_id:
+        normalize_stored_categories(data)
         transaction_store[upload_id] = data
+
+
+def normalize_stored_categories(transactions):
+    """Normalize older stored category labels to the current template labels."""
+    for tx in transactions:
+        tx['budget_category'] = normalize_budget_category(tx.get('budget_category'))
+
+
+def dict_amount(tx_data):
+    """Get a transaction dictionary amount as Decimal."""
+    return Decimal(str(tx_data.get('amount', '0')))
+
+
+def transaction_objects(transactions_data, include_income=True):
+    """Convert stored transaction dictionaries to Transaction objects."""
+    transactions = []
+    for tx_data in transactions_data:
+        tx = Transaction.from_dict(tx_data)
+        if include_income or not tx.is_income:
+            transactions.append(tx)
+    return transactions
 
 
 def get_flat_categories():
@@ -74,11 +99,12 @@ def api_upload():
         return jsonify({'error': 'No file provided'}), 400
     
     file = request.files['file']
-    if file.filename == '':
+    filename = secure_filename(file.filename or '')
+    if filename == '':
         return jsonify({'error': 'No file selected'}), 400
     
     # Validate file extension
-    if not file.filename.endswith('.mhtml'):
+    if not filename.lower().endswith('.mhtml'):
         return jsonify({'error': 'Only .mhtml files are supported'}), 400
     
     try:
@@ -106,6 +132,8 @@ def api_upload():
             'redirect': '/review'
         })
     
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -117,9 +145,9 @@ def review_page():
     if transactions is None:
         return render_template('review.html', income=[], expenses=[], excluded=[], categories=get_flat_categories())
 
-    income = [tx for tx in transactions if float(tx.get('amount', 0)) > 0]
-    expenses = [tx for tx in transactions if float(tx.get('amount', 0)) <= 0 and not tx.get('excluded')]
-    excluded = [tx for tx in transactions if float(tx.get('amount', 0)) <= 0 and tx.get('excluded')]
+    income = [tx for tx in transactions if dict_amount(tx) > 0]
+    expenses = [tx for tx in transactions if dict_amount(tx) <= 0 and not tx.get('excluded')]
+    excluded = [tx for tx in transactions if dict_amount(tx) <= 0 and tx.get('excluded')]
 
     return render_template('review.html', income=income, expenses=expenses, excluded=excluded, categories=get_flat_categories())
 
@@ -134,9 +162,9 @@ def api_get_transactions():
     # Filter by type (income/expense)
     tx_type = request.args.get('type', 'all')
     if tx_type == 'income':
-        transactions = [tx for tx in transactions if float(tx.get('amount', 0)) > 0]
+        transactions = [tx for tx in transactions if dict_amount(tx) > 0]
     elif tx_type == 'expense':
-        transactions = [tx for tx in transactions if float(tx.get('amount', 0)) <= 0]
+        transactions = [tx for tx in transactions if dict_amount(tx) <= 0]
     
     # Filter by category if specified
     filter_cat = request.args.get('category', 'all')
@@ -179,20 +207,7 @@ def api_categorize():
             updated_count += 1
             
             # Learn from manual categorization
-            # Create a temporary Transaction object for learning
-            from src.models import Transaction as TxModel
-            from decimal import Decimal
-            tx_obj = TxModel(
-                id=tx['id'],
-                date=datetime.fromisoformat(tx['date']) if tx['date'] else datetime.now(),
-                counter_party=tx['counter_party'],
-                description=tx['description'],
-                amount=Decimal(tx['amount']),
-                bank_category=tx['bank_category'],
-                budget_category=category,
-                confidence=1.0,
-                excluded=tx.get('excluded', False)
-            )
+            tx_obj = Transaction.from_dict(tx)
             engine.learn_from_manual(tx_obj, category)
     
     set_stored_transactions(transactions)
@@ -243,21 +258,7 @@ def api_auto_categorize():
         return jsonify({'error': 'No transactions in session'}), 400
     
     # Convert dicts back to Transaction objects
-    from src.models import Transaction as TxModel
-    tx_objects = []
-    for tx_dict in transactions:
-        tx = TxModel(
-            id=tx_dict['id'],
-            date=datetime.fromisoformat(tx_dict['date']) if tx_dict['date'] else datetime.now(),
-            counter_party=tx_dict['counter_party'],
-            description=tx_dict['description'],
-            amount=Decimal(tx_dict['amount']),
-            bank_category=tx_dict['bank_category'],
-            budget_category=tx_dict.get('budget_category'),
-            confidence=tx_dict.get('confidence', 0.0),
-            excluded=tx_dict.get('excluded', False)
-        )
-        tx_objects.append(tx)
+    tx_objects = transaction_objects(transactions)
 
     # Run auto-categorization
     engine.auto_categorize_all(tx_objects)
@@ -282,23 +283,7 @@ def export_page():
         return render_template('export.html', summary={}, tsv='')
     
     # Convert dicts to Transaction objects and filter out income
-    from src.models import Transaction as TxModel
-    transactions = []
-    for tx_dict in transactions_data:
-        if float(tx_dict['amount']) > 0:
-            continue  # Skip income
-        tx = TxModel(
-            id=tx_dict['id'],
-            date=datetime.fromisoformat(tx_dict['date']) if tx_dict['date'] else datetime.now(),
-            counter_party=tx_dict['counter_party'],
-            description=tx_dict['description'],
-            amount=Decimal(tx_dict['amount']),
-            bank_category=tx_dict['bank_category'],
-            budget_category=tx_dict.get('budget_category'),
-            confidence=tx_dict.get('confidence', 0.0),
-            excluded=tx_dict.get('excluded', False)
-        )
-        transactions.append(tx)
+    transactions = transaction_objects(transactions_data, include_income=False)
 
     summary = exporter.get_summary(transactions)
     tsv = exporter.export_to_tsv(transactions)
@@ -314,23 +299,7 @@ def api_export_tsv():
         return jsonify({'error': 'No transactions in session'}), 400
     
     # Convert dicts to Transaction objects, filter out income
-    from src.models import Transaction as TxModel
-    transactions = []
-    for tx_dict in transactions_data:
-        if float(tx_dict['amount']) > 0:
-            continue  # Skip income
-        tx = TxModel(
-            id=tx_dict['id'],
-            date=datetime.fromisoformat(tx_dict['date']) if tx_dict['date'] else datetime.now(),
-            counter_party=tx_dict['counter_party'],
-            description=tx_dict['description'],
-            amount=Decimal(tx_dict['amount']),
-            bank_category=tx_dict['bank_category'],
-            budget_category=tx_dict.get('budget_category'),
-            confidence=tx_dict.get('confidence', 0.0),
-            excluded=tx_dict.get('excluded', False)
-        )
-        transactions.append(tx)
+    transactions = transaction_objects(transactions_data, include_income=False)
 
     tsv = exporter.export_to_tsv(transactions)
     
@@ -356,23 +325,7 @@ def api_export_summary():
         return jsonify({'summary': {}})
     
     # Convert dicts to Transaction objects, filter out income
-    from src.models import Transaction as TxModel
-    transactions = []
-    for tx_dict in transactions_data:
-        if float(tx_dict['amount']) > 0:
-            continue  # Skip income
-        tx = TxModel(
-            id=tx_dict['id'],
-            date=datetime.fromisoformat(tx_dict['date']) if tx_dict['date'] else datetime.now(),
-            counter_party=tx_dict['counter_party'],
-            description=tx_dict['description'],
-            amount=Decimal(tx_dict['amount']),
-            bank_category=tx_dict['bank_category'],
-            budget_category=tx_dict.get('budget_category'),
-            confidence=tx_dict.get('confidence', 0.0),
-            excluded=tx_dict.get('excluded', False)
-        )
-        transactions.append(tx)
+    transactions = transaction_objects(transactions_data, include_income=False)
 
     summary = exporter.get_summary(transactions)
     

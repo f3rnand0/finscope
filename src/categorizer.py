@@ -8,7 +8,12 @@ from typing import Dict, List, Optional, Tuple
 from pathlib import Path
 
 from .models import Transaction, CategorizationResult
-from config import DEFAULT_BANK_MAPPINGS, PREFIX_RULES_PATH, CONTAINS_RULES_PATH
+from config import (
+    DEFAULT_BANK_MAPPINGS,
+    PREFIX_RULES_PATH,
+    CONTAINS_RULES_PATH,
+    normalize_budget_category
+)
 
 
 class CategorizationRules:
@@ -18,7 +23,7 @@ class CategorizationRules:
         self.config_path = Path(config_path)
         self.merchant_rules: Dict[str, dict] = {}
         self.keyword_rules: Dict[str, dict] = {}
-        self.bank_mappings: Dict[str, str] = dict(DEFAULT_BANK_MAPPINGS)
+        self.bank_mappings: Dict[str, Optional[str]] = dict(DEFAULT_BANK_MAPPINGS)
         self.manual_rules: list = []
         self.prefix_rules: Dict[str, List[str]] = {}
         self.contains_rules: Dict[str, List[str]] = {}
@@ -31,9 +36,12 @@ class CategorizationRules:
             try:
                 with open(self.config_path, 'r', encoding='utf-8') as f:
                     data = json.load(f)
-                    self.merchant_rules = data.get('merchant_rules', {})
-                    self.keyword_rules = data.get('keyword_rules', {})
-                    self.bank_mappings.update(data.get('bank_mappings', {}))
+                    self.merchant_rules = self._normalize_rule_categories(data.get('merchant_rules', {}))
+                    self.keyword_rules = self._normalize_rule_categories(data.get('keyword_rules', {}))
+                    self.bank_mappings.update({
+                        key: normalize_budget_category(category)
+                        for key, category in data.get('bank_mappings', {}).items()
+                    })
                     self.manual_rules = data.get('manual_rules', [])
             except (json.JSONDecodeError, IOError) as e:
                 print(f"Warning: Could not load rules: {e}")
@@ -43,7 +51,10 @@ class CategorizationRules:
         if prefix_path.exists():
             try:
                 with open(prefix_path, 'r', encoding='utf-8') as f:
-                    self.prefix_rules = json.load(f)
+                    self.prefix_rules = {
+                        normalize_budget_category(category): prefixes
+                        for category, prefixes in json.load(f).items()
+                    }
             except (json.JSONDecodeError, IOError) as e:
                 print(f"Warning: Could not load prefix rules: {e}")
         
@@ -52,9 +63,21 @@ class CategorizationRules:
         if contains_path.exists():
             try:
                 with open(contains_path, 'r', encoding='utf-8') as f:
-                    self.contains_rules = json.load(f)
+                    self.contains_rules = {
+                        normalize_budget_category(category): texts
+                        for category, texts in json.load(f).items()
+                    }
             except (json.JSONDecodeError, IOError) as e:
                 print(f"Warning: Could not load contains rules: {e}")
+
+    def _normalize_rule_categories(self, rules: Dict[str, dict]) -> Dict[str, dict]:
+        """Normalize category labels loaded from older saved rule files."""
+        normalized = {}
+        for key, rule in rules.items():
+            normalized_rule = dict(rule)
+            normalized_rule['category'] = normalize_budget_category(rule.get('category'))
+            normalized[key] = normalized_rule
+        return normalized
     
     def save_rules(self):
         """Save learned rules to JSON file."""
@@ -76,6 +99,7 @@ class CategorizationRules:
     def add_merchant_rule(self, merchant: str, category: str):
         """Add or update a merchant rule."""
         merchant = merchant.upper().strip()
+        category = normalize_budget_category(category)
         if merchant in self.merchant_rules:
             # Update existing rule
             self.merchant_rules[merchant]['count'] += 1
@@ -94,6 +118,7 @@ class CategorizationRules:
     def add_keyword_rule(self, keyword: str, category: str):
         """Add or update a keyword rule."""
         keyword = keyword.upper().strip()
+        category = normalize_budget_category(category)
         if keyword in self.keyword_rules:
             self.keyword_rules[keyword]['count'] = self.keyword_rules[keyword].get('count', 1) + 1
         else:
@@ -116,12 +141,17 @@ class CategorizationRules:
             rule = self.merchant_rules[merchant_upper]
             return (rule['category'], rule['confidence'])
         
-        # Partial match (merchant contains known pattern)
-        for pattern, rule in self.merchant_rules.items():
-            if pattern in merchant_upper or merchant_upper in pattern:
-                # Lower confidence for partial match
-                confidence = rule['confidence'] * 0.8
-                return (rule['category'], confidence)
+        # Partial match (merchant contains known pattern). Prefer the most
+        # specific learned pattern when several rules overlap.
+        partial_matches = [
+            (pattern, rule)
+            for pattern, rule in self.merchant_rules.items()
+            if pattern in merchant_upper or merchant_upper in pattern
+        ]
+        if partial_matches:
+            pattern, rule = max(partial_matches, key=lambda item: len(item[0]))
+            confidence = rule['confidence'] * 0.8
+            return (rule['category'], confidence)
         
         return None
     
@@ -227,19 +257,7 @@ class CategorizationEngine:
         """Categorize a single transaction."""
         match_text = self._get_match_text(transaction)
 
-        # Priority 1: Static prefix rules (override learned rules)
-        match = self.rules.get_category_for_prefix(match_text)
-        if match:
-            category, confidence = match
-            return CategorizationResult(category, confidence, 'prefix_rule')
-
-        # Priority 2: Static contains rules
-        match = self.rules.get_category_for_contains(match_text)
-        if match:
-            category, confidence = match
-            return CategorizationResult(category, confidence, 'contains_rule')
-
-        # Priority 3: Merchant match
+        # Priority 1: Learned merchant match
         merchant = self.extract_merchant(match_text)
         if merchant:
             match = self.rules.get_category_for_merchant(merchant)
@@ -247,11 +265,23 @@ class CategorizationEngine:
                 category, confidence = match
                 return CategorizationResult(category, confidence, 'merchant')
 
-        # Priority 4: Keyword match in description
+        # Priority 2: Learned keyword match
         match = self.rules.get_category_for_keyword(match_text)
         if match:
             category, confidence = match
             return CategorizationResult(category, confidence, 'keyword')
+
+        # Priority 3: Static prefix rules
+        match = self.rules.get_category_for_prefix(match_text)
+        if match:
+            category, confidence = match
+            return CategorizationResult(category, confidence, 'prefix_rule')
+
+        # Priority 4: Static contains rules
+        match = self.rules.get_category_for_contains(match_text)
+        if match:
+            category, confidence = match
+            return CategorizationResult(category, confidence, 'contains_rule')
 
         # Priority 5: Bank category mapping
         if transaction.bank_category:

@@ -1,19 +1,24 @@
 """Export transactions to budget format (TSV)."""
 
+import csv
 import io
 from collections import defaultdict
 from decimal import Decimal
-from typing import Dict, List, Tuple
+from pathlib import Path
+from typing import Dict, List
 
 from .models import Transaction
-from config import BUDGET_CATEGORIES
+from config import BUDGET_CATEGORIES, EXPORT_TEMPLATE_PATH, normalize_budget_category
 
 
 class BudgetExporter:
     """Export transactions to budget format."""
+
+    EXPORT_COLUMNS = ['Category / Expense', 'Budget', 'Actual Spent', 'Budget vs. Actual']
     
-    def __init__(self):
+    def __init__(self, template_path: str = EXPORT_TEMPLATE_PATH):
         self.category_hierarchy = self._build_category_hierarchy()
+        self.template_path = Path(template_path)
     
     def _build_category_hierarchy(self) -> Dict[str, List[str]]:
         """Build flat category to subcategory mapping."""
@@ -35,7 +40,7 @@ class BudgetExporter:
         for tx in transactions:
             if tx.excluded:
                 continue
-            category = tx.budget_category or 'Uncategorized/Uncategorized'
+            category = normalize_budget_category(tx.budget_category) or 'Uncategorized/Uncategorized'
             categories[category]['transactions'].append(tx)
             categories[category]['total'] += tx.amount
             categories[category]['count'] += 1
@@ -52,74 +57,112 @@ class BudgetExporter:
         return '\n'.join(lines)
 
     def export_to_tsv(self, transactions: List[Transaction]) -> str:
-        """Generate TSV string for Google Sheets."""
+        """Generate template-shaped TSV string for Google Sheets."""
         aggregated = self.aggregate_by_category(transactions)
+        rows = self._render_template_rows(aggregated)
 
-        rows = []
-
-        # Header row
-        rows.append(['Category', 'Subcategory', 'Actual Spent', 'Description', 'Transaction Count'])
-
-        # Income first
-        for main_cat in ['Income']:
-            if main_cat in BUDGET_CATEGORIES:
-                for subcat in BUDGET_CATEGORIES[main_cat]:
-                    cat_key = f"{main_cat}/{subcat}"
-                    data = aggregated.get(cat_key, {'total': Decimal('0'), 'count': 0, 'transactions': []})
-
-                    # Get description from transactions
-                    desc = self._format_description(data['transactions'])
-
-                    rows.append([
-                        main_cat,
-                        subcat,
-                        f"€{abs(data['total']):,.2f}" if data['total'] != 0 else '',
-                        desc,
-                        str(data['count'])
-                    ])
-
-        # Expenses (all other categories)
-        for main_cat in BUDGET_CATEGORIES:
-            if main_cat == 'Income':
-                continue
-
-            for subcat in BUDGET_CATEGORIES[main_cat]:
-                cat_key = f"{main_cat}/{subcat}"
-                data = aggregated.get(cat_key, {'total': Decimal('0'), 'count': 0, 'transactions': []})
-
-                # Skip empty categories unless they have transactions
-                if data['count'] == 0:
-                    continue
-
-                # Get description from transactions
-                desc = self._format_description(data['transactions'])
-
-                rows.append([
-                    main_cat,
-                    subcat,
-                    f"€{abs(data['total']):,.2f}",
-                    desc,
-                    str(data['count'])
-                ])
-
-        # Uncategorized transactions
-        uncategorized = aggregated.get('Uncategorized/Uncategorized', {'total': Decimal('0'), 'count': 0, 'transactions': []})
-        if uncategorized['count'] > 0:
-            desc = self._format_description(uncategorized['transactions'])
-            rows.append([
-                'Uncategorized',
-                'Needs Review',
-                f"€{abs(uncategorized['total']):,.2f}",
-                desc,
-                str(uncategorized['count'])
-            ])
-
-        # Convert to TSV
         output = io.StringIO()
-        for row in rows:
-            output.write('\t'.join(row) + '\n')
+        writer = csv.writer(output, delimiter='\t', lineterminator='\n')
+        writer.writerows(rows)
 
         return output.getvalue()
+
+    def _load_spending_template(self) -> List[dict]:
+        """Load template rows from the spending table header onward."""
+        with self.template_path.open(newline='', encoding='utf-8') as f:
+            rows = list(csv.reader(f, delimiter='\t'))
+
+        header_index = next(
+            (
+                index for index, row in enumerate(rows)
+                if row and row[0].strip() == 'Category / Expense'
+            ),
+            None
+        )
+        if header_index is None:
+            raise ValueError('Export template is missing the Category / Expense header')
+
+        headers = rows[header_index]
+        column_indexes = {name: headers.index(name) for name in self.EXPORT_COLUMNS}
+        template_rows = []
+
+        for row in rows[header_index:]:
+            padded = row + [''] * (len(headers) - len(row))
+            template_rows.append({
+                name: padded[index]
+                for name, index in column_indexes.items()
+            })
+
+        return template_rows
+
+    def _render_template_rows(self, aggregated: Dict[str, dict]) -> List[List[str]]:
+        rows = []
+        current_category = None
+        subcategory_rows = []
+
+        for row in self._load_spending_template():
+            label = row['Category / Expense'].strip()
+
+            if label == 'Category / Expense':
+                rows.append(self.EXPORT_COLUMNS)
+                continue
+
+            if not label:
+                rows.append(['', '', '', ''])
+                continue
+
+            if label.startswith('TOTAL SPENDING'):
+                actual = self._total_actual(subcategory_rows, aggregated, label)
+                budget = row['Budget']
+                rows.append([
+                    label,
+                    budget,
+                    self._format_currency(actual) if actual != 0 else '',
+                    self._format_variance(self._parse_currency(budget) - actual)
+                ])
+                continue
+
+            if label.startswith('- '):
+                subcategory = label[2:]
+                category_key = f"{current_category}/{subcategory}"
+                subcategory_rows.append(category_key)
+                data = aggregated.get(category_key, {'total': Decimal('0'), 'count': 0})
+                actual = abs(data['total'])
+                has_transactions = data['count'] > 0
+                rows.append([
+                    row['Category / Expense'],
+                    row['Budget'],
+                    self._format_currency(actual) if has_transactions else '',
+                    self._format_variance(self._parse_currency(row['Budget']) - actual)
+                ])
+                continue
+
+            current_category = label
+            rows.append([label, row['Budget'], '', ''])
+
+        return rows
+
+    def _total_actual(self, category_keys: List[str], aggregated: Dict[str, dict], label: str) -> Decimal:
+        total = Decimal('0')
+        for category_key in category_keys:
+            if label == 'TOTAL SPENDING WITHOUT INVESTMENTS' and category_key.startswith('Investments/'):
+                continue
+            total += abs(aggregated.get(category_key, {'total': Decimal('0')})['total'])
+        return total
+
+    def _parse_currency(self, value: str) -> Decimal:
+        value = value.strip()
+        if not value:
+            return Decimal('0')
+        return Decimal(value.replace('€', '').replace(',', '').strip())
+
+    def _format_currency(self, amount: Decimal) -> str:
+        return f"€{amount:,.2f}"
+
+    def _format_variance(self, amount: Decimal) -> str:
+        if amount == 0:
+            return ''
+        return self._format_currency(amount)
     
     def export_to_csv(self, transactions: List[Transaction]) -> str:
         """Generate CSV string."""

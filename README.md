@@ -41,8 +41,8 @@ open http://127.0.0.1:5500
 ## Requirements
 
 - Python 3.9+
-- Works entirely offline — no data leaves your machine
+- Financial data processing runs locally — no transaction data leaves your machine
 
 ## License
 
-Personal use tool. All data stays local.
+Personal use tool. Transaction data stays local.

@@ -3,11 +3,26 @@
 import quopri
 import re
 from datetime import datetime
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 from typing import List, Optional
 from bs4 import BeautifulSoup
 
 from .models import Transaction
+
+
+class AmountParseError(ValueError):
+    """Raised when an amount does not match Deutsche Bank German format."""
+
+    def __init__(self, amount_text: str):
+        self.amount_text = amount_text
+        super().__init__(
+            f"Invalid German amount format: {amount_text!r}. "
+            "Expected examples: '500,00', '5.089,71', '-8.000,00 EUR'."
+        )
+
+
+class MHTMLParseError(ValueError):
+    """Raised when parsing cannot safely import an MHTML export."""
 
 
 class MHTMLParser:
@@ -35,17 +50,26 @@ class MHTMLParser:
         return None
     
     def parse_amount(self, amount_str: str) -> Decimal:
-        """Parse amount string (standard format with dot decimal separator)."""
+        """Parse amount string in German money format."""
         if not amount_str:
-            return Decimal('0')
-        # Remove currency symbols and whitespace
-        cleaned = amount_str.strip().replace('EUR', '').replace('€', '').strip()
-        # Remove thousand separators (commas), keep decimal point
-        cleaned = cleaned.replace(',', '')
+            raise AmountParseError(amount_str)
+
+        cleaned = amount_str.replace('\xa0', ' ')
+        cleaned = cleaned.replace('\u202f', ' ')
+        cleaned = cleaned.replace('\u2212', '-')
+        cleaned = cleaned.strip()
+        cleaned = re.sub(r'EUR', '', cleaned, flags=re.IGNORECASE)
+        cleaned = cleaned.replace('€', '')
+        cleaned = re.sub(r'\s+', '', cleaned)
+
+        if not re.fullmatch(r'[+-]?(?:\d{1,3}(?:\.\d{3})+|\d+),\d{2}', cleaned):
+            raise AmountParseError(amount_str)
+
+        normalized = cleaned.replace('.', '').replace(',', '.')
         try:
-            return Decimal(cleaned)
-        except Exception:
-            return Decimal('0')
+            return Decimal(normalized)
+        except InvalidOperation as exc:
+            raise AmountParseError(amount_str) from exc
     
     def clean_html_entities(self, text: str) -> str:
         """Clean HTML entities from text."""
@@ -150,12 +174,51 @@ class MHTMLParser:
                     if key not in seen:
                         seen.add(key)
                         transactions.append(tx)
+            except AmountParseError as e:
+                raise MHTMLParseError(self._format_row_error(row, idx, e, html)) from e
             except Exception as e:
-                # Log error but continue processing other transactions
-                print(f"Error parsing transaction {idx}: {e}")
-                continue
+                raise MHTMLParseError(self._format_row_error(row, idx, e, html)) from e
 
         return transactions
+
+    def _find_source_line(self, html: str, text: str) -> Optional[int]:
+        """Find the first decoded source line containing text."""
+        if not text:
+            return None
+        compact_text = ' '.join(text.split())
+        for line_no, line in enumerate(html.splitlines(), start=1):
+            if text in line or compact_text in ' '.join(line.split()):
+                return line_no
+        return None
+
+    def _format_row_error(self, row, idx: int, error: Exception, html: str) -> str:
+        """Format a parse error with best-effort transaction context."""
+        amount_text = getattr(error, 'amount_text', '')
+        source_line = self._find_source_line(html, amount_text)
+        date = self._extract_date_from_label(row) or self._extract_date_from_row(row)
+
+        counter_party_elem = row.find(attrs={'data-test': 'counterPartyNameOrTransactionTypeLabel'})
+        counter_party = ''
+        if counter_party_elem:
+            span = counter_party_elem.find('span')
+            if span:
+                counter_party = self.clean_html_entities(span.get_text(strip=True))
+
+        desc_elem = row.find(class_=re.compile('color-text-secondary'))
+        description = ''
+        if desc_elem:
+            description = self.clean_html_entities(desc_elem.get_text(strip=True))
+
+        parts = [
+            f"Error parsing transaction row {idx}",
+            f"raw amount={amount_text!r}" if amount_text else None,
+            f"source line={source_line}" if source_line else "source line=unknown",
+            f"date={date.strftime('%Y-%m-%d')}" if date else "date=unknown",
+            f"merchant={counter_party or 'unknown'}",
+            f"description={description or 'unknown'}",
+            f"reason={error}"
+        ]
+        return '; '.join(part for part in parts if part)
 
     def _parse_transaction_row(self, row, idx: int) -> Optional[Transaction]:
         """Parse a single transaction row."""

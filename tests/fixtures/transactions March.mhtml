@@ -1,18 +1,21 @@
 From: <Saved by Blink>
-Snapshot-Content-Location: https://meine.deutsche-bank.de/#/banking/financial-overview/transactions?date_start=2026-03-01&date_end=2026-03-31
+Snapshot-Content-Location: https://meine.deutsche-bank.de/#/banking/financi=
+al-overview/transactions?date_start 26-03-01&date_end 26-03-31
 Subject: Financial overview | Deutsche Bank Banking & Brokerage
 Date: Wed, 15 Apr 2026 16:16:30 +0200
 MIME-Version: 1.0
 Content-Type: multipart/related;
-	type="text/html";
-	boundary="----MultipartBoundary--U9kFnYWnAQu7nvkk2rzk4sCk3DhSWgd5N2mioCLYhj----"
+	type=3D"text/html";
+	boundary=3D"----MultipartBoundary--U9kFnYWnAQu7nvkk2rzk4sCk3DhSWgd5N2mioCL=
+Yhj----"
 
 
 ------MultipartBoundary--U9kFnYWnAQu7nvkk2rzk4sCk3DhSWgd5N2mioCLYhj----
 Content-Type: text/html
 Content-ID: <frame-7771A6236743650EF4774E204F5E296B@mhtml.blink>
 Content-Transfer-Encoding: quoted-printable
-Content-Location: https://meine.deutsche-bank.de/#/banking/financial-overview/transactions?date_start=2026-03-01&date_end=2026-03-31
+Content-Location: https://meine.deutsche-bank.de/#/banking/financial-overvi=
+ew/transactions?date_start 26-03-01&date_end 26-03-31
 
 <!DOCTYPE html><html data-dbcr-theme=3D"db-light" data-critters-container=
 =3D"" lang=3D"en"><head><meta http-equiv=3D"Content-Type" content=3D"text/h=
@@ -16921,7 +16924,7 @@ tions(modal:banking/configure-products)"><span _ngcontent-ng-c1483653136=3D=
 -heading-2 my-0 db-text--highlight"><div class=3D"d-flex align-items-center=
  justify-content-end"><!----><db-banking-decorated-amount class=3D"my-0"><s=
 pan class=3D"balance text-nowrap with-color"><span class=3D"db-text--highli=
-ght positive"><!----><span>2,856.51 </span><span data-test=3D"currencyCode"=
+ght positive"><!----><span>2.856,51 </span><span data-test=3D"currencyCode"=
  class=3D"db-text--mute currency db-text--highlight positive">EUR</span><!-=
 ---></span></span><!----></db-banking-decorated-amount><!----></div><!---->=
 <!----><!----></div><!----><!----><div class=3D"balance__subline d-flex jus=
@@ -17086,7 +17089,7 @@ a-test=3D"amount" class=3D"text-truncatable db-text--highlight db-text-para=
 graph text-right color-text-secondary"><db-banking-decorated-amount _ngcont=
 ent-ng-c2924351756=3D"" class=3D"color-text-primary"><span class=3D"directi=
 onal text-nowrap with-color"><span class=3D"db-text--highlight negative"><!=
-----><span>-20.70 </span><span data-test=3D"currencyCode" class=3D"db-text-=
+----><span>-20,70 </span><span data-test=3D"currencyCode" class=3D"db-text-=
 -mute currency db-text--highlight negative">EUR</span><!----></span></span>=
 <!----></db-banking-decorated-amount><!----><!----></div></div></div><div _=
 ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924351=
@@ -17095,7 +17098,7 @@ ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924351=
 1756=3D"" data-test=3D"amount" class=3D"text-truncatable db-text-paragraph =
 text-right color-text-secondary"><db-banking-decorated-amount _ngcontent-ng=
 -c2924351756=3D""><span class=3D"directional text-nowrap with-color"><span =
-class=3D"db-text--highlight negative"><!----><span>-20.70 </span><span data=
+class=3D"db-text--highlight negative"><!----><span>-20,70 </span><span data=
 -test=3D"currencyCode" class=3D"db-text--mute currency db-text--highlight n=
 egative">EUR</span><!----></span></span><!----></db-banking-decorated-amoun=
 t><!----><!----></div></div></div></div></div></db-list-row-content><db-lis=
@@ -17146,7 +17149,7 @@ content-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable =
 db-text--highlight db-text-paragraph text-right color-text-secondary"><db-b=
 anking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-=
 primary"><span class=3D"directional text-nowrap with-color"><span class=3D"=
-db-text--highlight negative"><!----><span>-8,000.00 </span><span data-test=
+db-text--highlight negative"><!----><span>-8.000,00 </span><span data-test=
 =3D"currencyCode" class=3D"db-text--mute currency db-text--highlight negati=
 ve">EUR</span><!----></span></span><!----></db-banking-decorated-amount><!-=
 ---><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"r=
@@ -17156,7 +17159,7 @@ pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"=
 text-truncatable db-text-paragraph text-right color-text-secondary"><db-ban=
 king-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directi=
 onal text-nowrap with-color"><span class=3D"db-text--highlight negative"><!=
-----><span>-8,000.00 </span><span data-test=3D"currencyCode" class=3D"db-te=
+----><span>-8.000,00 </span><span data-test=3D"currencyCode" class=3D"db-te=
 xt--mute currency db-text--highlight negative">EUR</span><!----></span></sp=
 an><!----></db-banking-decorated-amount><!----><!----></div></div></div></d=
 iv></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=
@@ -17208,7 +17211,7 @@ ta-test=3D"amount" class=3D"col d-none d-md-block p-0"><div _ngcontent-ng-c=
 hlight db-text-paragraph text-right color-text-secondary"><db-banking-decor=
 ated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><sp=
 an class=3D"directional text-nowrap with-color"><span class=3D"db-text--hig=
-hlight positive"><!----><span>12.20 </span><span data-test=3D"currencyCode"=
+hlight positive"><!----><span>12,20 </span><span data-test=3D"currencyCode"=
  class=3D"db-text--mute currency db-text--highlight positive">EUR</span><!-=
 ---></span></span><!----></db-banking-decorated-amount><!----><!----></div>=
 </div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngc=
@@ -17217,7 +17220,7 @@ ontent-ng-c2924351756=3D"" class=3D"col p-0"><div _ngcontent-ng-c2924351756=
 content-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable =
 db-text-paragraph text-right color-text-secondary"><db-banking-decorated-am=
 ount _ngcontent-ng-c2924351756=3D""><span class=3D"directional text-nowrap =
-with-color"><span class=3D"db-text--highlight positive"><!----><span>12.20 =
+with-color"><span class=3D"db-text--highlight positive"><!----><span>12,20 =
 </span><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-=
 text--highlight positive">EUR</span><!----></span></span><!----></db-bankin=
 g-decorated-amount><!----><!----></div></div></div></div></div></db-list-ro=
@@ -17269,7 +17272,7 @@ ck p-0"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"t=
 ext-truncatable db-text--highlight db-text-paragraph text-right color-text-=
 secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" clas=
 s=3D"color-text-primary"><span class=3D"directional text-nowrap with-color"=
-><span class=3D"db-text--highlight negative"><!----><span>-12.70 </span><sp=
+><span class=3D"db-text--highlight negative"><!----><span>-12,70 </span><sp=
 an data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--high=
 light negative">EUR</span><!----></span></span><!----></db-banking-decorate=
 d-amount><!----><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"=
@@ -17279,7 +17282,7 @@ w d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amoun=
 t" class=3D"text-truncatable db-text-paragraph text-right color-text-second=
 ary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span clas=
 s=3D"directional text-nowrap with-color"><span class=3D"db-text--highlight =
-negative"><!----><span>-12.70 </span><span data-test=3D"currencyCode" class=
+negative"><!----><span>-12,70 </span><span data-test=3D"currencyCode" class=
 =3D"db-text--mute currency db-text--highlight negative">EUR</span><!----></=
 span></span><!----></db-banking-decorated-amount><!----><!----></div></div>=
 </div></div></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c29=
@@ -17331,7 +17334,7 @@ est=3D"amount" class=3D"col d-none d-md-block p-0"><div _ngcontent-ng-c2924=
 ht db-text-paragraph text-right color-text-secondary"><db-banking-decorated=
 -amount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><span c=
 lass=3D"directional text-nowrap with-color"><span class=3D"db-text--highlig=
-ht negative"><!----><span>-23.64 </span><span data-test=3D"currencyCode" cl=
+ht negative"><!----><span>-23,64 </span><span data-test=3D"currencyCode" cl=
 ass=3D"db-text--mute currency db-text--highlight negative">EUR</span><!----=
 ></span></span><!----></db-banking-decorated-amount><!----><!----></div></d=
 iv></div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcont=
@@ -17340,7 +17343,7 @@ ent-ng-c2924351756=3D"" class=3D"col p-0"><div _ngcontent-ng-c2924351756=3D=
 tent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-=
 text-paragraph text-right color-text-secondary"><db-banking-decorated-amoun=
 t _ngcontent-ng-c2924351756=3D""><span class=3D"directional text-nowrap wit=
-h-color"><span class=3D"db-text--highlight negative"><!----><span>-23.64 </=
+h-color"><span class=3D"db-text--highlight negative"><!----><span>-23,64 </=
 span><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-te=
 xt--highlight negative">EUR</span><!----></span></span><!----></db-banking-=
 decorated-amount><!----><!----></div></div></div></div></div></db-list-row-=
@@ -17392,7 +17395,7 @@ _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatab=
 le db-text--highlight db-text-paragraph text-right color-text-secondary"><d=
 b-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-te=
 xt-primary"><span class=3D"directional text-nowrap with-color"><span class=
-=3D"db-text--highlight negative"><!----><span>-95.19 </span><span data-test=
+=3D"db-text--highlight negative"><!----><span>-95,19 </span><span data-test=
 =3D"currencyCode" class=3D"db-text--mute currency db-text--highlight negati=
 ve">EUR</span><!----></span></span><!----></db-banking-decorated-amount><!-=
 ---><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"r=
@@ -17402,7 +17405,7 @@ pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"=
 text-truncatable db-text-paragraph text-right color-text-secondary"><db-ban=
 king-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directi=
 onal text-nowrap with-color"><span class=3D"db-text--highlight negative"><!=
-----><span>-95.19 </span><span data-test=3D"currencyCode" class=3D"db-text-=
+----><span>-95,19 </span><span data-test=3D"currencyCode" class=3D"db-text-=
 -mute currency db-text--highlight negative">EUR</span><!----></span></span>=
 <!----></db-banking-decorated-amount><!----><!----></div></div></div></div>=
 </div></db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=3D"=
@@ -17465,7 +17468,7 @@ ent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"col d-none d-md-block=
 t-truncatable db-text--highlight db-text-paragraph text-right color-text-se=
 condary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=
 =3D"color-text-primary"><span class=3D"directional text-nowrap with-color">=
-<span class=3D"db-text--highlight negative"><!----><span>-18.50 </span><spa=
+<span class=3D"db-text--highlight negative"><!----><span>-18,50 </span><spa=
 n data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--highl=
 ight negative">EUR</span><!----></span></span><!----></db-banking-decorated=
 -amount><!----><!----></div></div></div><div _ngcontent-ng-c2924351756=3D""=
@@ -17475,7 +17478,7 @@ iv _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"db-list-row=
 " class=3D"text-truncatable db-text-paragraph text-right color-text-seconda=
 ry"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=
 =3D"directional text-nowrap with-color"><span class=3D"db-text--highlight n=
-egative"><!----><span>-18.50 </span><span data-test=3D"currencyCode" class=
+egative"><!----><span>-18,50 </span><span data-test=3D"currencyCode" class=
 =3D"db-text--mute currency db-text--highlight negative">EUR</span><!----></=
 span></span><!----></db-banking-decorated-amount><!----><!----></div></div>=
 </div></div></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c29=
@@ -17527,7 +17530,7 @@ ta-test=3D"amount" class=3D"text-truncatable db-text--highlight db-text-par=
 agraph text-right color-text-secondary"><db-banking-decorated-amount _ngcon=
 tent-ng-c2924351756=3D"" class=3D"color-text-primary"><span class=3D"direct=
 ional text-nowrap with-color"><span class=3D"db-text--highlight negative"><=
-!----><span>-14.01 </span><span data-test=3D"currencyCode" class=3D"db-text=
+!----><span>-14,01 </span><span data-test=3D"currencyCode" class=3D"db-text=
 --mute currency db-text--highlight negative">EUR</span><!----></span></span=
 ><!----></db-banking-decorated-amount><!----><!----></div></div></div><div =
 _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c292435=
@@ -17536,7 +17539,7 @@ _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c292435=
 4351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-text-paragra=
 ph text-right color-text-secondary"><db-banking-decorated-amount _ngcontent=
 -ng-c2924351756=3D""><span class=3D"directional text-nowrap with-color"><sp=
-an class=3D"db-text--highlight negative"><!----><span>-14.01 </span><span d=
+an class=3D"db-text--highlight negative"><!----><span>-14,01 </span><span d=
 ata-test=3D"currencyCode" class=3D"db-text--mute currency db-text--highligh=
 t negative">EUR</span><!----></span></span><!----></db-banking-decorated-am=
 ount><!----><!----></div></div></div></div></div></db-list-row-content><db-=
@@ -17588,7 +17591,7 @@ g-c2924351756=3D"" data-test=3D"amount" class=3D"col d-none d-md-block p-0"=
 ncatable db-text--highlight db-text-paragraph text-right color-text-seconda=
 ry"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"co=
 lor-text-primary"><span class=3D"directional text-nowrap with-color"><span =
-class=3D"db-text--highlight negative"><!----><span>-4.99 </span><span data-=
+class=3D"db-text--highlight negative"><!----><span>-4,99 </span><span data-=
 test=3D"currencyCode" class=3D"db-text--mute currency db-text--highlight ne=
 gative">EUR</span><!----></span></span><!----></db-banking-decorated-amount=
 ><!----><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=
@@ -17598,7 +17601,7 @@ none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" clas=
 s=3D"text-truncatable db-text-paragraph text-right color-text-secondary"><d=
 b-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"di=
 rectional text-nowrap with-color"><span class=3D"db-text--highlight negativ=
-e"><!----><span>-4.99 </span><span data-test=3D"currencyCode" class=3D"db-t=
+e"><!----><span>-4,99 </span><span data-test=3D"currencyCode" class=3D"db-t=
 ext--mute currency db-text--highlight negative">EUR</span><!----></span></s=
 pan><!----></db-banking-decorated-amount><!----><!----></div></div></div></=
 div></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=
@@ -17650,7 +17653,7 @@ ies / Cleaning Supplies</span><!----><!----><!----></div></db-status><!----=
 db-text-paragraph text-right color-text-secondary"><db-banking-decorated-am=
 ount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><span clas=
 s=3D"directional text-nowrap with-color"><span class=3D"db-text--highlight =
-negative"><!----><span>-6.65 </span><span data-test=3D"currencyCode" class=
+negative"><!----><span>-6,65 </span><span data-test=3D"currencyCode" class=
 =3D"db-text--mute currency db-text--highlight negative">EUR</span><!----></=
 span></span><!----></db-banking-decorated-amount><!----><!----></div></div>=
 </div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent=
@@ -17659,7 +17662,7 @@ data-test=3D"amount" class=3D"db-list-row d-md-none pt-md-3"><div _ngconten=
 t-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-tex=
 t-paragraph text-right color-text-secondary"><db-banking-decorated-amount _=
 ngcontent-ng-c2924351756=3D""><span class=3D"directional text-nowrap with-c=
-olor"><span class=3D"db-text--highlight negative"><!----><span>-6.65 </span=
+olor"><span class=3D"db-text--highlight negative"><!----><span>-6,65 </span=
 ><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--=
 highlight negative">EUR</span><!----></span></span><!----></db-banking-deco=
 rated-amount><!----><!----></div></div></div></div></div></db-list-row-cont=
@@ -17711,7 +17714,7 @@ t-ng-c2924351756=3D"" data-test=3D"amount" class=3D"col d-none d-md-block p=
 truncatable db-text--highlight db-text-paragraph text-right color-text-seco=
 ndary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D=
 "color-text-primary"><span class=3D"directional text-nowrap with-color"><sp=
-an class=3D"db-text--highlight negative"><!----><span>-32.44 </span><span d=
+an class=3D"db-text--highlight negative"><!----><span>-32,44 </span><span d=
 ata-test=3D"currencyCode" class=3D"db-text--mute currency db-text--highligh=
 t negative">EUR</span><!----></span></span><!----></db-banking-decorated-am=
 ount><!----><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" cl=
@@ -17721,7 +17724,7 @@ md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" c=
 lass=3D"text-truncatable db-text-paragraph text-right color-text-secondary"=
 ><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D=
 "directional text-nowrap with-color"><span class=3D"db-text--highlight nega=
-tive"><!----><span>-32.44 </span><span data-test=3D"currencyCode" class=3D"=
+tive"><!----><span>-32,44 </span><span data-test=3D"currencyCode" class=3D"=
 db-text--mute currency db-text--highlight negative">EUR</span><!----></span=
 ></span><!----></db-banking-decorated-amount><!----><!----></div></div></di=
 v></div></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c292435=
@@ -17770,7 +17773,7 @@ t-ng-c2924351756=3D"" data-test=3D"amount" class=3D"col d-none d-md-block p=
 truncatable db-text--highlight db-text-paragraph text-right color-text-seco=
 ndary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D=
 "color-text-primary"><span class=3D"directional text-nowrap with-color"><sp=
-an class=3D"db-text--highlight negative"><!----><span>-15.00 </span><span d=
+an class=3D"db-text--highlight negative"><!----><span>-15,00 </span><span d=
 ata-test=3D"currencyCode" class=3D"db-text--mute currency db-text--highligh=
 t negative">EUR</span><!----></span></span><!----></db-banking-decorated-am=
 ount><!----><div _ngcontent-ng-c2924351756=3D"" data-test=3D"dmcInfo" class=
@@ -17786,7 +17789,7 @@ ry db-text--mute ml-2">See settlement account</span></div><!----><!----><!-=
 uncatable db-text-paragraph text-right color-text-secondary"><db-banking-de=
 corated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directional te=
 xt-nowrap with-color"><span class=3D"db-text--highlight negative"><!----><s=
-pan>-15.00 </span><span data-test=3D"currencyCode" class=3D"db-text--mute c=
+pan>-15,00 </span><span data-test=3D"currencyCode" class=3D"db-text--mute c=
 urrency db-text--highlight negative">EUR</span><!----></span></span><!---->=
 </db-banking-decorated-amount><!----><div _ngcontent-ng-c2924351756=3D"" da=
 ta-test=3D"dmcInfo" class=3D"text-truncatable text-right"><db-icon _ngconte=
@@ -17855,7 +17858,7 @@ amount" class=3D"col d-none d-md-block p-0"><div _ngcontent-ng-c2924351756=
 text-paragraph text-right color-text-secondary"><db-banking-decorated-amoun=
 t _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><span class=
 =3D"directional text-nowrap with-color"><span class=3D"db-text--highlight n=
-egative"><!----><span>-8,000.00 </span><span data-test=3D"currencyCode" cla=
+egative"><!----><span>-8.000,00 </span><span data-test=3D"currencyCode" cla=
 ss=3D"db-text--mute currency db-text--highlight negative">EUR</span><!---->=
 </span></span><!----></db-banking-decorated-amount><!----><!----></div></di=
 v></div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngconte=
@@ -17864,7 +17867,7 @@ nt-ng-c2924351756=3D"" class=3D"col p-0"><div _ngcontent-ng-c2924351756=3D"=
 ent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-t=
 ext-paragraph text-right color-text-secondary"><db-banking-decorated-amount=
  _ngcontent-ng-c2924351756=3D""><span class=3D"directional text-nowrap with=
--color"><span class=3D"db-text--highlight negative"><!----><span>-8,000.00 =
+-color"><span class=3D"db-text--highlight negative"><!----><span>-8.000,00 =
 </span><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-=
 text--highlight negative">EUR</span><!----></span></span><!----></db-bankin=
 g-decorated-amount><!----><!----></div></div></div></div></div></db-list-ro=
@@ -17928,7 +17931,7 @@ one d-md-block p-0"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount=
 " class=3D"text-truncatable db-text--highlight db-text-paragraph text-right=
  color-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c29243517=
 56=3D"" class=3D"color-text-primary"><span class=3D"directional text-nowrap=
- with-color"><span class=3D"db-text--highlight negative"><!----><span>-6.21=
+ with-color"><span class=3D"db-text--highlight negative"><!----><span>-6,21=
  </span><span data-test=3D"currencyCode" class=3D"db-text--mute currency db=
 -text--highlight negative">EUR</span><!----></span></span><!----></db-banki=
 ng-decorated-amount><!----><!----></div></div></div><div _ngcontent-ng-c292=
@@ -17938,7 +17941,7 @@ ng-decorated-amount><!----><!----></div></div></div><div _ngcontent-ng-c292=
 st=3D"amount" class=3D"text-truncatable db-text-paragraph text-right color-=
 text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""=
 ><span class=3D"directional text-nowrap with-color"><span class=3D"db-text-=
--highlight negative"><!----><span>-6.21 </span><span data-test=3D"currencyC=
+-highlight negative"><!----><span>-6,21 </span><span data-test=3D"currencyC=
 ode" class=3D"db-text--mute currency db-text--highlight negative">EUR</span=
 ><!----></span></span><!----></db-banking-decorated-amount><!----><!----></=
 div></div></div></div></div></db-list-row-content><db-list-row-menu _ngcont=
@@ -17989,7 +17992,7 @@ ent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"col d-none d-md-block=
 t-truncatable db-text--highlight db-text-paragraph text-right color-text-se=
 condary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=
 =3D"color-text-primary"><span class=3D"directional text-nowrap with-color">=
-<span class=3D"db-text--highlight negative"><!----><span>-18.00 </span><spa=
+<span class=3D"db-text--highlight negative"><!----><span>-18,00 </span><spa=
 n data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--highl=
 ight negative">EUR</span><!----></span></span><!----></db-banking-decorated=
 -amount><!----><!----></div></div></div><div _ngcontent-ng-c2924351756=3D""=
@@ -17999,7 +18002,7 @@ iv _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"db-list-row=
 " class=3D"text-truncatable db-text-paragraph text-right color-text-seconda=
 ry"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=
 =3D"directional text-nowrap with-color"><span class=3D"db-text--highlight n=
-egative"><!----><span>-18.00 </span><span data-test=3D"currencyCode" class=
+egative"><!----><span>-18,00 </span><span data-test=3D"currencyCode" class=
 =3D"db-text--mute currency db-text--highlight negative">EUR</span><!----></=
 span></span><!----></db-banking-decorated-amount><!----><!----></div></div>=
 </div></div></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c29=
@@ -18050,7 +18053,7 @@ unt" class=3D"col d-none d-md-block p-0"><div _ngcontent-ng-c2924351756=3D"=
 -paragraph text-right color-text-secondary"><db-banking-decorated-amount _n=
 gcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><span class=3D"di=
 rectional text-nowrap with-color"><span class=3D"db-text--highlight positiv=
-e"><!----><span>5,089.71 </span><span data-test=3D"currencyCode" class=3D"d=
+e"><!----><span>5.089,71 </span><span data-test=3D"currencyCode" class=3D"d=
 b-text--mute currency db-text--highlight positive">EUR</span><!----></span>=
 </span><!----></db-banking-decorated-amount><!----><!----></div></div></div=
 ><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c=
@@ -18059,7 +18062,7 @@ test=3D"amount" class=3D"db-list-row d-md-none pt-md-3"><div _ngcontent-ng-=
 c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-text-par=
 agraph text-right color-text-secondary"><db-banking-decorated-amount _ngcon=
 tent-ng-c2924351756=3D""><span class=3D"directional text-nowrap with-color"=
-><span class=3D"db-text--highlight positive"><!----><span>5,089.71 </span><=
+><span class=3D"db-text--highlight positive"><!----><span>5.089,71 </span><=
 span data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--hi=
 ghlight positive">EUR</span><!----></span></span><!----></db-banking-decora=
 ted-amount><!----><!----></div></div></div></div></div></db-list-row-conten=
@@ -18122,7 +18125,7 @@ _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatab=
 le db-text--highlight db-text-paragraph text-right color-text-secondary"><d=
 b-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-te=
 xt-primary"><span class=3D"directional text-nowrap with-color"><span class=
-=3D"db-text--highlight negative"><!----><span>-10,000.00 </span><span data-=
+=3D"db-text--highlight negative"><!----><span>-10.000,00 </span><span data-=
 test=3D"currencyCode" class=3D"db-text--mute currency db-text--highlight ne=
 gative">EUR</span><!----></span></span><!----></db-banking-decorated-amount=
 ><!----><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=
@@ -18132,7 +18135,7 @@ none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" clas=
 s=3D"text-truncatable db-text-paragraph text-right color-text-secondary"><d=
 b-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"di=
 rectional text-nowrap with-color"><span class=3D"db-text--highlight negativ=
-e"><!----><span>-10,000.00 </span><span data-test=3D"currencyCode" class=3D=
+e"><!----><span>-10.000,00 </span><span data-test=3D"currencyCode" class=3D=
 "db-text--mute currency db-text--highlight negative">EUR</span><!----></spa=
 n></span><!----></db-banking-decorated-amount><!----><!----></div></div></d=
 iv></div></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c29243=
@@ -18180,7 +18183,7 @@ div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"col d-none=
 lass=3D"text-truncatable db-text--highlight db-text-paragraph text-right co=
 lor-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=
 =3D"" class=3D"color-text-primary"><span class=3D"directional text-nowrap w=
-ith-color"><span class=3D"db-text--highlight negative"><!----><span>-18.00 =
+ith-color"><span class=3D"db-text--highlight negative"><!----><span>-18,00 =
 </span><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-=
 text--highlight negative">EUR</span><!----></span></span><!----></db-bankin=
 g-decorated-amount><!----><div _ngcontent-ng-c2924351756=3D"" data-test=3D"=
@@ -18196,7 +18199,7 @@ none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" clas=
 s=3D"text-truncatable db-text-paragraph text-right color-text-secondary"><d=
 b-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"di=
 rectional text-nowrap with-color"><span class=3D"db-text--highlight negativ=
-e"><!----><span>-18.00 </span><span data-test=3D"currencyCode" class=3D"db-=
+e"><!----><span>-18,00 </span><span data-test=3D"currencyCode" class=3D"db-=
 text--mute currency db-text--highlight negative">EUR</span><!----></span></=
 span><!----></db-banking-decorated-amount><!----><div _ngcontent-ng-c292435=
 1756=3D"" data-test=3D"dmcInfo" class=3D"text-truncatable text-right"><db-i=
@@ -18265,7 +18268,7 @@ none d-md-block p-0"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amoun=
 t" class=3D"text-truncatable db-text--highlight db-text-paragraph text-righ=
 t color-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351=
 756=3D"" class=3D"color-text-primary"><span class=3D"directional text-nowra=
-p with-color"><span class=3D"db-text--highlight negative"><!----><span>-27.=
+p with-color"><span class=3D"db-text--highlight negative"><!----><span>-27,=
 86 </span><span data-test=3D"currencyCode" class=3D"db-text--mute currency =
 db-text--highlight negative">EUR</span><!----></span></span><!----></db-ban=
 king-decorated-amount><!----><!----></div></div></div><div _ngcontent-ng-c2=
@@ -18275,7 +18278,7 @@ king-decorated-amount><!----><!----></div></div></div><div _ngcontent-ng-c2=
 -test=3D"amount" class=3D"text-truncatable db-text-paragraph text-right col=
 or-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=
 =3D""><span class=3D"directional text-nowrap with-color"><span class=3D"db-=
-text--highlight negative"><!----><span>-27.86 </span><span data-test=3D"cur=
+text--highlight negative"><!----><span>-27,86 </span><span data-test=3D"cur=
 rencyCode" class=3D"db-text--mute currency db-text--highlight negative">EUR=
 </span><!----></span></span><!----></db-banking-decorated-amount><!----><!-=
 ---></div></div></div></div></div></db-list-row-content><db-list-row-menu _=
@@ -18327,7 +18330,7 @@ ata-test=3D"amount" class=3D"text-truncatable db-text--highlight db-text-pa=
 ragraph text-right color-text-secondary"><db-banking-decorated-amount _ngco=
 ntent-ng-c2924351756=3D"" class=3D"color-text-primary"><span class=3D"direc=
 tional text-nowrap with-color"><span class=3D"db-text--highlight negative">=
-<!----><span>-500.00 </span><span data-test=3D"currencyCode" class=3D"db-te=
+<!----><span>-500,00 </span><span data-test=3D"currencyCode" class=3D"db-te=
 xt--mute currency db-text--highlight negative">EUR</span><!----></span></sp=
 an><!----></db-banking-decorated-amount><!----><!----></div></div></div><di=
 v _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924=
@@ -18336,7 +18339,7 @@ v _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924=
 4351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-text-paragra=
 ph text-right color-text-secondary"><db-banking-decorated-amount _ngcontent=
 -ng-c2924351756=3D""><span class=3D"directional text-nowrap with-color"><sp=
-an class=3D"db-text--highlight negative"><!----><span>-500.00 </span><span =
+an class=3D"db-text--highlight negative"><!----><span>-500,00 </span><span =
 data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--highlig=
 ht negative">EUR</span><!----></span></span><!----></db-banking-decorated-a=
 mount><!----><!----></div></div></div></div></div></db-list-row-content><db=
@@ -18387,7 +18390,7 @@ ck p-0"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"t=
 ext-truncatable db-text--highlight db-text-paragraph text-right color-text-=
 secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" clas=
 s=3D"color-text-primary"><span class=3D"directional text-nowrap with-color"=
-><span class=3D"db-text--highlight positive"><!----><span>14,361.00 </span>=
+><span class=3D"db-text--highlight positive"><!----><span>14.361,00 </span>=
 <span data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--h=
 ighlight positive">EUR</span><!----></span></span><!----></db-banking-decor=
 ated-amount><!----><!----></div></div></div><div _ngcontent-ng-c2924351756=
@@ -18397,7 +18400,7 @@ t-row d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"a=
 mount" class=3D"text-truncatable db-text-paragraph text-right color-text-se=
 condary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span =
 class=3D"directional text-nowrap with-color"><span class=3D"db-text--highli=
-ght positive"><!----><span>14,361.00 </span><span data-test=3D"currencyCode=
+ght positive"><!----><span>14.361,00 </span><span data-test=3D"currencyCode=
 " class=3D"db-text--mute currency db-text--highlight positive">EUR</span><!=
 ----></span></span><!----></db-banking-decorated-amount><!----><!----></div=
 ></div></div></div></div></db-list-row-content><db-list-row-menu _ngcontent=
@@ -18449,7 +18452,7 @@ data-test=3D"amount" class=3D"text-truncatable db-text--highlight db-text-p=
 aragraph text-right color-text-secondary"><db-banking-decorated-amount _ngc=
 ontent-ng-c2924351756=3D"" class=3D"color-text-primary"><span class=3D"dire=
 ctional text-nowrap with-color"><span class=3D"db-text--highlight negative"=
-><!----><span>-14.95 </span><span data-test=3D"currencyCode" class=3D"db-te=
+><!----><span>-14,95 </span><span data-test=3D"currencyCode" class=3D"db-te=
 xt--mute currency db-text--highlight negative">EUR</span><!----></span></sp=
 an><!----></db-banking-decorated-amount><!----><!----></div></div></div><di=
 v _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924=
@@ -18458,7 +18461,7 @@ v _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924=
 4351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-text-paragra=
 ph text-right color-text-secondary"><db-banking-decorated-amount _ngcontent=
 -ng-c2924351756=3D""><span class=3D"directional text-nowrap with-color"><sp=
-an class=3D"db-text--highlight negative"><!----><span>-14.95 </span><span d=
+an class=3D"db-text--highlight negative"><!----><span>-14,95 </span><span d=
 ata-test=3D"currencyCode" class=3D"db-text--mute currency db-text--highligh=
 t negative">EUR</span><!----></span></span><!----></db-banking-decorated-am=
 ount><!----><!----></div></div></div></div></div></db-list-row-content><db-=
@@ -18522,7 +18525,7 @@ ontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable d=
 b-text--highlight db-text-paragraph text-right color-text-secondary"><db-ba=
 nking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-p=
 rimary"><span class=3D"directional text-nowrap with-color"><span class=3D"d=
-b-text--highlight negative"><!----><span>-7.54 </span><span data-test=3D"cu=
+b-text--highlight negative"><!----><span>-7,54 </span><span data-test=3D"cu=
 rrencyCode" class=3D"db-text--mute currency db-text--highlight negative">EU=
 R</span><!----></span></span><!----></db-banking-decorated-amount><!----><!=
 ----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0=
@@ -18532,7 +18535,7 @@ c2924351756=3D"" data-test=3D"amount" class=3D"db-list-row d-md-none pt-md-=
 runcatable db-text-paragraph text-right color-text-secondary"><db-banking-d=
 ecorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directional t=
 ext-nowrap with-color"><span class=3D"db-text--highlight negative"><!----><=
-span>-7.54 </span><span data-test=3D"currencyCode" class=3D"db-text--mute c=
+span>-7,54 </span><span data-test=3D"currencyCode" class=3D"db-text--mute c=
 urrency db-text--highlight negative">EUR</span><!----></span></span><!---->=
 </db-banking-decorated-amount><!----><!----></div></div></div></div></div><=
 /db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=3D"" class=
@@ -18584,7 +18587,7 @@ test=3D"amount" class=3D"text-truncatable db-text--highlight db-text-paragr=
 aph text-right color-text-secondary"><db-banking-decorated-amount _ngconten=
 t-ng-c2924351756=3D"" class=3D"color-text-primary"><span class=3D"direction=
 al text-nowrap with-color"><span class=3D"db-text--highlight negative"><!--=
---><span>-2.99 </span><span data-test=3D"currencyCode" class=3D"db-text--mu=
+--><span>-2,99 </span><span data-test=3D"currencyCode" class=3D"db-text--mu=
 te currency db-text--highlight negative">EUR</span><!----></span></span><!-=
 ---></db-banking-decorated-amount><!----><!----></div></div></div><div _ngc=
 ontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924351756=
@@ -18593,7 +18596,7 @@ ount" class=3D"db-list-row d-md-none pt-md-3"><div _ngcontent-ng-c292435175=
 6=3D"" data-test=3D"amount" class=3D"text-truncatable db-text-paragraph tex=
 t-right color-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2=
 924351756=3D""><span class=3D"directional text-nowrap with-color"><span cla=
-ss=3D"db-text--highlight negative"><!----><span>-2.99 </span><span data-tes=
+ss=3D"db-text--highlight negative"><!----><span>-2,99 </span><span data-tes=
 t=3D"currencyCode" class=3D"db-text--mute currency db-text--highlight negat=
 ive">EUR</span><!----></span></span><!----></db-banking-decorated-amount><!=
 ----><!----></div></div></div></div></div></db-list-row-content><db-list-ro=
@@ -18645,7 +18648,7 @@ block p-0"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=
 =3D"text-truncatable db-text--highlight db-text-paragraph text-right color-=
 text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""=
  class=3D"color-text-primary"><span class=3D"directional text-nowrap with-c=
-olor"><span class=3D"db-text--highlight negative"><!----><span>-18.47 </spa=
+olor"><span class=3D"db-text--highlight negative"><!----><span>-18,47 </spa=
 n><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-text-=
 -highlight negative">EUR</span><!----></span></span><!----></db-banking-dec=
 orated-amount><!----><!----></div></div></div><div _ngcontent-ng-c292435175=
@@ -18655,7 +18658,7 @@ st-row d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"=
 amount" class=3D"text-truncatable db-text-paragraph text-right color-text-s=
 econdary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span=
  class=3D"directional text-nowrap with-color"><span class=3D"db-text--highl=
-ight negative"><!----><span>-18.47 </span><span data-test=3D"currencyCode" =
+ight negative"><!----><span>-18,47 </span><span data-test=3D"currencyCode" =
 class=3D"db-text--mute currency db-text--highlight negative">EUR</span><!--=
 --></span></span><!----></db-banking-decorated-amount><!----><!----></div><=
 /div></div></div></div></db-list-row-content><db-list-row-menu _ngcontent-n=
@@ -18707,7 +18710,7 @@ t=3D"amount" class=3D"col d-none d-md-block p-0"><div _ngcontent-ng-c292435=
  db-text-paragraph text-right color-text-secondary"><db-banking-decorated-a=
 mount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><span cla=
 ss=3D"directional text-nowrap with-color"><span class=3D"db-text--highlight=
- negative"><!----><span>-61.24 </span><span data-test=3D"currencyCode" clas=
+ negative"><!----><span>-61,24 </span><span data-test=3D"currencyCode" clas=
 s=3D"db-text--mute currency db-text--highlight negative">EUR</span><!----><=
 /span></span><!----></db-banking-decorated-amount><!----><!----></div></div=
 ></div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngconten=
@@ -18716,7 +18719,7 @@ t-ng-c2924351756=3D"" class=3D"col p-0"><div _ngcontent-ng-c2924351756=3D""=
 nt-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-te=
 xt-paragraph text-right color-text-secondary"><db-banking-decorated-amount =
 _ngcontent-ng-c2924351756=3D""><span class=3D"directional text-nowrap with-=
-color"><span class=3D"db-text--highlight negative"><!----><span>-61.24 </sp=
+color"><span class=3D"db-text--highlight negative"><!----><span>-61,24 </sp=
 an><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-text=
 --highlight negative">EUR</span><!----></span></span><!----></db-banking-de=
 corated-amount><!----><!----></div></div></div></div></div></db-list-row-co=
@@ -18769,7 +18772,7 @@ ck p-0"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"t=
 ext-truncatable db-text--highlight db-text-paragraph text-right color-text-=
 secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" clas=
 s=3D"color-text-primary"><span class=3D"directional text-nowrap with-color"=
-><span class=3D"db-text--highlight negative"><!----><span>-5.44 </span><spa=
+><span class=3D"db-text--highlight negative"><!----><span>-5,44 </span><spa=
 n data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--highl=
 ight negative">EUR</span><!----></span></span><!----></db-banking-decorated=
 -amount><!----><!----></div></div></div><div _ngcontent-ng-c2924351756=3D""=
@@ -18779,7 +18782,7 @@ iv _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"db-list-row=
 " class=3D"text-truncatable db-text-paragraph text-right color-text-seconda=
 ry"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=
 =3D"directional text-nowrap with-color"><span class=3D"db-text--highlight n=
-egative"><!----><span>-5.44 </span><span data-test=3D"currencyCode" class=
+egative"><!----><span>-5,44 </span><span data-test=3D"currencyCode" class=
 =3D"db-text--mute currency db-text--highlight negative">EUR</span><!----></=
 span></span><!----></db-banking-decorated-amount><!----><!----></div></div>=
 </div></div></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c29=
@@ -18832,7 +18835,7 @@ col d-none d-md-block p-0"><div _ngcontent-ng-c2924351756=3D"" data-test=3D=
 t-right color-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2=
 924351756=3D"" class=3D"color-text-primary"><span class=3D"directional text=
 -nowrap with-color"><span class=3D"db-text--highlight negative"><!----><spa=
-n>-33.16 </span><span data-test=3D"currencyCode" class=3D"db-text--mute cur=
+n>-33,16 </span><span data-test=3D"currencyCode" class=3D"db-text--mute cur=
 rency db-text--highlight negative">EUR</span><!----></span></span><!----></=
 db-banking-decorated-amount><!----><!----></div></div></div><div _ngcontent=
 -ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924351756=3D"" =
@@ -18841,7 +18844,7 @@ class=3D"db-list-row d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D""=
  data-test=3D"amount" class=3D"text-truncatable db-text-paragraph text-righ=
 t color-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351=
 756=3D""><span class=3D"directional text-nowrap with-color"><span class=3D"=
-db-text--highlight negative"><!----><span>-33.16 </span><span data-test=3D"=
+db-text--highlight negative"><!----><span>-33,16 </span><span data-test=3D"=
 currencyCode" class=3D"db-text--mute currency db-text--highlight negative">=
 EUR</span><!----></span></span><!----></db-banking-decorated-amount><!---->=
 <!----></div></div></div></div></div></db-list-row-content><db-list-row-men=
@@ -18905,7 +18908,7 @@ ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatabl=
 e db-text--highlight db-text-paragraph text-right color-text-secondary"><db=
 -banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-tex=
 t-primary"><span class=3D"directional text-nowrap with-color"><span class=
-=3D"db-text--highlight negative"><!----><span>-0.76 </span><span data-test=
+=3D"db-text--highlight negative"><!----><span>-0,76 </span><span data-test=
 =3D"currencyCode" class=3D"db-text--mute currency db-text--highlight negati=
 ve">EUR</span><!----></span></span><!----></db-banking-decorated-amount><!-=
 ---><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"r=
@@ -18915,7 +18918,7 @@ pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"=
 text-truncatable db-text-paragraph text-right color-text-secondary"><db-ban=
 king-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directi=
 onal text-nowrap with-color"><span class=3D"db-text--highlight negative"><!=
-----><span>-0.76 </span><span data-test=3D"currencyCode" class=3D"db-text--=
+----><span>-0,76 </span><span data-test=3D"currencyCode" class=3D"db-text--=
 mute currency db-text--highlight negative">EUR</span><!----></span></span><=
 !----></db-banking-decorated-amount><!----><!----></div></div></div></div><=
 /div></db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=3D""=
@@ -18966,7 +18969,7 @@ v _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncat=
 able db-text--highlight db-text-paragraph text-right color-text-secondary">=
 <db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-=
 text-primary"><span class=3D"directional text-nowrap with-color"><span clas=
-s=3D"db-text--highlight negative"><!----><span>-0.99 </span><span data-test=
+s=3D"db-text--highlight negative"><!----><span>-0,99 </span><span data-test=
 =3D"currencyCode" class=3D"db-text--mute currency db-text--highlight negati=
 ve">EUR</span><!----></span></span><!----></db-banking-decorated-amount><!-=
 ---><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"r=
@@ -18976,7 +18979,7 @@ pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"=
 text-truncatable db-text-paragraph text-right color-text-secondary"><db-ban=
 king-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directi=
 onal text-nowrap with-color"><span class=3D"db-text--highlight negative"><!=
-----><span>-0.99 </span><span data-test=3D"currencyCode" class=3D"db-text--=
+----><span>-0,99 </span><span data-test=3D"currencyCode" class=3D"db-text--=
 mute currency db-text--highlight negative">EUR</span><!----></span></span><=
 !----></db-banking-decorated-amount><!----><!----></div></div></div></div><=
 /div></db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=3D""=
@@ -19029,7 +19032,7 @@ amount" class=3D"text-truncatable db-text--highlight db-text-paragraph text=
 -right color-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c29=
 24351756=3D"" class=3D"color-text-primary"><span class=3D"directional text-=
 nowrap with-color"><span class=3D"db-text--highlight negative"><!----><span=
->-15.27 </span><span data-test=3D"currencyCode" class=3D"db-text--mute curr=
+>-15,27 </span><span data-test=3D"currencyCode" class=3D"db-text--mute curr=
 ency db-text--highlight negative">EUR</span><!----></span></span><!----></d=
 b-banking-decorated-amount><!----><!----></div></div></div><div _ngcontent-=
 ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924351756=3D"" c=
@@ -19038,7 +19041,7 @@ lass=3D"db-list-row d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" =
 data-test=3D"amount" class=3D"text-truncatable db-text-paragraph text-right=
  color-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c29243517=
 56=3D""><span class=3D"directional text-nowrap with-color"><span class=3D"d=
-b-text--highlight negative"><!----><span>-15.27 </span><span data-test=3D"c=
+b-text--highlight negative"><!----><span>-15,27 </span><span data-test=3D"c=
 urrencyCode" class=3D"db-text--mute currency db-text--highlight negative">E=
 UR</span><!----></span></span><!----></db-banking-decorated-amount><!----><=
 !----></div></div></div></div></div></db-list-row-content><db-list-row-menu=
@@ -19090,7 +19093,7 @@ unt" class=3D"text-truncatable db-text--highlight db-text-paragraph text-ri=
 ght color-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c29243=
 51756=3D"" class=3D"color-text-primary"><span class=3D"directional text-now=
 rap with-color"><span class=3D"db-text--highlight negative"><!----><span>-4=
-58.00 </span><span data-test=3D"currencyCode" class=3D"db-text--mute curren=
+58,00 </span><span data-test=3D"currencyCode" class=3D"db-text--mute curren=
 cy db-text--highlight negative">EUR</span><!----></span></span><!----></db-=
 banking-decorated-amount><!----><!----></div></div></div><div _ngcontent-ng=
 -c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924351756=3D"" cla=
@@ -19099,7 +19102,7 @@ ss=3D"db-list-row d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" da=
 ta-test=3D"amount" class=3D"text-truncatable db-text-paragraph text-right c=
 olor-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=
 =3D""><span class=3D"directional text-nowrap with-color"><span class=3D"db-=
-text--highlight negative"><!----><span>-458.00 </span><span data-test=3D"cu=
+text--highlight negative"><!----><span>-458,00 </span><span data-test=3D"cu=
 rrencyCode" class=3D"db-text--mute currency db-text--highlight negative">EU=
 R</span><!----></span></span><!----></db-banking-decorated-amount><!----><!=
 ----></div></div></div></div></div></db-list-row-content><db-list-row-menu =
@@ -19163,7 +19166,7 @@ _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatab=
 le db-text--highlight db-text-paragraph text-right color-text-secondary"><d=
 b-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-te=
 xt-primary"><span class=3D"directional text-nowrap with-color"><span class=
-=3D"db-text--highlight negative"><!----><span>-14.11 </span><span data-test=
+=3D"db-text--highlight negative"><!----><span>-14,11 </span><span data-test=
 =3D"currencyCode" class=3D"db-text--mute currency db-text--highlight negati=
 ve">EUR</span><!----></span></span><!----></db-banking-decorated-amount><!-=
 ---><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"r=
@@ -19173,7 +19176,7 @@ pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"=
 text-truncatable db-text-paragraph text-right color-text-secondary"><db-ban=
 king-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directi=
 onal text-nowrap with-color"><span class=3D"db-text--highlight negative"><!=
-----><span>-14.11 </span><span data-test=3D"currencyCode" class=3D"db-text-=
+----><span>-14,11 </span><span data-test=3D"currencyCode" class=3D"db-text-=
 -mute currency db-text--highlight negative">EUR</span><!----></span></span>=
 <!----></db-banking-decorated-amount><!----><!----></div></div></div></div>=
 </div></db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=3D"=
@@ -19236,7 +19239,7 @@ div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"col d-none=
 lass=3D"text-truncatable db-text--highlight db-text-paragraph text-right co=
 lor-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=
 =3D"" class=3D"color-text-primary"><span class=3D"directional text-nowrap w=
-ith-color"><span class=3D"db-text--highlight negative"><!----><span>-6.74 <=
+ith-color"><span class=3D"db-text--highlight negative"><!----><span>-6,74 <=
 /span><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-t=
 ext--highlight negative">EUR</span><!----></span></span><!----></db-banking=
 -decorated-amount><!----><!----></div></div></div><div _ngcontent-ng-c29243=
@@ -19246,7 +19249,7 @@ b-list-row d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=
 =3D"amount" class=3D"text-truncatable db-text-paragraph text-right color-te=
 xt-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><=
 span class=3D"directional text-nowrap with-color"><span class=3D"db-text--h=
-ighlight negative"><!----><span>-6.74 </span><span data-test=3D"currencyCod=
+ighlight negative"><!----><span>-6,74 </span><span data-test=3D"currencyCod=
 e" class=3D"db-text--mute currency db-text--highlight negative">EUR</span><=
 !----></span></span><!----></db-banking-decorated-amount><!----><!----></di=
 v></div></div></div></div></db-list-row-content><db-list-row-menu _ngconten=
@@ -19298,7 +19301,7 @@ ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatabl=
 e db-text--highlight db-text-paragraph text-right color-text-secondary"><db=
 -banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-tex=
 t-primary"><span class=3D"directional text-nowrap with-color"><span class=
-=3D"db-text--highlight negative"><!----><span>-40.49 </span><span data-test=
+=3D"db-text--highlight negative"><!----><span>-40,49 </span><span data-test=
 =3D"currencyCode" class=3D"db-text--mute currency db-text--highlight negati=
 ve">EUR</span><!----></span></span><!----></db-banking-decorated-amount><!-=
 ---><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"r=
@@ -19308,7 +19311,7 @@ pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"=
 text-truncatable db-text-paragraph text-right color-text-secondary"><db-ban=
 king-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directi=
 onal text-nowrap with-color"><span class=3D"db-text--highlight negative"><!=
-----><span>-40.49 </span><span data-test=3D"currencyCode" class=3D"db-text-=
+----><span>-40,49 </span><span data-test=3D"currencyCode" class=3D"db-text-=
 -mute currency db-text--highlight negative">EUR</span><!----></span></span>=
 <!----></db-banking-decorated-amount><!----><!----></div></div></div></div>=
 </div></db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=3D"=
@@ -19357,7 +19360,7 @@ st=3D"amount" class=3D"text-truncatable db-text--highlight db-text-paragrap=
 h text-right color-text-secondary"><db-banking-decorated-amount _ngcontent-=
 ng-c2924351756=3D"" class=3D"color-text-primary"><span class=3D"directional=
  text-nowrap with-color"><span class=3D"db-text--highlight negative"><!----=
-><span>-0.99 </span><span data-test=3D"currencyCode" class=3D"db-text--mute=
+><span>-0,99 </span><span data-test=3D"currencyCode" class=3D"db-text--mute=
  currency db-text--highlight negative">EUR</span><!----></span></span><!---=
 -></db-banking-decorated-amount><!----><div _ngcontent-ng-c2924351756=3D"" =
 data-test=3D"dmcInfo" class=3D"text-truncatable text-right"><db-icon _ngcon=
@@ -19372,7 +19375,7 @@ ist-row d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D=
 "amount" class=3D"text-truncatable db-text-paragraph text-right color-text-=
 secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><spa=
 n class=3D"directional text-nowrap with-color"><span class=3D"db-text--high=
-light negative"><!----><span>-0.99 </span><span data-test=3D"currencyCode" =
+light negative"><!----><span>-0,99 </span><span data-test=3D"currencyCode" =
 class=3D"db-text--mute currency db-text--highlight negative">EUR</span><!--=
 --></span></span><!----></db-banking-decorated-amount><!----><div _ngconten=
 t-ng-c2924351756=3D"" data-test=3D"dmcInfo" class=3D"text-truncatable text-=
@@ -19442,7 +19445,7 @@ a-test=3D"amount" class=3D"text-truncatable db-text--highlight db-text-para=
 graph text-right color-text-secondary"><db-banking-decorated-amount _ngcont=
 ent-ng-c2924351756=3D"" class=3D"color-text-primary"><span class=3D"directi=
 onal text-nowrap with-color"><span class=3D"db-text--highlight negative"><!=
-----><span>-25.30 </span><span data-test=3D"currencyCode" class=3D"db-text-=
+----><span>-25,30 </span><span data-test=3D"currencyCode" class=3D"db-text-=
 -mute currency db-text--highlight negative">EUR</span><!----></span></span>=
 <!----></db-banking-decorated-amount><!----><!----></div></div></div><div _=
 ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924351=
@@ -19451,7 +19454,7 @@ ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924351=
 1756=3D"" data-test=3D"amount" class=3D"text-truncatable db-text-paragraph =
 text-right color-text-secondary"><db-banking-decorated-amount _ngcontent-ng=
 -c2924351756=3D""><span class=3D"directional text-nowrap with-color"><span =
-class=3D"db-text--highlight negative"><!----><span>-25.30 </span><span data=
+class=3D"db-text--highlight negative"><!----><span>-25,30 </span><span data=
 -test=3D"currencyCode" class=3D"db-text--mute currency db-text--highlight n=
 egative">EUR</span><!----></span></span><!----></db-banking-decorated-amoun=
 t><!----><!----></div></div></div></div></div></db-list-row-content><db-lis=
@@ -19502,7 +19505,7 @@ _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatab=
 le db-text--highlight db-text-paragraph text-right color-text-secondary"><d=
 b-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-te=
 xt-primary"><span class=3D"directional text-nowrap with-color"><span class=
-=3D"db-text--highlight negative"><!----><span>-70.00 </span><span data-test=
+=3D"db-text--highlight negative"><!----><span>-70,00 </span><span data-test=
 =3D"currencyCode" class=3D"db-text--mute currency db-text--highlight negati=
 ve">EUR</span><!----></span></span><!----></db-banking-decorated-amount><!-=
 ---><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"r=
@@ -19512,7 +19515,7 @@ pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"=
 text-truncatable db-text-paragraph text-right color-text-secondary"><db-ban=
 king-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directi=
 onal text-nowrap with-color"><span class=3D"db-text--highlight negative"><!=
-----><span>-70.00 </span><span data-test=3D"currencyCode" class=3D"db-text-=
+----><span>-70,00 </span><span data-test=3D"currencyCode" class=3D"db-text-=
 -mute currency db-text--highlight negative">EUR</span><!----></span></span>=
 <!----></db-banking-decorated-amount><!----><!----></div></div></div></div>=
 </div></db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=3D"=
@@ -19564,7 +19567,7 @@ _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatab=
 le db-text--highlight db-text-paragraph text-right color-text-secondary"><d=
 b-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-te=
 xt-primary"><span class=3D"directional text-nowrap with-color"><span class=
-=3D"db-text--highlight negative"><!----><span>-10.97 </span><span data-test=
+=3D"db-text--highlight negative"><!----><span>-10,97 </span><span data-test=
 =3D"currencyCode" class=3D"db-text--mute currency db-text--highlight negati=
 ve">EUR</span><!----></span></span><!----></db-banking-decorated-amount><!-=
 ---><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"r=
@@ -19574,7 +19577,7 @@ pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"=
 text-truncatable db-text-paragraph text-right color-text-secondary"><db-ban=
 king-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directi=
 onal text-nowrap with-color"><span class=3D"db-text--highlight negative"><!=
-----><span>-10.97 </span><span data-test=3D"currencyCode" class=3D"db-text-=
+----><span>-10,97 </span><span data-test=3D"currencyCode" class=3D"db-text-=
 -mute currency db-text--highlight negative">EUR</span><!----></span></span>=
 <!----></db-banking-decorated-amount><!----><!----></div></div></div></div>=
 </div></db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=3D"=
@@ -19636,7 +19639,7 @@ md-block p-0"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" clas=
 s=3D"text-truncatable db-text--highlight db-text-paragraph text-right color=
 -text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"=
 " class=3D"color-text-primary"><span class=3D"directional text-nowrap with-=
-color"><span class=3D"db-text--highlight negative"><!----><span>-7,000.00 <=
+color"><span class=3D"db-text--highlight negative"><!----><span>-7.000,00 <=
 /span><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-t=
 ext--highlight negative">EUR</span><!----></span></span><!----></db-banking=
 -decorated-amount><!----><!----></div></div></div><div _ngcontent-ng-c29243=
@@ -19646,7 +19649,7 @@ b-list-row d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=
 =3D"amount" class=3D"text-truncatable db-text-paragraph text-right color-te=
 xt-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><=
 span class=3D"directional text-nowrap with-color"><span class=3D"db-text--h=
-ighlight negative"><!----><span>-7,000.00 </span><span data-test=3D"currenc=
+ighlight negative"><!----><span>-7.000,00 </span><span data-test=3D"currenc=
 yCode" class=3D"db-text--mute currency db-text--highlight negative">EUR</sp=
 an><!----></span></span><!----></db-banking-decorated-amount><!----><!---->=
 </div></div></div></div></div></db-list-row-content><db-list-row-menu _ngco=
@@ -19698,7 +19701,7 @@ us__text db-text-mute">Phone / Internet / TV / Radio</span><!----><!----><!=
 catable db-text--highlight db-text-paragraph text-right color-text-secondar=
 y"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"col=
 or-text-primary"><span class=3D"directional text-nowrap with-color"><span c=
-lass=3D"db-text--highlight negative"><!----><span>-10.00 </span><span data-=
+lass=3D"db-text--highlight negative"><!----><span>-10,00 </span><span data-=
 test=3D"currencyCode" class=3D"db-text--mute currency db-text--highlight ne=
 gative">EUR</span><!----></span></span><!----></db-banking-decorated-amount=
 ><!----><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=
@@ -19708,7 +19711,7 @@ none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" clas=
 s=3D"text-truncatable db-text-paragraph text-right color-text-secondary"><d=
 b-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"di=
 rectional text-nowrap with-color"><span class=3D"db-text--highlight negativ=
-e"><!----><span>-10.00 </span><span data-test=3D"currencyCode" class=3D"db-=
+e"><!----><span>-10,00 </span><span data-test=3D"currencyCode" class=3D"db-=
 text--mute currency db-text--highlight negative">EUR</span><!----></span></=
 span><!----></db-banking-decorated-amount><!----><!----></div></div></div><=
 /div></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c292435175=
@@ -19772,7 +19775,7 @@ ount" class=3D"text-truncatable db-text--highlight db-text-paragraph text-r=
 ight color-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924=
 351756=3D"" class=3D"color-text-primary"><span class=3D"directional text-no=
 wrap with-color"><span class=3D"db-text--highlight negative"><!----><span>-=
-32.36 </span><span data-test=3D"currencyCode" class=3D"db-text--mute curren=
+32,36 </span><span data-test=3D"currencyCode" class=3D"db-text--mute curren=
 cy db-text--highlight negative">EUR</span><!----></span></span><!----></db-=
 banking-decorated-amount><!----><!----></div></div></div><div _ngcontent-ng=
 -c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924351756=3D"" cla=
@@ -19781,7 +19784,7 @@ ss=3D"db-list-row d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" da=
 ta-test=3D"amount" class=3D"text-truncatable db-text-paragraph text-right c=
 olor-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=
 =3D""><span class=3D"directional text-nowrap with-color"><span class=3D"db-=
-text--highlight negative"><!----><span>-32.36 </span><span data-test=3D"cur=
+text--highlight negative"><!----><span>-32,36 </span><span data-test=3D"cur=
 rencyCode" class=3D"db-text--mute currency db-text--highlight negative">EUR=
 </span><!----></span></span><!----></db-banking-decorated-amount><!----><!-=
 ---></div></div></div></div></div></db-list-row-content><db-list-row-menu _=
@@ -19833,7 +19836,7 @@ ss=3D"db-status__text db-text-mute">Food / Beverages</span><!----><!----><!=
 catable db-text--highlight db-text-paragraph text-right color-text-secondar=
 y"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"col=
 or-text-primary"><span class=3D"directional text-nowrap with-color"><span c=
-lass=3D"db-text--highlight negative"><!----><span>-33.94 </span><span data-=
+lass=3D"db-text--highlight negative"><!----><span>-33,94 </span><span data-=
 test=3D"currencyCode" class=3D"db-text--mute currency db-text--highlight ne=
 gative">EUR</span><!----></span></span><!----></db-banking-decorated-amount=
 ><!----><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=
@@ -19843,7 +19846,7 @@ none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" clas=
 s=3D"text-truncatable db-text-paragraph text-right color-text-secondary"><d=
 b-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"di=
 rectional text-nowrap with-color"><span class=3D"db-text--highlight negativ=
-e"><!----><span>-33.94 </span><span data-test=3D"currencyCode" class=3D"db-=
+e"><!----><span>-33,94 </span><span data-test=3D"currencyCode" class=3D"db-=
 text--mute currency db-text--highlight negative">EUR</span><!----></span></=
 span><!----></db-banking-decorated-amount><!----><!----></div></div></div><=
 /div></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c292435175=
@@ -19906,7 +19909,7 @@ lass=3D"col d-none d-md-block p-0"><div _ngcontent-ng-c2924351756=3D"" data=
 raph text-right color-text-secondary"><db-banking-decorated-amount _ngconte=
 nt-ng-c2924351756=3D"" class=3D"color-text-primary"><span class=3D"directio=
 nal text-nowrap with-color"><span class=3D"db-text--highlight positive"><!-=
----><span>6,378.00 </span><span data-test=3D"currencyCode" class=3D"db-text=
+---><span>6.378,00 </span><span data-test=3D"currencyCode" class=3D"db-text=
 --mute currency db-text--highlight positive">EUR</span><!----></span></span=
 ><!----></db-banking-decorated-amount><!----><!----></div></div></div><div =
 _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c292435=
@@ -19915,7 +19918,7 @@ _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c292435=
 4351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-text-paragra=
 ph text-right color-text-secondary"><db-banking-decorated-amount _ngcontent=
 -ng-c2924351756=3D""><span class=3D"directional text-nowrap with-color"><sp=
-an class=3D"db-text--highlight positive"><!----><span>6,378.00 </span><span=
+an class=3D"db-text--highlight positive"><!----><span>6.378,00 </span><span=
  data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--highli=
 ght positive">EUR</span><!----></span></span><!----></db-banking-decorated-=
 amount><!----><!----></div></div></div></div></div></db-list-row-content><d=
@@ -19966,7 +19969,7 @@ ck p-0"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"t=
 ext-truncatable db-text--highlight db-text-paragraph text-right color-text-=
 secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" clas=
 s=3D"color-text-primary"><span class=3D"directional text-nowrap with-color"=
-><span class=3D"db-text--highlight positive"><!----><span>10,446.59 </span>=
+><span class=3D"db-text--highlight positive"><!----><span>10.446,59 </span>=
 <span data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--h=
 ighlight positive">EUR</span><!----></span></span><!----></db-banking-decor=
 ated-amount><!----><!----></div></div></div><div _ngcontent-ng-c2924351756=
@@ -19976,7 +19979,7 @@ t-row d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"a=
 mount" class=3D"text-truncatable db-text-paragraph text-right color-text-se=
 condary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span =
 class=3D"directional text-nowrap with-color"><span class=3D"db-text--highli=
-ght positive"><!----><span>10,446.59 </span><span data-test=3D"currencyCode=
+ght positive"><!----><span>10.446,59 </span><span data-test=3D"currencyCode=
 " class=3D"db-text--mute currency db-text--highlight positive">EUR</span><!=
 ----></span></span><!----></db-banking-decorated-amount><!----><!----></div=
 ></div></div></div></div></db-list-row-content><db-list-row-menu _ngcontent=
@@ -20028,7 +20031,7 @@ t=3D"amount" class=3D"text-truncatable db-text--highlight db-text-paragraph=
  text-right color-text-secondary"><db-banking-decorated-amount _ngcontent-n=
 g-c2924351756=3D"" class=3D"color-text-primary"><span class=3D"directional =
 text-nowrap with-color"><span class=3D"db-text--highlight negative"><!---->=
-<span>-4.99 </span><span data-test=3D"currencyCode" class=3D"db-text--mute =
+<span>-4,99 </span><span data-test=3D"currencyCode" class=3D"db-text--mute =
 currency db-text--highlight negative">EUR</span><!----></span></span><!----=
 ></db-banking-decorated-amount><!----><!----></div></div></div><div _ngcont=
 ent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924351756=3D=
@@ -20037,7 +20040,7 @@ t" class=3D"db-list-row d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=
 =3D"" data-test=3D"amount" class=3D"text-truncatable db-text-paragraph text=
 -right color-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c29=
 24351756=3D""><span class=3D"directional text-nowrap with-color"><span clas=
-s=3D"db-text--highlight negative"><!----><span>-4.99 </span><span data-test=
+s=3D"db-text--highlight negative"><!----><span>-4,99 </span><span data-test=
 =3D"currencyCode" class=3D"db-text--mute currency db-text--highlight negati=
 ve">EUR</span><!----></span></span><!----></db-banking-decorated-amount><!-=
 ---><!----></div></div></div></div></div></db-list-row-content><db-list-row=
@@ -20101,7 +20104,7 @@ iv _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-trunca=
 table db-text--highlight db-text-paragraph text-right color-text-secondary"=
 ><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color=
 -text-primary"><span class=3D"directional text-nowrap with-color"><span cla=
-ss=3D"db-text--highlight negative"><!----><span>-16.45 </span><span data-te=
+ss=3D"db-text--highlight negative"><!----><span>-16,45 </span><span data-te=
 st=3D"currencyCode" class=3D"db-text--mute currency db-text--highlight nega=
 tive">EUR</span><!----></span></span><!----></db-banking-decorated-amount><=
 !----><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D=
@@ -20111,7 +20114,7 @@ e pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=
 =3D"text-truncatable db-text-paragraph text-right color-text-secondary"><db=
 -banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"dir=
 ectional text-nowrap with-color"><span class=3D"db-text--highlight negative=
-"><!----><span>-16.45 </span><span data-test=3D"currencyCode" class=3D"db-t=
+"><!----><span>-16,45 </span><span data-test=3D"currencyCode" class=3D"db-t=
 ext--mute currency db-text--highlight negative">EUR</span><!----></span></s=
 pan><!----></db-banking-decorated-amount><!----><!----></div></div></div></=
 div></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=
@@ -20163,7 +20166,7 @@ t-mute">Child Allowance</span><!----><!----><!----></div></db-status><!----=
 db-text-paragraph text-right color-text-secondary"><db-banking-decorated-am=
 ount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><span clas=
 s=3D"directional text-nowrap with-color"><span class=3D"db-text--highlight =
-positive"><!----><span>518.00 </span><span data-test=3D"currencyCode" class=
+positive"><!----><span>518,00 </span><span data-test=3D"currencyCode" class=
 =3D"db-text--mute currency db-text--highlight positive">EUR</span><!----></=
 span></span><!----></db-banking-decorated-amount><!----><!----></div></div>=
 </div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent=
@@ -20172,7 +20175,7 @@ data-test=3D"amount" class=3D"db-list-row d-md-none pt-md-3"><div _ngconten=
 t-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-tex=
 t-paragraph text-right color-text-secondary"><db-banking-decorated-amount _=
 ngcontent-ng-c2924351756=3D""><span class=3D"directional text-nowrap with-c=
-olor"><span class=3D"db-text--highlight positive"><!----><span>518.00 </spa=
+olor"><span class=3D"db-text--highlight positive"><!----><span>518,00 </spa=
 n><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-text-=
 -highlight positive">EUR</span><!----></span></span><!----></db-banking-dec=
 orated-amount><!----><!----></div></div></div></div></div></db-list-row-con=
@@ -20224,7 +20227,7 @@ g-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-text--=
 highlight db-text-paragraph text-right color-text-secondary"><db-banking-de=
 corated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary">=
 <span class=3D"directional text-nowrap with-color"><span class=3D"db-text--=
-highlight negative"><!----><span>-7.99 </span><span data-test=3D"currencyCo=
+highlight negative"><!----><span>-7,99 </span><span data-test=3D"currencyCo=
 de" class=3D"db-text--mute currency db-text--highlight negative">EUR</span>=
 <!----></span></span><!----></db-banking-decorated-amount><!----><!----></d=
 iv></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _=
@@ -20233,7 +20236,7 @@ ngcontent-ng-c2924351756=3D"" class=3D"col p-0"><div _ngcontent-ng-c2924351=
 _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatab=
 le db-text-paragraph text-right color-text-secondary"><db-banking-decorated=
 -amount _ngcontent-ng-c2924351756=3D""><span class=3D"directional text-nowr=
-ap with-color"><span class=3D"db-text--highlight negative"><!----><span>-7.=
+ap with-color"><span class=3D"db-text--highlight negative"><!----><span>-7,=
 99 </span><span data-test=3D"currencyCode" class=3D"db-text--mute currency =
 db-text--highlight negative">EUR</span><!----></span></span><!----></db-ban=
 king-decorated-amount><!----><!----></div></div></div></div></div></db-list=
@@ -20282,7 +20285,7 @@ md-block p-0"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" clas=
 s=3D"text-truncatable db-text--highlight db-text-paragraph text-right color=
 -text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"=
 " class=3D"color-text-primary"><span class=3D"directional text-nowrap with-=
-color"><span class=3D"db-text--highlight negative"><!----><span>-4.99 </spa=
+color"><span class=3D"db-text--highlight negative"><!----><span>-4,99 </spa=
 n><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-text-=
 -highlight negative">EUR</span><!----></span></span><!----></db-banking-dec=
 orated-amount><!----><div _ngcontent-ng-c2924351756=3D"" data-test=3D"dmcIn=
@@ -20298,7 +20301,7 @@ pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"=
 text-truncatable db-text-paragraph text-right color-text-secondary"><db-ban=
 king-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directi=
 onal text-nowrap with-color"><span class=3D"db-text--highlight negative"><!=
-----><span>-4.99 </span><span data-test=3D"currencyCode" class=3D"db-text--=
+----><span>-4,99 </span><span data-test=3D"currencyCode" class=3D"db-text--=
 mute currency db-text--highlight negative">EUR</span><!----></span></span><=
 !----></db-banking-decorated-amount><!----><div _ngcontent-ng-c2924351756=
 =3D"" data-test=3D"dmcInfo" class=3D"text-truncatable text-right"><db-icon =
@@ -20367,7 +20370,7 @@ lass=3D"col d-none d-md-block p-0"><div _ngcontent-ng-c2924351756=3D"" data=
 raph text-right color-text-secondary"><db-banking-decorated-amount _ngconte=
 nt-ng-c2924351756=3D"" class=3D"color-text-primary"><span class=3D"directio=
 nal text-nowrap with-color"><span class=3D"db-text--highlight negative"><!-=
----><span>-5,000.00 </span><span data-test=3D"currencyCode" class=3D"db-tex=
+---><span>-5.000,00 </span><span data-test=3D"currencyCode" class=3D"db-tex=
 t--mute currency db-text--highlight negative">EUR</span><!----></span></spa=
 n><!----></db-banking-decorated-amount><!----><!----></div></div></div><div=
  _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c29243=
@@ -20376,7 +20379,7 @@ n><!----></db-banking-decorated-amount><!----><!----></div></div></div><div=
 4351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-text-paragra=
 ph text-right color-text-secondary"><db-banking-decorated-amount _ngcontent=
 -ng-c2924351756=3D""><span class=3D"directional text-nowrap with-color"><sp=
-an class=3D"db-text--highlight negative"><!----><span>-5,000.00 </span><spa=
+an class=3D"db-text--highlight negative"><!----><span>-5.000,00 </span><spa=
 n data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--highl=
 ight negative">EUR</span><!----></span></span><!----></db-banking-decorated=
 -amount><!----><!----></div></div></div></div></div></db-list-row-content><=
@@ -20428,7 +20431,7 @@ est=3D"amount" class=3D"col d-none d-md-block p-0"><div _ngcontent-ng-c2924=
 ht db-text-paragraph text-right color-text-secondary"><db-banking-decorated=
 -amount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><span c=
 lass=3D"directional text-nowrap with-color"><span class=3D"db-text--highlig=
-ht negative"><!----><span>-130.95 </span><span data-test=3D"currencyCode" c=
+ht negative"><!----><span>-130,95 </span><span data-test=3D"currencyCode" c=
 lass=3D"db-text--mute currency db-text--highlight negative">EUR</span><!---=
 -></span></span><!----></db-banking-decorated-amount><!----><!----></div></=
 div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcon=
@@ -20437,7 +20440,7 @@ tent-ng-c2924351756=3D"" class=3D"col p-0"><div _ngcontent-ng-c2924351756=
 content-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable =
 db-text-paragraph text-right color-text-secondary"><db-banking-decorated-am=
 ount _ngcontent-ng-c2924351756=3D""><span class=3D"directional text-nowrap =
-with-color"><span class=3D"db-text--highlight negative"><!----><span>-130.9=
+with-color"><span class=3D"db-text--highlight negative"><!----><span>-130,9=
 5 </span><span data-test=3D"currencyCode" class=3D"db-text--mute currency d=
 b-text--highlight negative">EUR</span><!----></span></span><!----></db-bank=
 ing-decorated-amount><!----><!----></div></div></div></div></div></db-list-=
@@ -20490,7 +20493,7 @@ t=3D"amount" class=3D"text-truncatable db-text--highlight db-text-paragraph=
  text-right color-text-secondary"><db-banking-decorated-amount _ngcontent-n=
 g-c2924351756=3D"" class=3D"color-text-primary"><span class=3D"directional =
 text-nowrap with-color"><span class=3D"db-text--highlight negative"><!---->=
-<span>-31.77 </span><span data-test=3D"currencyCode" class=3D"db-text--mute=
+<span>-31,77 </span><span data-test=3D"currencyCode" class=3D"db-text--mute=
  currency db-text--highlight negative">EUR</span><!----></span></span><!---=
 -></db-banking-decorated-amount><!----><!----></div></div></div><div _ngcon=
 tent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924351756=
@@ -20499,7 +20502,7 @@ ount" class=3D"db-list-row d-md-none pt-md-3"><div _ngcontent-ng-c292435175=
 6=3D"" data-test=3D"amount" class=3D"text-truncatable db-text-paragraph tex=
 t-right color-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2=
 924351756=3D""><span class=3D"directional text-nowrap with-color"><span cla=
-ss=3D"db-text--highlight negative"><!----><span>-31.77 </span><span data-te=
+ss=3D"db-text--highlight negative"><!----><span>-31,77 </span><span data-te=
 st=3D"currencyCode" class=3D"db-text--mute currency db-text--highlight nega=
 tive">EUR</span><!----></span></span><!----></db-banking-decorated-amount><=
 !----><!----></div></div></div></div></div></db-list-row-content><db-list-r=
@@ -20560,7 +20563,7 @@ ent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-t=
 ext--highlight db-text-paragraph text-right color-text-secondary"><db-banki=
 ng-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-prim=
 ary"><span class=3D"directional text-nowrap with-color"><span class=3D"db-t=
-ext--highlight negative"><!----><span>-7.99 </span><span data-test=3D"curre=
+ext--highlight negative"><!----><span>-7,99 </span><span data-test=3D"curre=
 ncyCode" class=3D"db-text--mute currency db-text--highlight negative">EUR</=
 span><!----></span></span><!----></db-banking-decorated-amount><!----><div =
 _ngcontent-ng-c2924351756=3D"" data-test=3D"dmcInfo" class=3D"text-truncata=
@@ -20575,7 +20578,7 @@ a-test=3D"amount" class=3D"db-list-row d-md-none pt-md-3"><div _ngcontent-n=
 g-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-text-p=
 aragraph text-right color-text-secondary"><db-banking-decorated-amount _ngc=
 ontent-ng-c2924351756=3D""><span class=3D"directional text-nowrap with-colo=
-r"><span class=3D"db-text--highlight negative"><!----><span>-7.99 </span><s=
+r"><span class=3D"db-text--highlight negative"><!----><span>-7,99 </span><s=
 pan data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--hig=
 hlight negative">EUR</span><!----></span></span><!----></db-banking-decorat=
 ed-amount><!----><div _ngcontent-ng-c2924351756=3D"" data-test=3D"dmcInfo" =
@@ -20645,7 +20648,7 @@ v _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncat=
 able db-text--highlight db-text-paragraph text-right color-text-secondary">=
 <db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-=
 text-primary"><span class=3D"directional text-nowrap with-color"><span clas=
-s=3D"db-text--highlight negative"><!----><span>-47.95 </span><span data-tes=
+s=3D"db-text--highlight negative"><!----><span>-47,95 </span><span data-tes=
 t=3D"currencyCode" class=3D"db-text--mute currency db-text--highlight negat=
 ive">EUR</span><!----></span></span><!----></db-banking-decorated-amount><!=
 ----><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"=
@@ -20655,7 +20658,7 @@ ent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"db-list-row d-md-none=
 "text-truncatable db-text-paragraph text-right color-text-secondary"><db-ba=
 nking-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"direct=
 ional text-nowrap with-color"><span class=3D"db-text--highlight negative"><=
-!----><span>-47.95 </span><span data-test=3D"currencyCode" class=3D"db-text=
+!----><span>-47,95 </span><span data-test=3D"currencyCode" class=3D"db-text=
 --mute currency db-text--highlight negative">EUR</span><!----></span></span=
 ><!----></db-banking-decorated-amount><!----><!----></div></div></div></div=
 ></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=3D=
@@ -20719,7 +20722,7 @@ t=3D"amount" class=3D"col d-none d-md-block p-0"><div _ngcontent-ng-c292435=
  db-text-paragraph text-right color-text-secondary"><db-banking-decorated-a=
 mount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><span cla=
 ss=3D"directional text-nowrap with-color"><span class=3D"db-text--highlight=
- negative"><!----><span>-130.00 </span><span data-test=3D"currencyCode" cla=
+ negative"><!----><span>-130,00 </span><span data-test=3D"currencyCode" cla=
 ss=3D"db-text--mute currency db-text--highlight negative">EUR</span><!---->=
 </span></span><!----></db-banking-decorated-amount><!----><!----></div></di=
 v></div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngconte=
@@ -20728,7 +20731,7 @@ nt-ng-c2924351756=3D"" class=3D"col p-0"><div _ngcontent-ng-c2924351756=3D"=
 ent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-t=
 ext-paragraph text-right color-text-secondary"><db-banking-decorated-amount=
  _ngcontent-ng-c2924351756=3D""><span class=3D"directional text-nowrap with=
--color"><span class=3D"db-text--highlight negative"><!----><span>-130.00 </=
+-color"><span class=3D"db-text--highlight negative"><!----><span>-130,00 </=
 span><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-te=
 xt--highlight negative">EUR</span><!----></span></span><!----></db-banking-=
 decorated-amount><!----><!----></div></div></div></div></div></db-list-row-=
@@ -20791,7 +20794,7 @@ ount" class=3D"col d-none d-md-block p-0"><div _ngcontent-ng-c2924351756=3D=
 t-paragraph text-right color-text-secondary"><db-banking-decorated-amount _=
 ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><span class=3D"d=
 irectional text-nowrap with-color"><span class=3D"db-text--highlight negati=
-ve"><!----><span>-385.00 </span><span data-test=3D"currencyCode" class=3D"d=
+ve"><!----><span>-385,00 </span><span data-test=3D"currencyCode" class=3D"d=
 b-text--mute currency db-text--highlight negative">EUR</span><!----></span>=
 </span><!----></db-banking-decorated-amount><!----><!----></div></div></div=
 ><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c=
@@ -20800,7 +20803,7 @@ test=3D"amount" class=3D"db-list-row d-md-none pt-md-3"><div _ngcontent-ng-=
 c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-text-par=
 agraph text-right color-text-secondary"><db-banking-decorated-amount _ngcon=
 tent-ng-c2924351756=3D""><span class=3D"directional text-nowrap with-color"=
-><span class=3D"db-text--highlight negative"><!----><span>-385.00 </span><s=
+><span class=3D"db-text--highlight negative"><!----><span>-385,00 </span><s=
 pan data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--hig=
 hlight negative">EUR</span><!----></span></span><!----></db-banking-decorat=
 ed-amount><!----><!----></div></div></div></div></div></db-list-row-content=
@@ -20852,7 +20855,7 @@ div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-trunc=
 atable db-text--highlight db-text-paragraph text-right color-text-secondary=
 "><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"colo=
 r-text-primary"><span class=3D"directional text-nowrap with-color"><span cl=
-ass=3D"db-text--highlight negative"><!----><span>-15.00 </span><span data-t=
+ass=3D"db-text--highlight negative"><!----><span>-15,00 </span><span data-t=
 est=3D"currencyCode" class=3D"db-text--mute currency db-text--highlight neg=
 ative">EUR</span><!----></span></span><!----></db-banking-decorated-amount>=
 <!----><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=
@@ -20862,7 +20865,7 @@ none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" clas=
 s=3D"text-truncatable db-text-paragraph text-right color-text-secondary"><d=
 b-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"di=
 rectional text-nowrap with-color"><span class=3D"db-text--highlight negativ=
-e"><!----><span>-15.00 </span><span data-test=3D"currencyCode" class=3D"db-=
+e"><!----><span>-15,00 </span><span data-test=3D"currencyCode" class=3D"db-=
 text--mute currency db-text--highlight negative">EUR</span><!----></span></=
 span><!----></db-banking-decorated-amount><!----><!----></div></div></div><=
 /div></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c292435175=
@@ -20926,7 +20929,7 @@ t=3D"amount" class=3D"col d-none d-md-block p-0"><div _ngcontent-ng-c292435=
  db-text-paragraph text-right color-text-secondary"><db-banking-decorated-a=
 mount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><span cla=
 ss=3D"directional text-nowrap with-color"><span class=3D"db-text--highlight=
- negative"><!----><span>-9.21 </span><span data-test=3D"currencyCode" class=
+ negative"><!----><span>-9,21 </span><span data-test=3D"currencyCode" class=
 =3D"db-text--mute currency db-text--highlight negative">EUR</span><!----></=
 span></span><!----></db-banking-decorated-amount><!----><!----></div></div>=
 </div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent=
@@ -20935,7 +20938,7 @@ data-test=3D"amount" class=3D"db-list-row d-md-none pt-md-3"><div _ngconten=
 t-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-tex=
 t-paragraph text-right color-text-secondary"><db-banking-decorated-amount _=
 ngcontent-ng-c2924351756=3D""><span class=3D"directional text-nowrap with-c=
-olor"><span class=3D"db-text--highlight negative"><!----><span>-9.21 </span=
+olor"><span class=3D"db-text--highlight negative"><!----><span>-9,21 </span=
 ><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--=
 highlight negative">EUR</span><!----></span></span><!----></db-banking-deco=
 rated-amount><!----><!----></div></div></div></div></div></db-list-row-cont=
@@ -20988,7 +20991,7 @@ unt" class=3D"text-truncatable db-text--highlight db-text-paragraph text-ri=
 ght color-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c29243=
 51756=3D"" class=3D"color-text-primary"><span class=3D"directional text-now=
 rap with-color"><span class=3D"db-text--highlight negative"><!----><span>-1=
-6.00 </span><span data-test=3D"currencyCode" class=3D"db-text--mute currenc=
+6,00 </span><span data-test=3D"currencyCode" class=3D"db-text--mute currenc=
 y db-text--highlight negative">EUR</span><!----></span></span><!----></db-b=
 anking-decorated-amount><!----><!----></div></div></div><div _ngcontent-ng-=
 c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924351756=3D"" clas=
@@ -20997,7 +21000,7 @@ s=3D"db-list-row d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" dat=
 a-test=3D"amount" class=3D"text-truncatable db-text-paragraph text-right co=
 lor-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=
 =3D""><span class=3D"directional text-nowrap with-color"><span class=3D"db-=
-text--highlight negative"><!----><span>-16.00 </span><span data-test=3D"cur=
+text--highlight negative"><!----><span>-16,00 </span><span data-test=3D"cur=
 rencyCode" class=3D"db-text--mute currency db-text--highlight negative">EUR=
 </span><!----></span></span><!----></db-banking-decorated-amount><!----><!-=
 ---></div></div></div></div></div></db-list-row-content><db-list-row-menu _=
@@ -21048,7 +21051,7 @@ ent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-t=
 ext--highlight db-text-paragraph text-right color-text-secondary"><db-banki=
 ng-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-prim=
 ary"><span class=3D"directional text-nowrap with-color"><span class=3D"db-t=
-ext--highlight negative"><!----><span>-63.00 </span><span data-test=3D"curr=
+ext--highlight negative"><!----><span>-63,00 </span><span data-test=3D"curr=
 encyCode" class=3D"db-text--mute currency db-text--highlight negative">EUR<=
 /span><!----></span></span><!----></db-banking-decorated-amount><!----><!--=
 --></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0">=
@@ -21058,7 +21061,7 @@ encyCode" class=3D"db-text--mute currency db-text--highlight negative">EUR<=
 ncatable db-text-paragraph text-right color-text-secondary"><db-banking-dec=
 orated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directional tex=
 t-nowrap with-color"><span class=3D"db-text--highlight negative"><!----><sp=
-an>-63.00 </span><span data-test=3D"currencyCode" class=3D"db-text--mute cu=
+an>-63,00 </span><span data-test=3D"currencyCode" class=3D"db-text--mute cu=
 rrency db-text--highlight negative">EUR</span><!----></span></span><!----><=
 /db-banking-decorated-amount><!----><!----></div></div></div></div></div></=
 db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=3D"" class=
@@ -21110,7 +21113,7 @@ d-block p-0"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=
 =3D"text-truncatable db-text--highlight db-text-paragraph text-right color-=
 text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""=
  class=3D"color-text-primary"><span class=3D"directional text-nowrap with-c=
-olor"><span class=3D"db-text--highlight negative"><!----><span>-28.55 </spa=
+olor"><span class=3D"db-text--highlight negative"><!----><span>-28,55 </spa=
 n><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-text-=
 -highlight negative">EUR</span><!----></span></span><!----></db-banking-dec=
 orated-amount><!----><!----></div></div></div><div _ngcontent-ng-c292435175=
@@ -21120,7 +21123,7 @@ st-row d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"=
 amount" class=3D"text-truncatable db-text-paragraph text-right color-text-s=
 econdary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span=
  class=3D"directional text-nowrap with-color"><span class=3D"db-text--highl=
-ight negative"><!----><span>-28.55 </span><span data-test=3D"currencyCode" =
+ight negative"><!----><span>-28,55 </span><span data-test=3D"currencyCode" =
 class=3D"db-text--mute currency db-text--highlight negative">EUR</span><!--=
 --></span></span><!----></db-banking-decorated-amount><!----><!----></div><=
 /div></div></div></div></db-list-row-content><db-list-row-menu _ngcontent-n=
@@ -21171,7 +21174,7 @@ s=3D"db-status__text db-text-mute">Uncategorized</span><!----><!----><!----=
 ble db-text--highlight db-text-paragraph text-right color-text-secondary"><=
 db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-t=
 ext-primary"><span class=3D"directional text-nowrap with-color"><span class=
-=3D"db-text--highlight negative"><!----><span>-50.00 </span><span data-test=
+=3D"db-text--highlight negative"><!----><span>-50,00 </span><span data-test=
 =3D"currencyCode" class=3D"db-text--mute currency db-text--highlight negati=
 ve">EUR</span><!----></span></span><!----></db-banking-decorated-amount><!-=
 ---><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"r=
@@ -21181,7 +21184,7 @@ pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"=
 text-truncatable db-text-paragraph text-right color-text-secondary"><db-ban=
 king-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directi=
 onal text-nowrap with-color"><span class=3D"db-text--highlight negative"><!=
-----><span>-50.00 </span><span data-test=3D"currencyCode" class=3D"db-text-=
+----><span>-50,00 </span><span data-test=3D"currencyCode" class=3D"db-text-=
 -mute currency db-text--highlight negative">EUR</span><!----></span></span>=
 <!----></db-banking-decorated-amount><!----><!----></div></div></div></div>=
 </div></db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=3D"=
@@ -21232,7 +21235,7 @@ md-block p-0"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" clas=
 s=3D"text-truncatable db-text--highlight db-text-paragraph text-right color=
 -text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"=
 " class=3D"color-text-primary"><span class=3D"directional text-nowrap with-=
-color"><span class=3D"db-text--highlight negative"><!----><span>-69.20 </sp=
+color"><span class=3D"db-text--highlight negative"><!----><span>-69,20 </sp=
 an><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-text=
 --highlight negative">EUR</span><!----></span></span><!----></db-banking-de=
 corated-amount><!----><!----></div></div></div><div _ngcontent-ng-c29243517=
@@ -21242,7 +21245,7 @@ ist-row d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D=
 "amount" class=3D"text-truncatable db-text-paragraph text-right color-text-=
 secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><spa=
 n class=3D"directional text-nowrap with-color"><span class=3D"db-text--high=
-light negative"><!----><span>-69.20 </span><span data-test=3D"currencyCode"=
+light negative"><!----><span>-69,20 </span><span data-test=3D"currencyCode"=
  class=3D"db-text--mute currency db-text--highlight negative">EUR</span><!-=
 ---></span></span><!----></db-banking-decorated-amount><!----><!----></div>=
 </div></div></div></div></db-list-row-content><db-list-row-menu _ngcontent-=
@@ -21294,7 +21297,7 @@ test=3D"amount" class=3D"text-truncatable db-text--highlight db-text-paragr=
 aph text-right color-text-secondary"><db-banking-decorated-amount _ngconten=
 t-ng-c2924351756=3D"" class=3D"color-text-primary"><span class=3D"direction=
 al text-nowrap with-color"><span class=3D"db-text--highlight negative"><!--=
---><span>-9.90 </span><span data-test=3D"currencyCode" class=3D"db-text--mu=
+--><span>-9,90 </span><span data-test=3D"currencyCode" class=3D"db-text--mu=
 te currency db-text--highlight negative">EUR</span><!----></span></span><!-=
 ---></db-banking-decorated-amount><!----><!----></div></div></div><div _ngc=
 ontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924351756=
@@ -21303,7 +21306,7 @@ ount" class=3D"db-list-row d-md-none pt-md-3"><div _ngcontent-ng-c292435175=
 6=3D"" data-test=3D"amount" class=3D"text-truncatable db-text-paragraph tex=
 t-right color-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2=
 924351756=3D""><span class=3D"directional text-nowrap with-color"><span cla=
-ss=3D"db-text--highlight negative"><!----><span>-9.90 </span><span data-tes=
+ss=3D"db-text--highlight negative"><!----><span>-9,90 </span><span data-tes=
 t=3D"currencyCode" class=3D"db-text--mute currency db-text--highlight negat=
 ive">EUR</span><!----></span></span><!----></db-banking-decorated-amount><!=
 ----><!----></div></div></div></div></div></db-list-row-content><db-list-ro=
@@ -21354,7 +21357,7 @@ iv _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-trunca=
 table db-text--highlight db-text-paragraph text-right color-text-secondary"=
 ><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color=
 -text-primary"><span class=3D"directional text-nowrap with-color"><span cla=
-ss=3D"db-text--highlight negative"><!----><span>-63.00 </span><span data-te=
+ss=3D"db-text--highlight negative"><!----><span>-63,00 </span><span data-te=
 st=3D"currencyCode" class=3D"db-text--mute currency db-text--highlight nega=
 tive">EUR</span><!----></span></span><!----></db-banking-decorated-amount><=
 !----><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D=
@@ -21364,7 +21367,7 @@ e pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=
 =3D"text-truncatable db-text-paragraph text-right color-text-secondary"><db=
 -banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"dir=
 ectional text-nowrap with-color"><span class=3D"db-text--highlight negative=
-"><!----><span>-63.00 </span><span data-test=3D"currencyCode" class=3D"db-t=
+"><!----><span>-63,00 </span><span data-test=3D"currencyCode" class=3D"db-t=
 ext--mute currency db-text--highlight negative">EUR</span><!----></span></s=
 pan><!----></db-banking-decorated-amount><!----><!----></div></div></div></=
 div></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=
@@ -21415,7 +21418,7 @@ none d-md-block p-0"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amoun=
 t" class=3D"text-truncatable db-text--highlight db-text-paragraph text-righ=
 t color-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351=
 756=3D"" class=3D"color-text-primary"><span class=3D"directional text-nowra=
-p with-color"><span class=3D"db-text--highlight negative"><!----><span>-5.4=
+p with-color"><span class=3D"db-text--highlight negative"><!----><span>-5,4=
 0 </span><span data-test=3D"currencyCode" class=3D"db-text--mute currency d=
 b-text--highlight negative">EUR</span><!----></span></span><!----></db-bank=
 ing-decorated-amount><!----><!----></div></div></div><div _ngcontent-ng-c29=
@@ -21425,7 +21428,7 @@ ing-decorated-amount><!----><!----></div></div></div><div _ngcontent-ng-c29=
 -test=3D"amount" class=3D"text-truncatable db-text-paragraph text-right col=
 or-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=
 =3D""><span class=3D"directional text-nowrap with-color"><span class=3D"db-=
-text--highlight negative"><!----><span>-5.40 </span><span data-test=3D"curr=
+text--highlight negative"><!----><span>-5,40 </span><span data-test=3D"curr=
 encyCode" class=3D"db-text--mute currency db-text--highlight negative">EUR<=
 /span><!----></span></span><!----></db-banking-decorated-amount><!----><!--=
 --></div></div></div></div></div></db-list-row-content><db-list-row-menu _n=
@@ -21476,7 +21479,7 @@ ck p-0"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"t=
 ext-truncatable db-text--highlight db-text-paragraph text-right color-text-=
 secondary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D"" clas=
 s=3D"color-text-primary"><span class=3D"directional text-nowrap with-color"=
-><span class=3D"db-text--highlight negative"><!----><span>-50.00 </span><sp=
+><span class=3D"db-text--highlight negative"><!----><span>-50,00 </span><sp=
 an data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--high=
 light negative">EUR</span><!----></span></span><!----></db-banking-decorate=
 d-amount><!----><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"=
@@ -21486,7 +21489,7 @@ w d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=3D"" data-test=3D"amoun=
 t" class=3D"text-truncatable db-text-paragraph text-right color-text-second=
 ary"><db-banking-decorated-amount _ngcontent-ng-c2924351756=3D""><span clas=
 s=3D"directional text-nowrap with-color"><span class=3D"db-text--highlight =
-negative"><!----><span>-50.00 </span><span data-test=3D"currencyCode" class=
+negative"><!----><span>-50,00 </span><span data-test=3D"currencyCode" class=
 =3D"db-text--mute currency db-text--highlight negative">EUR</span><!----></=
 span></span><!----></db-banking-decorated-amount><!----><!----></div></div>=
 </div></div></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c29=
@@ -21537,7 +21540,7 @@ mute">Public Transport</span><!----><!----><!----></div></db-status><!---->=
 text-paragraph text-right color-text-secondary"><db-banking-decorated-amoun=
 t _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><span class=
 =3D"directional text-nowrap with-color"><span class=3D"db-text--highlight n=
-egative"><!----><span>-59.85 </span><span data-test=3D"currencyCode" class=
+egative"><!----><span>-59,85 </span><span data-test=3D"currencyCode" class=
 =3D"db-text--mute currency db-text--highlight negative">EUR</span><!----></=
 span></span><!----></db-banking-decorated-amount><!----><!----></div></div>=
 </div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent=
@@ -21546,7 +21549,7 @@ data-test=3D"amount" class=3D"db-list-row d-md-none pt-md-3"><div _ngconten=
 t-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-tex=
 t-paragraph text-right color-text-secondary"><db-banking-decorated-amount _=
 ngcontent-ng-c2924351756=3D""><span class=3D"directional text-nowrap with-c=
-olor"><span class=3D"db-text--highlight negative"><!----><span>-59.85 </spa=
+olor"><span class=3D"db-text--highlight negative"><!----><span>-59,85 </spa=
 n><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-text-=
 -highlight negative">EUR</span><!----></span></span><!----></db-banking-dec=
 orated-amount><!----><!----></div></div></div></div></div></db-list-row-con=
@@ -21610,7 +21613,7 @@ est=3D"amount" class=3D"col d-none d-md-block p-0"><div _ngcontent-ng-c2924=
 ht db-text-paragraph text-right color-text-secondary"><db-banking-decorated=
 -amount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><span c=
 lass=3D"directional text-nowrap with-color"><span class=3D"db-text--highlig=
-ht negative"><!----><span>-14.95 </span><span data-test=3D"currencyCode" cl=
+ht negative"><!----><span>-14,95 </span><span data-test=3D"currencyCode" cl=
 ass=3D"db-text--mute currency db-text--highlight negative">EUR</span><!----=
 ></span></span><!----></db-banking-decorated-amount><!----><!----></div></d=
 iv></div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcont=
@@ -21619,7 +21622,7 @@ ent-ng-c2924351756=3D"" class=3D"col p-0"><div _ngcontent-ng-c2924351756=3D=
 tent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-=
 text-paragraph text-right color-text-secondary"><db-banking-decorated-amoun=
 t _ngcontent-ng-c2924351756=3D""><span class=3D"directional text-nowrap wit=
-h-color"><span class=3D"db-text--highlight negative"><!----><span>-14.95 </=
+h-color"><span class=3D"db-text--highlight negative"><!----><span>-14,95 </=
 span><span data-test=3D"currencyCode" class=3D"db-text--mute currency db-te=
 xt--highlight negative">EUR</span><!----></span></span><!----></db-banking-=
 decorated-amount><!----><!----></div></div></div></div></div></db-list-row-=
@@ -21672,7 +21675,7 @@ rages</span><!----><!----><!----></div></db-status><!----><!----><!----><!-=
 text-right color-text-secondary"><db-banking-decorated-amount _ngcontent-ng=
 -c2924351756=3D"" class=3D"color-text-primary"><span class=3D"directional t=
 ext-nowrap with-color"><span class=3D"db-text--highlight negative"><!----><=
-span>-56.12 </span><span data-test=3D"currencyCode" class=3D"db-text--mute =
+span>-56,12 </span><span data-test=3D"currencyCode" class=3D"db-text--mute =
 currency db-text--highlight negative">EUR</span><!----></span></span><!----=
 ></db-banking-decorated-amount><!----><!----></div></div></div><div _ngcont=
 ent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngcontent-ng-c2924351756=3D=
@@ -21681,7 +21684,7 @@ t" class=3D"db-list-row d-md-none pt-md-3"><div _ngcontent-ng-c2924351756=
 =3D"" data-test=3D"amount" class=3D"text-truncatable db-text-paragraph text=
 -right color-text-secondary"><db-banking-decorated-amount _ngcontent-ng-c29=
 24351756=3D""><span class=3D"directional text-nowrap with-color"><span clas=
-s=3D"db-text--highlight negative"><!----><span>-56.12 </span><span data-tes=
+s=3D"db-text--highlight negative"><!----><span>-56,12 </span><span data-tes=
 t=3D"currencyCode" class=3D"db-text--mute currency db-text--highlight negat=
 ive">EUR</span><!----></span></span><!----></db-banking-decorated-amount><!=
 ----><!----></div></div></div></div></div></db-list-row-content><db-list-ro=
@@ -21732,7 +21735,7 @@ ent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-t=
 ext--highlight db-text-paragraph text-right color-text-secondary"><db-banki=
 ng-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-prim=
 ary"><span class=3D"directional text-nowrap with-color"><span class=3D"db-t=
-ext--highlight negative"><!----><span>-1,970.00 </span><span data-test=3D"c=
+ext--highlight negative"><!----><span>-1.970,00 </span><span data-test=3D"c=
 urrencyCode" class=3D"db-text--mute currency db-text--highlight negative">E=
 UR</span><!----></span></span><!----></db-banking-decorated-amount><!----><=
 !----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-=
@@ -21742,7 +21745,7 @@ UR</span><!----></span></span><!----></db-banking-decorated-amount><!----><=
 truncatable db-text-paragraph text-right color-text-secondary"><db-banking-=
 decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directional =
 text-nowrap with-color"><span class=3D"db-text--highlight negative"><!---->=
-<span>-1,970.00 </span><span data-test=3D"currencyCode" class=3D"db-text--m=
+<span>-1.970,00 </span><span data-test=3D"currencyCode" class=3D"db-text--m=
 ute currency db-text--highlight negative">EUR</span><!----></span></span><!=
 ----></db-banking-decorated-amount><!----><!----></div></div></div></div></=
 div></db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=3D"" =
@@ -21793,7 +21796,7 @@ ta-test=3D"amount" class=3D"col d-none d-md-block p-0"><div _ngcontent-ng-c=
 hlight db-text-paragraph text-right color-text-secondary"><db-banking-decor=
 ated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><sp=
 an class=3D"directional text-nowrap with-color"><span class=3D"db-text--hig=
-hlight negative"><!----><span>-68.00 </span><span data-test=3D"currencyCode=
+hlight negative"><!----><span>-68,00 </span><span data-test=3D"currencyCode=
 " class=3D"db-text--mute currency db-text--highlight negative">EUR</span><!=
 ----></span></span><!----></db-banking-decorated-amount><!----><!----></div=
 ></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ng=
@@ -21802,7 +21805,7 @@ content-ng-c2924351756=3D"" class=3D"col p-0"><div _ngcontent-ng-c292435175=
 gcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable=
  db-text-paragraph text-right color-text-secondary"><db-banking-decorated-a=
 mount _ngcontent-ng-c2924351756=3D""><span class=3D"directional text-nowrap=
- with-color"><span class=3D"db-text--highlight negative"><!----><span>-68.0=
+ with-color"><span class=3D"db-text--highlight negative"><!----><span>-68,0=
 0 </span><span data-test=3D"currencyCode" class=3D"db-text--mute currency d=
 b-text--highlight negative">EUR</span><!----></span></span><!----></db-bank=
 ing-decorated-amount><!----><!----></div></div></div></div></div></db-list-=
@@ -21854,7 +21857,7 @@ ngcontent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatabl=
 e db-text--highlight db-text-paragraph text-right color-text-secondary"><db=
 -banking-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-tex=
 t-primary"><span class=3D"directional text-nowrap with-color"><span class=
-=3D"db-text--highlight negative"><!----><span>-200.00 </span><span data-tes=
+=3D"db-text--highlight negative"><!----><span>-200,00 </span><span data-tes=
 t=3D"currencyCode" class=3D"db-text--mute currency db-text--highlight negat=
 ive">EUR</span><!----></span></span><!----></db-banking-decorated-amount><!=
 ----><!----></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"=
@@ -21864,7 +21867,7 @@ ent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"db-list-row d-md-none=
 "text-truncatable db-text-paragraph text-right color-text-secondary"><db-ba=
 nking-decorated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"direct=
 ional text-nowrap with-color"><span class=3D"db-text--highlight negative"><=
-!----><span>-200.00 </span><span data-test=3D"currencyCode" class=3D"db-tex=
+!----><span>-200,00 </span><span data-test=3D"currencyCode" class=3D"db-tex=
 t--mute currency db-text--highlight negative">EUR</span><!----></span></spa=
 n><!----></db-banking-decorated-amount><!----><!----></div></div></div></di=
 v></div></db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=
@@ -21915,7 +21918,7 @@ tent-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-=
 text--highlight db-text-paragraph text-right color-text-secondary"><db-bank=
 ing-decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-pri=
 mary"><span class=3D"directional text-nowrap with-color"><span class=3D"db-=
-text--highlight negative"><!----><span>-63.00 </span><span data-test=3D"cur=
+text--highlight negative"><!----><span>-63,00 </span><span data-test=3D"cur=
 rencyCode" class=3D"db-text--mute currency db-text--highlight negative">EUR=
 </span><!----></span></span><!----></db-banking-decorated-amount><!----><!-=
 ---></div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"=
@@ -21925,7 +21928,7 @@ rencyCode" class=3D"db-text--mute currency db-text--highlight negative">EUR=
 uncatable db-text-paragraph text-right color-text-secondary"><db-banking-de=
 corated-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directional te=
 xt-nowrap with-color"><span class=3D"db-text--highlight negative"><!----><s=
-pan>-63.00 </span><span data-test=3D"currencyCode" class=3D"db-text--mute c=
+pan>-63,00 </span><span data-test=3D"currencyCode" class=3D"db-text--mute c=
 urrency db-text--highlight negative">EUR</span><!----></span></span><!---->=
 </db-banking-decorated-amount><!----><!----></div></div></div></div></div><=
 /db-list-row-content><db-list-row-menu _ngcontent-ng-c2924351756=3D"" class=
@@ -21976,7 +21979,7 @@ a-test=3D"amount" class=3D"col d-none d-md-block p-0"><div _ngcontent-ng-c2=
 light db-text-paragraph text-right color-text-secondary"><db-banking-decora=
 ted-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><spa=
 n class=3D"directional text-nowrap with-color"><span class=3D"db-text--high=
-light negative"><!----><span>-19.69 </span><span data-test=3D"currencyCode"=
+light negative"><!----><span>-19,69 </span><span data-test=3D"currencyCode"=
  class=3D"db-text--mute currency db-text--highlight negative">EUR</span><!-=
 ---></span></span><!----></db-banking-decorated-amount><!----><!----></div>=
 </div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div _ngc=
@@ -21985,7 +21988,7 @@ ontent-ng-c2924351756=3D"" class=3D"col p-0"><div _ngcontent-ng-c2924351756=
 content-ng-c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable =
 db-text-paragraph text-right color-text-secondary"><db-banking-decorated-am=
 ount _ngcontent-ng-c2924351756=3D""><span class=3D"directional text-nowrap =
-with-color"><span class=3D"db-text--highlight negative"><!----><span>-19.69=
+with-color"><span class=3D"db-text--highlight negative"><!----><span>-19,69=
  </span><span data-test=3D"currencyCode" class=3D"db-text--mute currency db=
 -text--highlight negative">EUR</span><!----></span></span><!----></db-banki=
 ng-decorated-amount><!----><!----></div></div></div></div></div></db-list-r=
@@ -22037,7 +22040,7 @@ data-test=3D"amount" class=3D"col d-none d-md-block p-0"><div _ngcontent-ng=
 ighlight db-text-paragraph text-right color-text-secondary"><db-banking-dec=
 orated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary"><=
 span class=3D"directional text-nowrap with-color"><span class=3D"db-text--h=
-ighlight negative"><!----><span>-167.90 </span><span data-test=3D"currencyC=
+ighlight negative"><!----><span>-167,90 </span><span data-test=3D"currencyC=
 ode" class=3D"db-text--mute currency db-text--highlight negative">EUR</span=
 ><!----></span></span><!----></db-banking-decorated-amount><!----><!----></=
 div></div></div><div _ngcontent-ng-c2924351756=3D"" class=3D"row m-0"><div =
@@ -22047,7 +22050,7 @@ _ngcontent-ng-c2924351756=3D"" class=3D"col p-0"><div _ngcontent-ng-c292435=
 ble db-text-paragraph text-right color-text-secondary"><db-banking-decorate=
 d-amount _ngcontent-ng-c2924351756=3D""><span class=3D"directional text-now=
 rap with-color"><span class=3D"db-text--highlight negative"><!----><span>-1=
-67.90 </span><span data-test=3D"currencyCode" class=3D"db-text--mute curren=
+67,90 </span><span data-test=3D"currencyCode" class=3D"db-text--mute curren=
 cy db-text--highlight negative">EUR</span><!----></span></span><!----></db-=
 banking-decorated-amount><!----><!----></div></div></div></div></div></db-l=
 ist-row-content><db-list-row-menu _ngcontent-ng-c2924351756=3D"" class=3D"d=
@@ -22096,7 +22099,7 @@ saction </span><!----><!----><!----></div><div _ngcontent-ng-c2924351756=3D=
 --highlight db-text-paragraph text-right color-text-secondary"><db-banking-=
 decorated-amount _ngcontent-ng-c2924351756=3D"" class=3D"color-text-primary=
 "><span class=3D"directional text-nowrap with-color"><span class=3D"db-text=
---highlight negative"><!----><span>-15.00 </span><span data-test=3D"currenc=
+--highlight negative"><!----><span>-15,00 </span><span data-test=3D"currenc=
 yCode" class=3D"db-text--mute currency db-text--highlight negative">EUR</sp=
 an><!----></span></span><!----></db-banking-decorated-amount><!----><div _n=
 gcontent-ng-c2924351756=3D"" data-test=3D"dmcInfo" class=3D"text-truncatabl=
@@ -22111,7 +22114,7 @@ test=3D"amount" class=3D"db-list-row d-md-none pt-md-3"><div _ngcontent-ng-=
 c2924351756=3D"" data-test=3D"amount" class=3D"text-truncatable db-text-par=
 agraph text-right color-text-secondary"><db-banking-decorated-amount _ngcon=
 tent-ng-c2924351756=3D""><span class=3D"directional text-nowrap with-color"=
-><span class=3D"db-text--highlight negative"><!----><span>-15.00 </span><sp=
+><span class=3D"db-text--highlight negative"><!----><span>-15,00 </span><sp=
 an data-test=3D"currencyCode" class=3D"db-text--mute currency db-text--high=
 light negative">EUR</span><!----></span></span><!----></db-banking-decorate=
 d-amount><!----><div _ngcontent-ng-c2924351756=3D"" data-test=3D"dmcInfo" c=
@@ -22296,7 +22299,8 @@ isplay: none;"></iframe></body></html>
 ------MultipartBoundary--U9kFnYWnAQu7nvkk2rzk4sCk3DhSWgd5N2mioCLYhj----
 Content-Type: text/css
 Content-Transfer-Encoding: quoted-printable
-Content-Location: blob:https://meine.deutsche-bank.de/920f8bb0-c3a5-4b3a-9c4d-ef2e4da8fac5
+Content-Location: blob:https://meine.deutsche-bank.de/920f8bb0-c3a5-4b3a-9c=
+4d-ef2e4da8fac5
 
 @charset "utf-8";
 
@@ -22759,7 +22763,8 @@ s: none; }
 ------MultipartBoundary--U9kFnYWnAQu7nvkk2rzk4sCk3DhSWgd5N2mioCLYhj----
 Content-Type: image/svg+xml
 Content-Transfer-Encoding: quoted-printable
-Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos/generali.svg
+Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos=
+/generali.svg
 
 <?xml version=3D"1.0" encoding=3D"UTF-8"?>
 <svg width=3D"96px" height=3D"96px" viewBox=3D"0 0 96 96" version=3D"1.1" x=
@@ -23081,7 +23086,8 @@ C52.3801718,26.3025825 52.0967614,25.1137305 50.4671514,24.9738656 C44.2321=
 ------MultipartBoundary--U9kFnYWnAQu7nvkk2rzk4sCk3DhSWgd5N2mioCLYhj----
 Content-Type: image/svg+xml
 Content-Transfer-Encoding: quoted-printable
-Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos/congstar.svg
+Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos=
+/congstar.svg
 
 <?xml version=3D"1.0" encoding=3D"UTF-8"?><svg version=3D"1.1" width=3D"96p=
 x" height=3D"96px" viewBox=3D"0 0 96.0 96.0" xmlns=3D"http://www.w3.org/200=
@@ -23206,7 +23212,8 @@ e(11.0008294758705 0.0)"><g clip-path=3D"url(#i2)"><polygon points=3D"0,8.8=
 ------MultipartBoundary--U9kFnYWnAQu7nvkk2rzk4sCk3DhSWgd5N2mioCLYhj----
 Content-Type: image/svg+xml
 Content-Transfer-Encoding: quoted-printable
-Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos/zurich.svg
+Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos=
+/zurich.svg
 
 <?xml version=3D"1.0" encoding=3D"UTF-8"?>
 <svg id=3D"ZURICH_LOGO_CMYK_HORIZONTAL" data-name=3D"ZURICH LOGO CMYK HORIZ=
@@ -23240,7 +23247,8 @@ ONTAL" xmlns=3D"http://www.w3.org/2000/svg" viewBox=3D"0 0 300 300">
 ------MultipartBoundary--U9kFnYWnAQu7nvkk2rzk4sCk3DhSWgd5N2mioCLYhj----
 Content-Type: image/svg+xml
 Content-Transfer-Encoding: quoted-printable
-Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos/deutsche-bank.svg
+Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos=
+/deutsche-bank.svg
 
 <?xml version=3D"1.0" encoding=3D"UTF-8"?>
 <svg width=3D"96px" height=3D"96px" viewBox=3D"0 0 96 96" version=3D"1.1" x=
@@ -23271,7 +23279,8 @@ ct>
 ------MultipartBoundary--U9kFnYWnAQu7nvkk2rzk4sCk3DhSWgd5N2mioCLYhj----
 Content-Type: image/svg+xml
 Content-Transfer-Encoding: quoted-printable
-Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos/netto.svg
+Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos=
+/netto.svg
 
 <?xml version=3D"1.0" encoding=3D"UTF-8"?>
 <svg width=3D"96px" height=3D"96px" viewBox=3D"0 0 96 96" version=3D"1.1" x=
@@ -23588,7 +23597,8 @@ FEE702"></path>
 ------MultipartBoundary--U9kFnYWnAQu7nvkk2rzk4sCk3DhSWgd5N2mioCLYhj----
 Content-Type: image/svg+xml
 Content-Transfer-Encoding: quoted-printable
-Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos/vodafone.svg
+Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos=
+/vodafone.svg
 
 <?xml version=3D"1.0" encoding=3D"UTF-8"?>
 <svg width=3D"96px" height=3D"96px" viewBox=3D"0 0 96 96" version=3D"1.1" x=
@@ -23627,7 +23637,8 @@ ne" fill-rule=3D"evenodd">
 ------MultipartBoundary--U9kFnYWnAQu7nvkk2rzk4sCk3DhSWgd5N2mioCLYhj----
 Content-Type: image/svg+xml
 Content-Transfer-Encoding: quoted-printable
-Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos/lidl.svg
+Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos=
+/lidl.svg
 
 <?xml version=3D"1.0" encoding=3D"UTF-8"?>
 <svg width=3D"96px" height=3D"96px" viewBox=3D"0 0 96 96" version=3D"1.1" x=
@@ -23684,7 +23695,8 @@ th>
 ------MultipartBoundary--U9kFnYWnAQu7nvkk2rzk4sCk3DhSWgd5N2mioCLYhj----
 Content-Type: image/svg+xml
 Content-Transfer-Encoding: quoted-printable
-Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos/dm.svg
+Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos=
+/dm.svg
 
 <?xml version=3D"1.0" encoding=3D"UTF-8"?>
 <svg width=3D"96px" height=3D"96px" viewBox=3D"0 0 96 96" version=3D"1.1" x=
@@ -23756,7 +23768,8 @@ ule=3D"nonzero">
 ------MultipartBoundary--U9kFnYWnAQu7nvkk2rzk4sCk3DhSWgd5N2mioCLYhj----
 Content-Type: image/svg+xml
 Content-Transfer-Encoding: quoted-printable
-Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos/woolworth.svg
+Content-Location: https://meine.deutsche-bank.de/assets/images/avatar-logos=
+/woolworth.svg
 
 <?xml version=3D"1.0" encoding=3D"UTF-8"?>
 <svg width=3D"96px" height=3D"96px" viewBox=3D"0 0 96 96" version=3D"1.1" x=
@@ -43218,7 +43231,8 @@ body { min-width: 320px; }
 Content-Type: text/html
 Content-ID: <frame-4EF7B5192DDFA941E58099332A116DFD@mhtml.blink>
 Content-Transfer-Encoding: quoted-printable
-Content-Location: https://app.usercentrics.eu/browser-sdk/4.39.0/cross-domain-bridge.html
+Content-Location: https://app.usercentrics.eu/browser-sdk/4.39.0/cross-doma=
+in-bridge.html
 
 <!DOCTYPE html><html lang=3D"en"><head><meta http-equiv=3D"Content-Type" co=
 ntent=3D"text/html; charset=3DUTF-8">

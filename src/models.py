@@ -1,9 +1,9 @@
 """Data models for Transaction Categorizer."""
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime
 from decimal import Decimal
-from typing import Optional
+from typing import Any, Mapping, Optional
 
 
 @dataclass
@@ -53,6 +53,29 @@ class Transaction:
             'excluded': self.excluded,
             'is_expense': self.is_expense
         }
+
+    @classmethod
+    def from_dict(cls, data: Mapping[str, Any]) -> "Transaction":
+        """Create a transaction from its JSON-serializable dictionary form."""
+        raw_date = data.get('date')
+        if isinstance(raw_date, datetime):
+            date = raw_date
+        elif raw_date:
+            date = datetime.fromisoformat(str(raw_date))
+        else:
+            date = datetime.now()
+
+        return cls(
+            id=str(data['id']),
+            date=date,
+            counter_party=str(data.get('counter_party', '')),
+            description=str(data.get('description', '')),
+            amount=Decimal(str(data.get('amount', '0'))),
+            bank_category=str(data.get('bank_category', '')),
+            budget_category=data.get('budget_category'),
+            confidence=float(data.get('confidence', 0.0)),
+            excluded=bool(data.get('excluded', False))
+        )
 
 
 @dataclass

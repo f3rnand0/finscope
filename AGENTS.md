@@ -21,7 +21,7 @@ decoded = quopri.decodestring(raw_bytes).decode('utf-8')
 
 German formats:
 - Dates: `DD.MM.YYYY` → `datetime.strptime(d, '%d.%m.%Y')`
-- Amounts: Standard format with comma as thousands separator (e.g., `-8,000.00`) → `Decimal(s.replace(',', ''))`
+- Amounts: German money format with dot thousands and comma decimals (e.g., `-8.000,00`) → normalize to `Decimal('-8000.00')`
 
 ### Categorizer (src/categorizer.py)
 Priority: exact merchant match → partial match → keyword → bank category → uncategorized
@@ -63,15 +63,16 @@ with open('config/categorization_rules.json') as f:
 
 ## Gotchas
 
-1. **Session size**: Flask sessions are cookie-based. Don't store all transactions there for large files.
+1. **Session size**: Only store the upload id in the cookie-backed Flask session; transaction data belongs in the server-side store.
 2. **Decimal**: Always use `Decimal`, never float for amounts.
 3. **Merchant names**: Vary between "ALDI" and "ALDI SE U. CO. KG" - use regex, not exact match.
 4. **HTML entities**: Bank categories have `&amp;` - decode them.
 
 ## Invariants
 
-1. **Bank category names are in German.** `DEFAULT_BANK_MAPPINGS` and all parser/categorizer logic must use German keys exclusively.
+1. **Bank category names are Deutsche Bank source labels.** They can vary by export locale and must only be used as mapping inputs.
 2. **App UI remains in English.** Review page, export, templates, and budget categories stay in English.
+3. **Financial data stays local.** Bootstrap may load from CDN, but transaction data must not be sent to external services.
 
 ## Code Style
 
@@ -84,3 +85,17 @@ with open('config/categorization_rules.json') as f:
 - Validate file uploads (MHTML only, 10MB max)
 - Use Jinja2 auto-escaping (enabled by default)
 - Bind to 127.0.0.1 (local only)
+
+## Agent skills
+
+### Issue tracker
+
+No issue tracker is active; agents must ask before publishing issues or PRDs. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Triage labels are disabled while no issue tracker is configured. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+This repo uses a single-context domain layout with root `CONTEXT.md` and ADRs under `docs/adr/`. See `docs/agents/domain.md`.

@@ -8,6 +8,7 @@ from datetime import datetime
 from decimal import Decimal
 from src.categorizer import CategorizationEngine, CategorizationRules
 from src.models import Transaction, CategorizationResult
+from config import BUDGET_CATEGORIES, DEFAULT_BANK_MAPPINGS, PREFIX_RULES_PATH, CONTAINS_RULES_PATH
 
 
 class TestCategorizationRules:
@@ -22,7 +23,7 @@ class TestCategorizationRules:
                     'ALDI': {'category': 'Food/Groceries', 'confidence': 0.95, 'count': 10}
                 },
                 'keyword_rules': {
-                    'TELEKOM': {'category': 'Utilities/Cell Phones', 'confidence': 0.9}
+                    'TELEKOM': {'category': 'Utilities/Cell phones', 'confidence': 0.9}
                 }
             }, f)
             return f.name
@@ -74,6 +75,12 @@ class TestCategorizationRules:
         result = rules.get_category_for_bank_category('Lebensmittel / Getränke')
         assert result == 'Food/Groceries'
 
+    def test_get_category_for_english_bank_category(self, temp_config):
+        """Test observed Deutsche Bank source labels from the fixture."""
+        rules = CategorizationRules(temp_config)
+        result = rules.get_category_for_bank_category('Phone / Internet / TV / Radio')
+        assert result == 'Utilities/Cell phones'
+
 
 class TestCategorizationEngine:
     """Test cases for CategorizationEngine."""
@@ -117,8 +124,8 @@ class TestCategorizationEngine:
         )
         result = engine.categorize(tx)
         assert result.category == 'Food/Groceries'
-        assert result.method == 'prefix_rule'
-        assert result.confidence > 0.5  # Prefix rule has high confidence
+        assert result.method == 'merchant'
+        assert result.confidence > 0.5
 
     def test_categorize_by_bank_mapping(self, engine):
         """Test categorization by bank category mapping."""
@@ -163,3 +170,71 @@ class TestCategorizationEngine:
         # Should now categorize correctly
         result = engine.categorize(tx)
         assert result.category == 'Other/Clothing'
+
+    def test_learned_merchant_overrides_static_prefix(self, engine):
+        """Manual learned merchant rules should override static prefix rules."""
+        tx = Transaction(
+            id='tx_1',
+            date=datetime.now(),
+            counter_party='ALDI',
+            description='ALDI SE U. CO. KG//Muenchen/DE',
+            amount=Decimal('-30.00'),
+            bank_category='Food / Beverages'
+        )
+        engine.learn_from_manual(tx, 'Other/Expenses with credit card (TF Bank)')
+        tx.budget_category = None
+        tx.confidence = 0.0
+
+        result = engine.categorize(tx)
+        assert result.category == 'Other/Expenses with credit card (TF Bank)'
+        assert result.method == 'merchant'
+
+
+class TestRuleIntegrity:
+    """Tests for rule target validity."""
+
+    def test_all_non_null_rule_targets_are_budget_categories(self):
+        """Every rule target should exist in BUDGET_CATEGORIES."""
+        valid_categories = {
+            f"{main}/{subcat}"
+            for main, subcats in BUDGET_CATEGORIES.items()
+            for subcat in subcats
+        }
+
+        refs = [
+            ('DEFAULT_BANK_MAPPINGS', key, category)
+            for key, category in DEFAULT_BANK_MAPPINGS.items()
+            if category is not None
+        ]
+
+        with open('config/categorization_rules.json', encoding='utf-8') as f:
+            learned_rules = json.load(f)
+
+        refs.extend(
+            ('merchant_rules', key, rule.get('category'))
+            for key, rule in learned_rules.get('merchant_rules', {}).items()
+        )
+        refs.extend(
+            ('keyword_rules', key, rule.get('category'))
+            for key, rule in learned_rules.get('keyword_rules', {}).items()
+        )
+        refs.extend(
+            ('bank_mappings', key, category)
+            for key, category in learned_rules.get('bank_mappings', {}).items()
+            if category is not None
+        )
+
+        for source_name, path in [
+            ('prefix_rules', PREFIX_RULES_PATH),
+            ('contains_rules', CONTAINS_RULES_PATH)
+        ]:
+            with open(path, encoding='utf-8') as f:
+                refs.extend((source_name, key, key) for key in json.load(f))
+
+        invalid = [
+            f"{source}:{key}->{category}"
+            for source, key, category in refs
+            if category not in valid_categories
+        ]
+
+        assert invalid == []

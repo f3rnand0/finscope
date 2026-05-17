@@ -50,8 +50,8 @@ As a user, I want my categorization rules to be saved locally, so I don't have t
 - Upload page: Drag-and-drop MHTML file upload
 - Review page: Table view of all transactions
 - Categorization panel: Dropdown to assign categories to selected transactions
-- Filter options: Show only Uncategorized, filter by date range
-- Export page: Preview output format, download CSV/TSV
+- Filter options: Show only Uncategorized, search by description
+- Export page: Preview output format, download TSV
 
 ### FR5: Configuration Persistence
 - Save categorization rules to local JSON file
@@ -64,19 +64,17 @@ As a user, I want my categorization rules to be saved locally, so I don't have t
 - Structure matching March Budget PDF:
   - Main Category
   - Subcategory
-  - Description
-  - Budget Amount (user fills manually in sheet)
   - Actual Spent (sum of transactions)
-  - Budget vs Actual (calculated in sheet)
+  - Description
 - Include transaction count per category
 - Monthly summary totals
 
 ## Non-Functional Requirements
 
-### NFR1: Local Operation
-- Run entirely on local machine
-- No external API dependencies
-- No cloud storage required
+### NFR1: Local Data Processing
+- Run categorization and export processing on the local machine
+- Do not send transaction data to external APIs or cloud storage
+- Frontend assets may load from CDN
 
 ### NFR2: Performance
 - Parse 1000+ transactions in under 5 seconds
@@ -140,6 +138,7 @@ As a user, I want my categorization rules to be saved locally, so I don't have t
 
 ### Investments
 - Rürup Contribution
+- Geiger Edelmetalle
 - Scalable Capital Wealth
 - BMI Life Insurance
 
@@ -149,10 +148,13 @@ As a user, I want my categorization rules to be saved locally, so I don't have t
 - **Date**: DD.MM.YYYY format
 - **Counter Party**: Transaction type label (e.g., "Debit Card Payment")
 - **Description**: Full transaction details with merchant, location, date/time
-- **Amount**: Positive (income) or negative (expense) EUR values
+- **Amount**: Positive (income) or negative (expense) EUR values in German money format, such as `500,00` or `5.089,71`
 - **Bank Category**: Pre-assigned category from Deutsche Bank
 
 ### Bank Categories to Map
+Deutsche Bank source labels can vary by export locale. They are mapping inputs only; the app-facing budget categories remain English.
+
+Observed English source labels include:
 - Food / Beverages
 - Clothing / Shoes
 - Toiletries / Cleaning Supplies
@@ -175,15 +177,17 @@ As a user, I want my categorization rules to be saved locally, so I don't have t
 - Others
 - Uncategorized
 
+German source labels such as `Lebensmittel / Getränke`, `Miete / Nebenkosten`, and `Lohn / Gehalt` are also supported where mappings exist.
+
 ## Output Data Format
 
 ### TSV Structure for Google Sheets
 ```
-Category	Subcategory	Description	Budget	Actual Spent	Variance	Transaction Count
-Income	Job Salary	Monthly salary		€5,089.71		1
-Income	Other Benefits	Tax compensation, etc.		€518.00		1
-Home Expenses	Rent	Rent (Germany)	€1,970.00	€1,970.00	€0.00	1
-Food	Groceries	ALDI, DM, etc.	€550.00	€520.45	€29.55	12
+Category	Subcategory	Actual Spent	Description	Transaction Count
+Income	Job Salary	€5,089.71	Employer##Monthly salary	1
+Income	Other Benefits	€518.00	Tax office##Tax compensation	1
+Home Expenses	Rent	€1,970.00	Landlord##Rent	1
+Food	Groceries	€520.45	ALDI##ALDI SE U. CO. KG//Muenchen/DE	12
 ```
 
 ## User Interface Requirements
@@ -198,22 +202,18 @@ Food	Groceries	ALDI, DM, etc.	€550.00	€520.45	€29.55	12
 ### Page 2: Review & Categorize
 - Summary cards: Total transactions, Uncategorized count, Total income, Total expenses
 - Data table columns:
-  - Checkbox (for bulk actions)
-  - Date
-  - Description
-  - Amount (color-coded: green for income, red for expenses)
-  - Bank Category
-  - Budget Category (dropdown or assigned)
+  - Income table: Date, Merchant Title, Detailed Description, Amount
+  - Expenses table: Checkbox, Budget Category, Merchant Title, Detailed Description, Amount, Date, Actions
+  - Excluded expenses table: Merchant Title, Detailed Description, Amount, Date, Actions
 - Filters:
   - Show only Uncategorized
-  - Date range picker
   - Search by description
 - Bulk action: Select multiple rows, assign category to all
 - "Learn Patterns" button: Train on manually categorized transactions
 
 ### Page 3: Export
 - Preview of output format
-- Download CSV/TSV button
+- Download TSV button
 - Copy to clipboard button
 - Summary statistics
 
@@ -227,11 +227,13 @@ When user assigns a category via the web interface:
 3. On subsequent matches, confidence increases (max 0.95)
 
 ### Auto-categorization Priority (Implemented)
-1. **Exact merchant match** → Confidence 0.8-0.95 (based on count)
-2. **Partial merchant match** → Confidence × 0.8 (e.g., "ALDI SE" matches "ALDI")
-3. **Keyword match** → Confidence 0.6 (significant words from description)
-4. **Bank category mapping** → Confidence 0.5 (fallback)
-5. **Uncategorized** → Requires manual review
+1. **Exact learned merchant match** → Confidence 0.8-0.95 (based on count)
+2. **Partial learned merchant match** → Confidence × 0.8 (e.g., "ALDI SE" matches "ALDI")
+3. **Learned keyword match** → Confidence 0.6 (significant words from description)
+4. **Static prefix rule** → Confidence 0.95
+5. **Static contains rule** → Confidence 0.90
+6. **Bank category mapping** → Confidence 0.5 (fallback)
+7. **Uncategorized** → Requires manual review
 
 ### Confidence Thresholds
 - **High (>0.8)**: Auto-accepted, shown with green background
@@ -239,9 +241,9 @@ When user assigns a category via the web interface:
 - **Low (<0.5)**: Left as "Uncategorized", requires manual assignment
 
 ### Tested Results
-With fresh install (no learned patterns): **65% auto-categorized** (51/78 transactions)
-using only bank category mappings. After manual categorization of recurring merchants,
-accuracy increases to target 70%+.
+With fresh install (no learned patterns), categorization uses static rules and bank
+category mappings. After manual categorization of recurring merchants, learned rules
+increase coverage over time.
 
 ### Configuration File Structure
 ```json
@@ -259,10 +261,11 @@ accuracy increases to target 70%+.
   },
   "bank_category_mappings": {
     "Food / Beverages": "Food/Groceries",
+    "Lebensmittel / Getränke": "Food/Groceries",
     "Online Shopping": "Other/E-commerce"
   },
   "manual_rules": [
-    {"pattern": "Scalable Capital", "category": "Investments/Scalable Capital"}
+    {"pattern": "Scalable Capital", "category": "Investments/Scalable Capital Wealth"}
   ]
 }
 ```
@@ -271,18 +274,18 @@ accuracy increases to target 70%+.
 
 | Criterion | Target | Achieved | Notes |
 |-----------|--------|----------|-------|
-| Parse transactions | 100% | ✅ 78/78 | All transactions from test MHTML file parsed |
-| Auto-categorization | >70% | ✅ 65% | With bank mappings only; improves with learning |
+| Parse transactions | 100% | ✅ 71/71 | Test MHTML has 78 source rows: 6 settlement rows skipped, 1 duplicate deduplicated |
+| Auto-categorization | >70% | Tracked by tests | Static mappings provide baseline coverage; learned rules improve with use |
 | Google Sheets import | Clean | ✅ TSV | Tab-separated format tested and working |
 | Web UI responsive | Yes | ✅ | Bootstrap 5, works on laptop/tablet |
 | Config persistence | Yes | ✅ | JSON file at `config/categorization_rules.json` |
-| All tests passing | 100% | ✅ 28/28 | Unit tests for parser, categorizer, exporter |
+| All tests passing | 100% | Tracked by pytest | Unit and e2e tests cover parser, categorizer, exporter, and Flask routes |
 
 ### Performance Metrics
-- **Parse speed**: ~78 transactions/second
+- **Parse speed**: ~71 transactions/second on the fixture
 - **Categorization**: Instant (in-memory rules)
-- **Export**: <100ms for 78 transactions
-- **Session handling**: Uses Flask sessions (cookie-based, 10MB limit)
+- **Export**: <100ms for the fixture transaction set
+- **Session handling**: Uses a server-side in-memory transaction store keyed by a small Flask session id
 
 ## Future Enhancements (Out of Scope)
 - Multi-currency support
