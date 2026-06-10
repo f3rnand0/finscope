@@ -142,6 +142,25 @@ class TestReviewPage:
         
         assert 'Bank Category' not in html
 
+    def test_review_column_order_and_description_search_index(self, client, sample_mhtml):
+        """Review page should render amount before description and search descriptions."""
+        client.post(
+            '/api/upload',
+            data={'file': (BytesIO(sample_mhtml), 'transactions March.mhtml')},
+            content_type='multipart/form-data'
+        )
+
+        response = client.get('/review')
+        html = response.data.decode('utf-8')
+
+        income_header = 'Merchant Title<div class="resize-handle"></div></div></th>\n                        <th class="amount-col"'
+        expenses_header = 'Merchant Title<div class="resize-handle"></div></div></th>\n                        <th class="amount-col"'
+
+        assert income_header in html
+        assert expenses_header in html
+        assert 'class="description-col" title=' in html
+        assert 'const desc = row.cells[4].textContent.toLowerCase();' in html
+
 
 class TestAutoCategorize:
     """Test auto-categorization with static rules."""
@@ -161,8 +180,8 @@ class TestAutoCategorize:
         assert data['success'] is True
         assert data['categorized_count'] > 0
     
-    def test_learned_merchant_overrides_prefix_rules(self, client):
-        """Verify learned merchant rules override static prefix rules."""
+    def test_prefix_rules_override_learned_merchant(self, client):
+        """Verify static prefix rules override learned merchant rules."""
         from app import engine
         from src.models import Transaction as TxModel
         
@@ -183,10 +202,10 @@ class TestAutoCategorize:
         tx.budget_category = None
         tx.confidence = 0.0
         
-        # Auto-categorize should apply learned merchant rule, not the static prefix rule
+        # Auto-categorize should apply the static prefix rule, not the learned merchant rule
         result = engine.categorize(tx)
-        assert result.category == 'Other/Expenses with credit card (TF Bank)'
-        assert result.method == 'merchant'
+        assert result.category == 'Food/Groceries'
+        assert result.method == 'prefix_rule'
 
 
 class TestExport:

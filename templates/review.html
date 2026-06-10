@@ -18,6 +18,7 @@
         background-color: #f8f9fa;
     }
     .scrollable-table-wrapper table {
+        table-layout: auto;
         white-space: nowrap;
     }
     .scrollable-table-wrapper td,
@@ -26,6 +27,22 @@
     }
     .budget-category-col {
         min-width: 10.5em;
+    }
+    .merchant-col {
+        width: 10em;
+        min-width: 10em;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+    .description-col {
+        width: 14em;
+        min-width: 14em;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+    .amount-col {
+        min-width: 7em;
+        white-space: nowrap;
     }
     .th-content {
         position: relative;
@@ -55,6 +72,11 @@
     .scrollable-table-wrapper th {
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+    .scrollable-table-wrapper .merchant-col,
+    .scrollable-table-wrapper .description-col {
+        overflow: visible;
+        text-overflow: clip;
     }
     .resizing {
         user-select: none;
@@ -133,18 +155,18 @@
                 <thead class="table-light">
                     <tr>
                         <th><div class="th-content" data-default-width="">Date<div class="resize-handle"></div></div></th>
-                        <th><div class="th-content" data-default-width="">Merchant Title<div class="resize-handle"></div></div></th>
-                        <th><div class="th-content" data-default-width="">Detailed Description<div class="resize-handle"></div></div></th>
-                        <th><div class="th-content" data-default-width="">Amount<div class="resize-handle"></div></div></th>
+                        <th class="merchant-col"><div class="th-content" data-default-width="10em">Merchant Title<div class="resize-handle"></div></div></th>
+                        <th class="amount-col"><div class="th-content" data-default-width="">Amount<div class="resize-handle"></div></div></th>
+                        <th class="description-col"><div class="th-content" data-default-width="14em">Detailed Description<div class="resize-handle"></div></div></th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for tx in income %}
                     <tr>
                         <td>{{ tx.date[:10] if tx.date else '' }}</td>
-                        <td>{{ tx.counter_party }}</td>
-                        <td title="{{ tx.description }}">{{ tx.description[:60] }}{% if tx.description|length > 60 %}...{% endif %}</td>
-                        <td class="amount-income">€{{ "%.2f"|format(tx.amount|float) }}</td>
+                        <td class="merchant-col">{{ tx.counter_party }}</td>
+                        <td class="amount-income amount-col">€{{ "%.2f"|format(tx.amount|float) }}</td>
+                        <td class="description-col" title="{{ tx.description }}">{{ tx.description }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -200,9 +222,9 @@
                     <tr>
                         <th><div class="th-content" data-default-width=""><input type="checkbox" class="form-check-input" id="selectAll"><div class="resize-handle"></div></div></th>
                         <th class="budget-category-col"><div class="th-content" data-default-width="10.5em">Budget Category<div class="resize-handle"></div></div></th>
-                        <th><div class="th-content" data-default-width="">Merchant Title<div class="resize-handle"></div></div></th>
-                        <th><div class="th-content" data-default-width="">Detailed Description<div class="resize-handle"></div></div></th>
-                        <th><div class="th-content" data-default-width="">Amount<div class="resize-handle"></div></div></th>
+                        <th class="merchant-col"><div class="th-content" data-default-width="10em">Merchant Title<div class="resize-handle"></div></div></th>
+                        <th class="amount-col"><div class="th-content" data-default-width="">Amount<div class="resize-handle"></div></div></th>
+                        <th class="description-col"><div class="th-content" data-default-width="14em">Detailed Description<div class="resize-handle"></div></div></th>
                         <th><div class="th-content" data-default-width="">Date<div class="resize-handle"></div></div></th>
                         <th><div class="th-content" data-default-width="">Actions<div class="resize-handle"></div></div></th>
                     </tr>
@@ -224,11 +246,11 @@
                                     {% endfor %}
                                 </select>
                             </td>
-                            <td>{{ tx.counter_party }}</td>
-                            <td title="{{ tx.description }}">{{ tx.description[:60] }}{% if tx.description|length > 60 %}...{% endif %}</td>
-                            <td class="amount-expense">
+                            <td class="merchant-col">{{ tx.counter_party }}</td>
+                            <td class="amount-expense amount-col">
                                 €{{ "%.2f"|format((tx.amount|float)|abs) }}
                             </td>
+                            <td class="description-col" title="{{ tx.description }}">{{ tx.description }}</td>
                             <td>{{ tx.date[:10] if tx.date else '' }}</td>
                             <td>
                                 <button class="btn btn-sm btn-outline-secondary exclude-btn" data-id="{{ tx.id }}">Exclude</button>
@@ -259,9 +281,9 @@
             <table class="table table-hover mb-0">
                 <thead class="table-light">
                     <tr>
-                        <th><div class="th-content" data-default-width="">Merchant Title<div class="resize-handle"></div></div></th>
-                        <th><div class="th-content" data-default-width="">Detailed Description<div class="resize-handle"></div></div></th>
-                        <th><div class="th-content" data-default-width="">Amount<div class="resize-handle"></div></div></th>
+                        <th class="merchant-col"><div class="th-content" data-default-width="10em">Merchant Title<div class="resize-handle"></div></div></th>
+                        <th class="amount-col"><div class="th-content" data-default-width="">Amount<div class="resize-handle"></div></div></th>
+                        <th class="description-col"><div class="th-content" data-default-width="14em">Detailed Description<div class="resize-handle"></div></div></th>
                         <th><div class="th-content" data-default-width="">Date<div class="resize-handle"></div></div></th>
                         <th><div class="th-content" data-default-width="">Actions<div class="resize-handle"></div></div></th>
                     </tr>
@@ -269,11 +291,11 @@
                 <tbody>
                     {% for tx in excluded %}
                     <tr data-id="{{ tx.id }}">
-                        <td>{{ tx.counter_party }}</td>
-                        <td title="{{ tx.description }}">{{ tx.description[:60] }}{% if tx.description|length > 60 %}...{% endif %}</td>
-                        <td class="amount-expense">
+                        <td class="merchant-col">{{ tx.counter_party }}</td>
+                        <td class="amount-expense amount-col">
                             €{{ "%.2f"|format((tx.amount|float)|abs) }}
                         </td>
+                        <td class="description-col" title="{{ tx.description }}">{{ tx.description }}</td>
                         <td>{{ tx.date[:10] if tx.date else '' }}</td>
                         <td>
                             <button class="btn btn-sm btn-outline-success include-btn" data-id="{{ tx.id }}">Include</button>
@@ -445,7 +467,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const search = this.value.toLowerCase();
         const rows = document.querySelectorAll('.expense-row');
         rows.forEach(row => {
-            const desc = row.cells[3].textContent.toLowerCase();
+            const desc = row.cells[4].textContent.toLowerCase();
             row.style.display = desc.includes(search) ? '' : 'none';
         });
     });

@@ -112,8 +112,8 @@ class TestCategorizationEngine:
         result = engine.extract_merchant(desc)
         assert result == 'AMAZON'
     
-    def test_categorize_by_merchant(self, engine):
-        """Test categorization by merchant."""
+    def test_categorize_by_counter_party_prefix(self, engine):
+        """Test categorization by merchant-title prefix."""
         tx = Transaction(
             id='tx_1',
             date=datetime.now(),
@@ -124,7 +124,7 @@ class TestCategorizationEngine:
         )
         result = engine.categorize(tx)
         assert result.category == 'Food/Groceries'
-        assert result.method == 'merchant'
+        assert result.method == 'prefix_rule'
         assert result.confidence > 0.5
 
     def test_categorize_by_bank_mapping(self, engine):
@@ -171,8 +171,8 @@ class TestCategorizationEngine:
         result = engine.categorize(tx)
         assert result.category == 'Other/Clothing'
 
-    def test_learned_merchant_overrides_static_prefix(self, engine):
-        """Manual learned merchant rules should override static prefix rules."""
+    def test_static_prefix_overrides_learned_merchant(self, engine):
+        """Curated prefix rules should override learned merchant rules."""
         tx = Transaction(
             id='tx_1',
             date=datetime.now(),
@@ -186,8 +186,66 @@ class TestCategorizationEngine:
         tx.confidence = 0.0
 
         result = engine.categorize(tx)
-        assert result.category == 'Other/Expenses with credit card (TF Bank)'
-        assert result.method == 'merchant'
+        assert result.category == 'Food/Groceries'
+        assert result.method == 'prefix_rule'
+
+    def test_description_prefix_does_not_match_counter_party(self, engine):
+        """Description-scoped prefixes should not match merchant titles."""
+        tx = Transaction(
+            id='tx_1',
+            date=datetime.now(),
+            counter_party='Vielen Dank, Knuspr.de',
+            description='Unrelated text',
+            amount=Decimal('-30.00'),
+            bank_category='Uncategorized'
+        )
+
+        result = engine.categorize(tx)
+        assert result.category is None
+
+    def test_counter_party_prefix_does_not_match_description(self, engine):
+        """Merchant-title prefixes should not match detailed descriptions."""
+        tx = Transaction(
+            id='tx_1',
+            date=datetime.now(),
+            counter_party='Unknown',
+            description='Zurich Insurance Europe AG policy payment',
+            amount=Decimal('-30.00'),
+            bank_category='Uncategorized'
+        )
+
+        result = engine.categorize(tx)
+        assert result.category is None
+
+    def test_description_prefix_match(self, engine):
+        """Description-scoped prefixes should match detailed descriptions."""
+        tx = Transaction(
+            id='tx_1',
+            date=datetime.now(),
+            counter_party='Unknown',
+            description='Vielen Dank, Knuspr.de order 123',
+            amount=Decimal('-30.00'),
+            bank_category='Uncategorized'
+        )
+
+        result = engine.categorize(tx)
+        assert result.category == 'Food/Groceries'
+        assert result.method == 'prefix_rule'
+
+    def test_counter_party_prefix_match(self, engine):
+        """Merchant-title prefixes should match merchant titles."""
+        tx = Transaction(
+            id='tx_1',
+            date=datetime.now(),
+            counter_party='Ostrom GmbH',
+            description='Abschlag',
+            amount=Decimal('-30.00'),
+            bank_category='Uncategorized'
+        )
+
+        result = engine.categorize(tx)
+        assert result.category == 'Utilities/Electricity'
+        assert result.method == 'prefix_rule'
 
 
 class TestRuleIntegrity:
@@ -224,12 +282,13 @@ class TestRuleIntegrity:
             if category is not None
         )
 
-        for source_name, path in [
-            ('prefix_rules', PREFIX_RULES_PATH),
-            ('contains_rules', CONTAINS_RULES_PATH)
-        ]:
-            with open(path, encoding='utf-8') as f:
-                refs.extend((source_name, key, key) for key in json.load(f))
+        with open(PREFIX_RULES_PATH, encoding='utf-8') as f:
+            prefix_rules = json.load(f)
+            for field_rules in prefix_rules.values():
+                refs.extend(('prefix_rules', key, key) for key in field_rules)
+
+        with open(CONTAINS_RULES_PATH, encoding='utf-8') as f:
+            refs.extend(('contains_rules', key, key) for key in json.load(f))
 
         invalid = [
             f"{source}:{key}->{category}"

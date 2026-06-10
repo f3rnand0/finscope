@@ -25,7 +25,10 @@ class CategorizationRules:
         self.keyword_rules: Dict[str, dict] = {}
         self.bank_mappings: Dict[str, Optional[str]] = dict(DEFAULT_BANK_MAPPINGS)
         self.manual_rules: list = []
-        self.prefix_rules: Dict[str, List[str]] = {}
+        self.prefix_rules: Dict[str, Dict[str, List[str]]] = {
+            'counter_party': {},
+            'description': {}
+        }
         self.contains_rules: Dict[str, List[str]] = {}
         self._load_rules()
     
@@ -51,10 +54,7 @@ class CategorizationRules:
         if prefix_path.exists():
             try:
                 with open(prefix_path, 'r', encoding='utf-8') as f:
-                    self.prefix_rules = {
-                        normalize_budget_category(category): prefixes
-                        for category, prefixes in json.load(f).items()
-                    }
+                    self.prefix_rules = self._normalize_prefix_rules(json.load(f))
             except (json.JSONDecodeError, IOError) as e:
                 print(f"Warning: Could not load prefix rules: {e}")
         
@@ -78,6 +78,25 @@ class CategorizationRules:
             normalized_rule['category'] = normalize_budget_category(rule.get('category'))
             normalized[key] = normalized_rule
         return normalized
+
+    def _normalize_prefix_rules(self, rules: Dict[str, dict]) -> Dict[str, Dict[str, List[str]]]:
+        """Normalize prefix rules, accepting the legacy category-to-prefixes shape."""
+        if 'counter_party' not in rules and 'description' not in rules:
+            return {
+                'counter_party': {
+                    normalize_budget_category(category): prefixes
+                    for category, prefixes in rules.items()
+                },
+                'description': {}
+            }
+
+        return {
+            field: {
+                normalize_budget_category(category): prefixes
+                for category, prefixes in rules.get(field, {}).items()
+            }
+            for field in ('counter_party', 'description')
+        }
     
     def save_rules(self):
         """Save learned rules to JSON file."""
@@ -172,18 +191,35 @@ class CategorizationRules:
         """Get budget category from bank category mapping."""
         return self.bank_mappings.get(bank_category)
     
-    def get_category_for_prefix(self, description: str) -> Optional[Tuple[str, float]]:
-        """Get category based on prefix match in description."""
-        if not description:
+    def get_category_for_prefix(self, counter_party: str, description: str) -> Optional[Tuple[str, float]]:
+        """Get category based on field-specific prefix rules."""
+        matches = [
+            (counter_party, self.prefix_rules.get('counter_party', {})),
+            (description, self.prefix_rules.get('description', {}))
+        ]
+
+        for text, rules in matches:
+            match = self._get_category_for_prefix_field(text, rules)
+            if match:
+                return match
+
+        return None
+
+    def _get_category_for_prefix_field(
+        self,
+        text: str,
+        rules: Dict[str, List[str]]
+    ) -> Optional[Tuple[str, float]]:
+        if not text:
             return None
-        
-        desc_upper = description.upper().strip()
-        
-        for category, prefixes in self.prefix_rules.items():
+
+        text_upper = text.upper().strip()
+
+        for category, prefixes in rules.items():
             for prefix in prefixes:
-                if desc_upper.startswith(prefix.upper()):
+                if text_upper.startswith(prefix.upper()):
                     return (category, 0.95)
-        
+
         return None
     
     def get_category_for_contains(self, description: str) -> Optional[Tuple[str, float]]:
@@ -257,7 +293,16 @@ class CategorizationEngine:
         """Categorize a single transaction."""
         match_text = self._get_match_text(transaction)
 
-        # Priority 1: Learned merchant match
+        # Priority 1: Static prefix rules
+        match = self.rules.get_category_for_prefix(
+            transaction.counter_party,
+            transaction.description
+        )
+        if match:
+            category, confidence = match
+            return CategorizationResult(category, confidence, 'prefix_rule')
+
+        # Priority 2: Learned merchant match
         merchant = self.extract_merchant(match_text)
         if merchant:
             match = self.rules.get_category_for_merchant(merchant)
@@ -265,17 +310,11 @@ class CategorizationEngine:
                 category, confidence = match
                 return CategorizationResult(category, confidence, 'merchant')
 
-        # Priority 2: Learned keyword match
+        # Priority 3: Learned keyword match
         match = self.rules.get_category_for_keyword(match_text)
         if match:
             category, confidence = match
             return CategorizationResult(category, confidence, 'keyword')
-
-        # Priority 3: Static prefix rules
-        match = self.rules.get_category_for_prefix(match_text)
-        if match:
-            category, confidence = match
-            return CategorizationResult(category, confidence, 'prefix_rule')
 
         # Priority 4: Static contains rules
         match = self.rules.get_category_for_contains(match_text)

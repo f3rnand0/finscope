@@ -1,21 +1,65 @@
 {
-  "Food/Groceries": [
-    "Thi Bich Ngoc Pham",
-    "ALDI",
-    "LIDL",
-    "NETTO",
-    "SumUp .Asia Marche"
-  ],
-  "Home Expenses/Decoration stuff/Cleaning Supplies": [
-    "SCHUM EUROSHOP",
-    "Woolworth",
-    "DM Drogerie",
-    "ROSSMANN"
-  ],
-  "Other/Other expenses with cash/debit card": [
-    "Ligela-Florina Gabrian"
-  ],
-  "Investments/Geiger Edelmetalle": [
-    "Geiger Edelmetalle AG"
-  ]
+  "counter_party": {
+    "Food/Groceries": [
+      "Thi Bich Ngoc Pham",
+      "ALDI",
+      "LIDL",
+      "NETTO",
+      "SumUp .Asia Marche"
+    ],
+    "Home Expenses/Decoration stuff/Cleaning Supplies": [
+      "SCHUM EUROSHOP",
+      "Woolworth",
+      "DM Drogerie",
+      "ROSSMANN"
+    ],
+    "Other/Other expenses with cash/debit card": [
+      "Ligela-Florina Gabrian"
+    ],
+    "Investments/Geiger Edelmetalle": [
+      "Geiger Edelmetalle AG"
+    ],
+    "Other/Insurances": [
+      "Zurich Insurance Europe AG"
+    ],
+    "Utilities/Cell phones": [
+      "congstar - eine Marke der Telekom"
+    ],
+    "Utilities/ARD ZDF Radio": [
+      "Rundfunk ARD, ZDF, DRadio"
+    ],
+    "Investments/Rurüp contribution (pension)": [
+      "Generali Deutschland Lebensversiche"
+    ],
+    "Transportation/Bus": [
+      "DB Vertrieb GmbH"
+    ],
+    "Utilities/Electricity": [
+      "Ostrom GmbH"
+    ]
+  },
+  "description": {
+    "Food/Groceries": [
+      "Vielen Dank, Knuspr.de",
+      "O Mercadinho da Saudade"
+    ],
+    "Utilities/Cell phones": [
+      "Vodafone GmbH CallYa",
+      "Mobilfunk Kundenkonto 0067397092"
+    ],
+    "Education/Fiorella's expenses": [
+      "760567 Essen Monat"
+    ],
+    "Utilities/TV streaming / Cloud storage": [
+      "APPLE.COM.BILL//CORK/IE",
+      "NETFLIX.COM//BERLIN",
+      "Google Play Apps//Dublin"
+    ],
+    "Utilities/Home internet": [
+      "Festnetz Vertragskonto"
+    ],
+    "Investments/Scalable Capital Wealth": [
+      "Scalable Capital Monatliche Einzahlung"
+    ]
+  }
 }

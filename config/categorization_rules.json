@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-05-01T11:48:15.315612",
+  "last_updated": "2026-06-10T17:27:52.400369",
   "merchant_rules": {
     "ALDI SE": {
       "category": "Other/Expenses with credit card (TF Bank)",
@@ -19,8 +19,8 @@
     },
     "O MERCADINHO DA": {
       "category": "Food/Groceries",
-      "confidence": 0.8,
-      "count": 1
+      "confidence": 0.6,
+      "count": 2
     },
     "HYPOVEREINSBANK": {
       "category": "Other/Other expenses with cash/debit card",
@@ -34,13 +34,13 @@
     },
     "GOOGLE PLAY APPS": {
       "category": "Other/Other expenses with cash/debit card",
-      "confidence": 0.8,
-      "count": 1
+      "confidence": 0.65,
+      "count": 3
     },
     "FESTNETZ VERTRAGSKONTO": {
       "category": "Utilities/Home internet",
-      "confidence": 0.8,
-      "count": 1
+      "confidence": 0.65,
+      "count": 3
     },
     "EPZ-15-1841 GUERRA MIRANDA, F. (2A) SCHULLANDHEIM": {
       "category": "Education/Fernando's expenses",
@@ -59,13 +59,13 @@
     },
     "SCALABLE CAPITAL MONATLICHE": {
       "category": "Investments/Scalable Capital Wealth",
-      "confidence": 0.8,
-      "count": 1
+      "confidence": 0.65,
+      "count": 3
     },
     "760567 ESSEN": {
       "category": "Education/Fiorella's expenses",
-      "confidence": 0.8,
-      "count": 1
+      "confidence": 0.7,
+      "count": 4
     },
     "URBAN SPORTS GMBH": {
       "category": "Other/Other expenses with cash/debit card",
@@ -74,6 +74,136 @@
     },
     "RISIKO E2.2 595": {
       "category": "Investments/Rurüp contribution (pension)",
+      "confidence": 0.7,
+      "count": 4
+    },
+    "VIELEN DANK, KNUSPR.DE": {
+      "category": "Food/Groceries",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "VODAFONE GMBH CALLYA": {
+      "category": "Utilities/Cell phones",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "MOBILFUNK KUNDENKONTO 0067397092": {
+      "category": "Utilities/Cell phones",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "PFLANZEN-KOELLE GARTENCENT": {
+      "category": "Home Expenses/Decoration stuff/Cleaning Supplies",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "HAGEBAU": {
+      "category": "Home Expenses/Furniture/Repairs",
+      "confidence": 0.65,
+      "count": 3
+    },
+    "CAN SUPERMARKT": {
+      "category": "Food/Groceries",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "APPLE.COM.BILL": {
+      "category": "Utilities/TV streaming / Cloud storage",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "SELCUK": {
+      "category": "Food/Groceries",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "900024525799 16.05.26-16.06.26 10,97": {
+      "category": "Other/Insurances",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "R2026-0065": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "CONGSTAR KUNDENNUMMER 2215945142": {
+      "category": "Utilities/Cell phones",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "RUNDFUNK 04.2026 - 06.2026 BEITRAGSNR.": {
+      "category": "Utilities/ARD ZDF Radio",
+      "confidence": 0.7,
+      "count": 4
+    },
+    "PFAUEN-APOTHEKE": {
+      "category": "Health/Familiy's expenses",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "NETFLIX.COM": {
+      "category": "Utilities/TV streaming / Cloud storage",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "ELV61488600 06.05 10.10": {
+      "category": "Other/Clothing",
+      "confidence": 0.65,
+      "count": 3
+    },
+    "MEDICUS APOTHEKE": {
+      "category": "Health/Familiy's expenses",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "NORMA SAGT DANKE": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "ABO 162540719 ZUM": {
+      "category": "Transportation/Bus",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "ABO 001843858 ZUM": {
+      "category": "Transportation/Bus",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "ABO 725973404 ZUM": {
+      "category": "Transportation/Bus",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "VERTRAGSNR.": {
+      "category": "Transportation/Bus",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "200585006 NACHHILFEGEBUEHR 05-2026": {
+      "category": "Education/TSVs, extracurricular activities",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "ABSCHLAG": {
+      "category": "Utilities/Electricity",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "4.4638319.78 05/2026 200,00": {
+      "category": "Investments/Rurüp contribution (pension)",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "11 0148 1188 6393 ARAG": {
+      "category": "Other/Insurances",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "82008 EDEKA BRAUN": {
+      "category": "Food/Groceries",
       "confidence": 0.8,
       "count": 1
     }
@@ -87,6 +217,7 @@
     "Öffentliche Verkehrsmittel": "Transportation/Bus",
     "Energie & Wasser": "Utilities/Electricity",
     "Telefon / Internet / Fernsehen / Radio": "Utilities/Cell phones",
+    "Apotheke / Medikamente": "Health/Familiy's expenses",
     "Sport / Fitness": "Other/Entertainment",
     "Bücher / Musik / Filme / Apps": "Education/Fernando's expenses",
     "Lebensversicherung": "Investments/BMI life insurance policy",
@@ -96,6 +227,7 @@
     "Sonstige Einnahmen": "Income/Other Benefits",
     "Kindergeld": "Income/Other Benefits",
     "Schulgeld": "Education/Fiorella's expenses",
+    "Berufliche Weiterbildung": "Education/German classes",
     "Bargeld": "Other/Other expenses with cash/debit card",
     "Sonstiges": "Other/Other expenses with cash/debit card",
     "Motorrad": "Transportation/General maintenance",
@@ -111,6 +243,7 @@
     "Pharmacy / Drugs": "Health/Familiy's expenses",
     "Books / Music / Movies / Apps": "Education/Fernando's expenses",
     "Life Insurance": "Investments/BMI life insurance policy",
+    "Life  Insurance": "Investments/BMI life insurance policy",
     "Other Editions Insurance": "Other/Insurances",
     "Rent / Associated Costs": "Home Expenses/Rent (Germany)",
     "Salary / Wages": "Income/Job Salary",
