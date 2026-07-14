@@ -247,6 +247,21 @@ class TestCategorizationEngine:
         assert result.category == 'Utilities/Electricity'
         assert result.method == 'prefix_rule'
 
+    def test_edeka_prefix_match(self, engine):
+        """EDEKA counter-party variants should match Food/Groceries prefix rule."""
+        tx = Transaction(
+            id='tx_1',
+            date=datetime.now(),
+            counter_party='EDEKA MUC',
+            description='EDEKA MUC//Munich/DE',
+            amount=Decimal('-45.67'),
+            bank_category='Uncategorized'
+        )
+
+        result = engine.categorize(tx)
+        assert result.category == 'Food/Groceries'
+        assert result.method == 'prefix_rule'
+
 
 class TestRuleIntegrity:
     """Tests for rule target validity."""

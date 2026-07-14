@@ -80,7 +80,7 @@ class TestBudgetExporter:
         rows = list(csv.reader(io.StringIO(tsv), delimiter='\t'))
         header = rows[0]
 
-        assert header == ['Category / Expense', 'Budget', 'Actual Spent', 'Budget vs. Actual']
+        assert header == ['Category / Expense', 'Budget', 'Actual Spent', 'Budget vs. Actual', 'Sum']
         assert 'Description' not in header
         assert 'Transaction Count' not in header
         assert 'Subcategory' not in header
@@ -89,10 +89,10 @@ class TestBudgetExporter:
         assert 'Job Salary' not in tsv
 
         groceries = next(row for row in rows if row[0] == '- Groceries')
-        assert groceries == ['- Groceries', '€550.00', '€77.70', '€472.30']
+        assert groceries == ['- Groceries', '€550.00', '€77.70', '€472.30', '=45.20 + 32.50']
 
         dining_out = next(row for row in rows if row[0] == '- Dining Out')
-        assert dining_out == ['- Dining Out', '€150.00', '', '€150.00']
+        assert dining_out == ['- Dining Out', '€150.00', '', '€150.00', '']
 
     def test_export_maps_legacy_categories_to_template_rows(self, exporter):
         """Old stored categories should still land in the current template row."""
@@ -122,7 +122,7 @@ class TestBudgetExporter:
         rows = list(csv.reader(io.StringIO(exporter.export_to_tsv(transactions)), delimiter='\t'))
         credit_card = next(row for row in rows if row[0] == '- Expenses with credit card (TF Bank)')
 
-        assert credit_card == ['- Expenses with credit card (TF Bank)', '€400.00', '€75.00', '€325.00']
+        assert credit_card == ['- Expenses with credit card (TF Bank)', '€400.00', '€75.00', '€325.00', '=50.00 + 25.00']
 
     def test_zero_variance_is_blank(self, exporter):
         """Variance should be blank when actual equals budget."""
@@ -142,7 +142,108 @@ class TestBudgetExporter:
         rows = list(csv.reader(io.StringIO(exporter.export_to_tsv(transactions)), delimiter='\t'))
         geiger = next(row for row in rows if row[0] == '- Geiger Edelmetalle')
 
-        assert geiger == ['- Geiger Edelmetalle', '€100.00', '€100.00', '']
+        assert geiger == ['- Geiger Edelmetalle', '€100.00', '€100.00', '', '=100.00']
+
+    def test_sum_expression_shows_individual_amounts(self, exporter):
+        """Sum column shows each transaction amount joined by '+'."""
+        transactions = [
+            Transaction(
+                id='tx_1',
+                date=datetime(2026, 3, 1),
+                counter_party='ALDI',
+                description='ALDI SE',
+                amount=Decimal('-100.76'),
+                bank_category='Food / Beverages',
+                budget_category='Food/Groceries',
+                confidence=0.9
+            ),
+            Transaction(
+                id='tx_2',
+                date=datetime(2026, 3, 2),
+                counter_party='EDEKA',
+                description='EDEKA MUC',
+                amount=Decimal('-35'),
+                bank_category='Food / Beverages',
+                budget_category='Food/Groceries',
+                confidence=0.9
+            )
+        ]
+
+        rows = list(csv.reader(io.StringIO(exporter.export_to_tsv(transactions)), delimiter='\t'))
+        groceries = next(row for row in rows if row[0] == '- Groceries')
+
+        assert groceries[4] == '=100.76 + 35'
+
+    def test_sum_expression_preserves_decimal_precision(self, exporter):
+        """Sum column preserves original Decimal precision without rounding."""
+        transactions = [
+            Transaction(
+                id='tx_1',
+                date=datetime(2026, 3, 1),
+                counter_party='Shop',
+                description='Purchase',
+                amount=Decimal('-12.345'),
+                bank_category='Uncategorized',
+                budget_category='Food/Groceries',
+                confidence=0.9
+            )
+        ]
+
+        rows = list(csv.reader(io.StringIO(exporter.export_to_tsv(transactions)), delimiter='\t'))
+        groceries = next(row for row in rows if row[0] == '- Groceries')
+
+        assert groceries[4] == '=12.345'
+
+    def test_sum_expression_empty_when_no_transactions(self, exporter):
+        """Sum column is blank for categories with no transactions."""
+        transactions = [
+            Transaction(
+                id='tx_1',
+                date=datetime(2026, 3, 1),
+                counter_party='Shop',
+                description='Purchase',
+                amount=Decimal('-10.00'),
+                bank_category='Uncategorized',
+                budget_category='Food/Groceries',
+                confidence=0.9
+            )
+        ]
+
+        rows = list(csv.reader(io.StringIO(exporter.export_to_tsv(transactions)), delimiter='\t'))
+        dining_out = next(row for row in rows if row[0] == '- Dining Out')
+
+        assert dining_out[4] == ''
+
+    def test_excluded_transactions_omitted_from_sum(self, exporter):
+        """Excluded transactions are not included in the Sum expression."""
+        transactions = [
+            Transaction(
+                id='tx_1',
+                date=datetime(2026, 3, 1),
+                counter_party='ALDI',
+                description='ALDI SE',
+                amount=Decimal('-50.00'),
+                bank_category='Food / Beverages',
+                budget_category='Food/Groceries',
+                confidence=0.9,
+                excluded=True
+            ),
+            Transaction(
+                id='tx_2',
+                date=datetime(2026, 3, 2),
+                counter_party='EDEKA',
+                description='EDEKA MUC',
+                amount=Decimal('-30.00'),
+                bank_category='Food / Beverages',
+                budget_category='Food/Groceries',
+                confidence=0.9
+            )
+        ]
+
+        rows = list(csv.reader(io.StringIO(exporter.export_to_tsv(transactions)), delimiter='\t'))
+        groceries = next(row for row in rows if row[0] == '- Groceries')
+
+        assert groceries[4] == '=30.00'
     
     def test_get_summary(self, exporter, sample_transactions):
         """Test summary statistics."""

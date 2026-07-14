@@ -14,7 +14,7 @@ from config import BUDGET_CATEGORIES, EXPORT_TEMPLATE_PATH, normalize_budget_cat
 class BudgetExporter:
     """Export transactions to budget format."""
 
-    EXPORT_COLUMNS = ['Category / Expense', 'Budget', 'Actual Spent', 'Budget vs. Actual']
+    EXPORT_COLUMNS = ['Category / Expense', 'Budget', 'Actual Spent', 'Budget vs. Actual', 'Sum']
     
     def __init__(self, template_path: str = EXPORT_TEMPLATE_PATH):
         self.category_hierarchy = self._build_category_hierarchy()
@@ -56,6 +56,13 @@ class BudgetExporter:
             lines.append(f"{merchant}##{desc}")
         return '\n'.join(lines)
 
+    def _format_sum_expression(self, transactions: List[Transaction]) -> str:
+        """Format transaction amounts as an addition expression."""
+        if not transactions:
+            return ''
+        amounts = [str(abs(tx.amount)) for tx in transactions]
+        return '=' + ' + '.join(amounts)
+
     def export_to_tsv(self, transactions: List[Transaction]) -> str:
         """Generate template-shaped TSV string for Google Sheets."""
         aggregated = self.aggregate_by_category(transactions)
@@ -83,14 +90,18 @@ class BudgetExporter:
             raise ValueError('Export template is missing the Category / Expense header')
 
         headers = rows[header_index]
-        column_indexes = {name: headers.index(name) for name in self.EXPORT_COLUMNS}
+        column_indexes = {
+            name: headers.index(name)
+            for name in self.EXPORT_COLUMNS
+            if name in headers
+        }
         template_rows = []
 
         for row in rows[header_index:]:
             padded = row + [''] * (len(headers) - len(row))
             template_rows.append({
-                name: padded[index]
-                for name, index in column_indexes.items()
+                name: padded[column_indexes[name]] if name in column_indexes else ''
+                for name in self.EXPORT_COLUMNS
             })
 
         return template_rows
@@ -108,7 +119,7 @@ class BudgetExporter:
                 continue
 
             if not label:
-                rows.append(['', '', '', ''])
+                rows.append(['', '', '', '', ''])
                 continue
 
             if label.startswith('TOTAL SPENDING'):
@@ -118,7 +129,8 @@ class BudgetExporter:
                     label,
                     budget,
                     self._format_currency(actual) if actual != 0 else '',
-                    self._format_variance(self._parse_currency(budget) - actual)
+                    self._format_variance(self._parse_currency(budget) - actual),
+                    ''
                 ])
                 continue
 
@@ -126,19 +138,20 @@ class BudgetExporter:
                 subcategory = label[2:]
                 category_key = f"{current_category}/{subcategory}"
                 subcategory_rows.append(category_key)
-                data = aggregated.get(category_key, {'total': Decimal('0'), 'count': 0})
+                data = aggregated.get(category_key, {'total': Decimal('0'), 'count': 0, 'transactions': []})
                 actual = abs(data['total'])
                 has_transactions = data['count'] > 0
                 rows.append([
                     row['Category / Expense'],
                     row['Budget'],
                     self._format_currency(actual) if has_transactions else '',
-                    self._format_variance(self._parse_currency(row['Budget']) - actual)
+                    self._format_variance(self._parse_currency(row['Budget']) - actual),
+                    self._format_sum_expression(data['transactions']) if has_transactions else ''
                 ])
                 continue
 
             current_category = label
-            rows.append([label, row['Budget'], '', ''])
+            rows.append([label, row['Budget'], '', '', ''])
 
         return rows
 

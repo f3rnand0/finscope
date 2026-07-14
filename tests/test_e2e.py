@@ -227,7 +227,7 @@ class TestExport:
         # TSV should not contain income-related descriptions
         # (assuming sample has identifiable income like salary)
         # Since we can't know exact content, verify it doesn't crash
-        assert tsv.splitlines()[0] == 'Category / Expense\tBudget\tActual Spent\tBudget vs. Actual'
+        assert tsv.splitlines()[0] == 'Category / Expense\tBudget\tActual Spent\tBudget vs. Actual\tSum'
     
     def test_export_summary_excludes_income(self, client, sample_mhtml):
         """Verify export summary excludes income."""

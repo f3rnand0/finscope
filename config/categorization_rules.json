@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-06-10T17:27:52.400369",
+  "last_updated": "2026-07-14T18:16:42.977369",
   "merchant_rules": {
     "ALDI SE": {
       "category": "Other/Expenses with credit card (TF Bank)",
@@ -104,8 +104,8 @@
     },
     "CAN SUPERMARKT": {
       "category": "Food/Groceries",
-      "confidence": 0.6,
-      "count": 2
+      "confidence": 0.8,
+      "count": 6
     },
     "APPLE.COM.BILL": {
       "category": "Utilities/TV streaming / Cloud storage",
@@ -206,6 +206,76 @@
       "category": "Food/Groceries",
       "confidence": 0.8,
       "count": 1
+    },
+    "SALDO DER ABSCHLUSSPOSTEN": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "GEMEINDE UNTERHACHING/RATHAUSPLATZ 7/UNTERHACHING/": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "TKMAXX-DE/PETER-MLLER-STR. 18,/DSSELDORF/DE": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "011 EDEKA MUC": {
+      "category": "Food/Groceries",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "EL+ 69062515 16.06 11:48 KARTE08 0FIL.085 OPTIK MA": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "SUMUP .MUNICH MINT": {
+      "category": "Food/Dining Out",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "TAKKO FASHION 1394": {
+      "category": "Other/Clothing",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "DEICHMANN - SCHUHE": {
+      "category": "Other/Clothing",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "ABC APOTHEKE/MINNEWITSTRASSE": {
+      "category": "Health/Familiy's expenses",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "DER BECK GMBH": {
+      "category": "Food/Groceries",
+      "confidence": 0.65,
+      "count": 3
+    },
+    "PRIMARK MUNICH": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "DISNEY PLUS": {
+      "category": "Utilities/TV streaming / Cloud storage",
+      "confidence": 0.7,
+      "count": 4
+    },
+    "200585006 NACHHILFEGEBUEHR 06-2026": {
+      "category": "Education/Fiorella's expenses",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "8120692 21091982": {
+      "category": "Investments/Geiger Edelmetalle",
+      "confidence": 0.6,
+      "count": 2
     }
   },
   "keyword_rules": {},
