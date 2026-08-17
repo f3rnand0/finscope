@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-07-14T18:16:42.977369",
+  "last_updated": "2026-08-13T21:39:09.704329",
   "merchant_rules": {
     "ALDI SE": {
       "category": "Other/Expenses with credit card (TF Bank)",
@@ -234,8 +234,8 @@
     },
     "SUMUP .MUNICH MINT": {
       "category": "Food/Dining Out",
-      "confidence": 0.6,
-      "count": 2
+      "confidence": 0.65,
+      "count": 3
     },
     "TAKKO FASHION 1394": {
       "category": "Other/Clothing",
@@ -244,8 +244,8 @@
     },
     "DEICHMANN - SCHUHE": {
       "category": "Other/Clothing",
-      "confidence": 0.6,
-      "count": 2
+      "confidence": 0.65,
+      "count": 3
     },
     "ABC APOTHEKE/MINNEWITSTRASSE": {
       "category": "Health/Familiy's expenses",
@@ -259,13 +259,13 @@
     },
     "PRIMARK MUNICH": {
       "category": "Other/Other expenses with cash/debit card",
-      "confidence": 0.6,
-      "count": 2
+      "confidence": 0.65,
+      "count": 3
     },
     "DISNEY PLUS": {
       "category": "Utilities/TV streaming / Cloud storage",
-      "confidence": 0.7,
-      "count": 4
+      "confidence": 0.75,
+      "count": 5
     },
     "200585006 NACHHILFEGEBUEHR 06-2026": {
       "category": "Education/Fiorella's expenses",
@@ -276,6 +276,96 @@
       "category": "Investments/Geiger Edelmetalle",
       "confidence": 0.6,
       "count": 2
+    },
+    "EDEKA TUERKYILMAZ/MINNEWITSTR. 29/MUENCHEN/DE": {
+      "category": "Food/Groceries",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "WEBER BUEROBEDARF ,": {
+      "category": "Education/Fernando's expenses",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "ELV61488600 24.07 11.16": {
+      "category": "Other/Clothing",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "MANGO MUENCHEN NEUHAUS": {
+      "category": "Other/Clothing",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "LA DOLCE VITA": {
+      "category": "Food/Dining Out",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "MUELLER SAGT": {
+      "category": "Home Expenses/Furniture/Repairs",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "PENNY SAGT": {
+      "category": "Food/Groceries",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "ELV61488600 29.06 17.16": {
+      "category": "Other/Clothing",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "ELV54344954 09.07 18.20": {
+      "category": "Other/Clothing",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "RUN4TREES - UNTERHACHING": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "JANOVA GMBH/INNOCENTIASTR. 82/HAMBURG/DE": {
+      "category": "Other/Clothing",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "SUMUP .ASIA MARCHE": {
+      "category": "Food/Groceries",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "ELV61729919 16.07 16.07": {
+      "category": "Other/Clothing",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "REWE SAGT": {
+      "category": "Food/Groceries",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "0098478003": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "182/442/56224 - EINKOMMENSTEUER 2025 / SOLIDARITÄT": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "621-60235/621-2026-0043077": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "MUN-THEATINERSTRASSE/THEATINERSTRASSE 7/MNCHEN/DE": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.8,
+      "count": 1
     }
   },
   "keyword_rules": {},
