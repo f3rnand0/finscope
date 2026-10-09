@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-09-17T14:59:07.880544",
+  "last_updated": "2026-10-07T16:33:23.655805",
   "merchant_rules": {
     "ALDI SE": {
       "category": "Other/Expenses with credit card (TF Bank)",
@@ -264,8 +264,8 @@
     },
     "DISNEY PLUS": {
       "category": "Utilities/TV streaming / Cloud storage",
-      "confidence": 0.8,
-      "count": 6
+      "confidence": 0.8500000000000001,
+      "count": 7
     },
     "200585006 NACHHILFEGEBUEHR 06-2026": {
       "category": "Education/Fiorella's expenses",
@@ -384,6 +384,31 @@
     },
     "MITGLIEDSBEITRAG": {
       "category": "Education/TSVs, extracurricular activities",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "PAYPAL .SANDRA.KALTENM": {
+      "category": "Education/Fernando's expenses",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "UNTERHACHING, LISE-MEITNER-GYMNASIUM": {
+      "category": "Education/Fiorella's expenses",
+      "confidence": 0.65,
+      "count": 3
+    },
+    "SCHÜLERNUMMER 0000596": {
+      "category": "Other/Other expenses with cash/debit card",
+      "confidence": 0.8,
+      "count": 1
+    },
+    "232 - PRET": {
+      "category": "Food/Dining Out",
+      "confidence": 0.6,
+      "count": 2
+    },
+    "SPNR 2386467 LAUFNR00870 01.09.2026 BIS 31.08.2027": {
+      "category": "Other/Charity",
       "confidence": 0.8,
       "count": 1
     }
